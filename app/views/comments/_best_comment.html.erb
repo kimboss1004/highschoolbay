@@ -1,0 +1,30 @@
+<div class="answers">
+  <div class="vote-comment">
+    <%= link_to vote_question_comment_path(comment.commentable, comment, vote: true), method: 'post', remote: true do %>
+      <i class="fa fa-chevron-up"></i>
+    <% end %> 
+    <div id="<%= comment.class %>_<%= comment.id %>_vote" class="vote_count">
+      <%= comment.votes_count %>
+    </div>
+    <%= link_to vote_question_comment_path(comment.commentable, comment, vote: false), method: 'post', remote: true do %>
+      <i class="fa fa-chevron-down"></i>
+    <% end %>  
+  </div>
+  <div class="answer-content">
+      <p>
+        <span class="best">
+          <i class="fa fa-trophy yellow"></i>
+          Best Answer:
+        </span> 
+        <%= comment.body %></p>
+    <div  class='answer-info'>
+      <small>
+        <span>
+          <%= comment.user.username %>
+          <i class="fa fa-circle small"></i>
+          <%= display_date(comment.created_at) %>
+        </span>  
+      </small>
+    </div>
+  </div>
+</div>

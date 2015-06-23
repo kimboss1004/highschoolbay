@@ -1,0 +1,66 @@
+
+<!-- IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIsort navIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII -->
+<nav class='form-nav'>
+  <ul class="green-pills">
+    <%= link_to "All", path, class: ('active' if params[:tab].nil? ) %>
+    <%= link_to "Questions", path + "&tab=Questions", class: ('active' if params[:tab] == 'Questions' ) %>
+    <%= link_to "Worksheets", path + "&tab=Worksheets", class: ('active' if params[:tab] == 'Worksheets' ) %>
+  </ul>
+  <span class="search-results-title">
+    Search results
+  </span>
+  
+</nav>
+
+<!-- IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIoptionsIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII -->
+<% if params[:tab].nil? %>
+  <% @results.each do |object| %>
+    <% if object.class.to_s == 'Image' %>
+      <div class="one-image-container">
+        <div class="small-wks-post one-image">
+          <div class="buttons">
+              <%= render 'categories/category_badge', object: object, tab: "Worksheets" %>
+              <%= render 'gategories/gategory_badge', object: object, tab: "Worksheets" %>
+          </div>
+           <%= render 'votes/votes', path: vote_image_path(object), object: object %>  
+          <p><%= link_to object.title, image_path(object) %></p>
+          <% unless object.pictures.empty? %>
+              <div class="image-container">
+                <%= image_tag object.pictures.first.photo.url(:small), class: "image" %>
+              </div>
+          <% end %>
+            <div  class='image-info'>
+              <%= render 'shared/post_info', object: object %> 
+            </div>
+        </div>
+      </div>
+    <% else %>
+      <%= render 'questions/question', question: object %>  
+    <% end %>
+  <% end %>
+  <%= paginate @results %>
+<!-- IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII -->
+<% elsif params[:tab] == "Questions" %>
+  <% @results.each do |question| %>
+      <%= render 'questions/question', question: question %>   
+  <% end %>
+  <%= paginate @results %>
+<!-- IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII -->
+<% elsif params[:tab] == "Worksheets" %>
+  <div class="form-left-side">
+    <% seperate_array_tri(0,@results).each do |image| %>
+      <%= render 'images/image_index', image: image %>
+    <% end %>
+  </div>
+  <div class="form-middle-side">
+    <% seperate_array_tri(1,@results).each do |image| %>
+      <%= render 'images/image_index', image: image %>
+    <% end %>    
+  </div>
+  <div class="form-right-side">
+    <% seperate_array_tri(2,@results).each do |image| %>
+      <%= render 'images/image_index', image: image %>
+    <% end %>
+  </div>  
+  <%= paginate @results %>  
+<% end %>

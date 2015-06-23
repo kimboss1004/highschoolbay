@@ -1,0 +1,13 @@
+
+<ul class='main-categories'>
+  <% object.sub_categories.each do |sub_category| %>
+      <%= link_to sub_category.name, category_path(sub_category) %>
+  <% end %>
+  <a class="main-category"> </a>
+</ul>
+
+  <%= link_to new_category_path(master_id: object.id) do %>
+    <button type="button" class="btn btn-success">Create Category</button>
+  <% end %>
+</div>
+

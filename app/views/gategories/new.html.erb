@@ -1,0 +1,24 @@
+<h3>Create sub-category of <%= @parent.name %></h3>
+<%= render 'shared/errors', object: @gategory %>
+
+<div class="well">
+  <%= form_for [@group, @gategory] do |f| %>
+
+    <div class="form-group">
+      <%= f.label :name, "sub-category" %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+
+    <% if @parent.class.to_s == "Category" %>
+      <%= f.hidden_field :master_id, value: @parent.id %>
+    <% else %>
+      <%= f.hidden_field :gmaster_id, value: @parent.id %>
+    <% end %>
+
+    <%= f.submit "Create", class: 'btn btn-primary' %>
+  <% end %>
+</div>
+
+<% if false %>
+  <h2>sdf</h2>
+<% end %>

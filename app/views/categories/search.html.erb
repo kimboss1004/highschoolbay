@@ -1,0 +1,57 @@
+<div class="body-center">
+
+  <div class="left-content-container">
+  </div>
+
+
+<div class="form-content-container">
+  <div class="<%= @category.master ? @category.ancestor_objects.first.name.downcase : @category.name.downcase %>-jumbotron">
+    <div class="black-jumbotron">
+      <div class="hierarchy-links">
+          <%= link_to "All Categories", categories_path %> 
+          <% @category.ancestor_objects.each do |ancestor| %>
+            > <%= link_to ancestor.name , category_path(ancestor) %> 
+          <% end %>
+      </div> 
+      <h2 class="category-name">
+        <%= @category.name %>
+      </h2>     
+
+    <% @category.sub_categories.each_slice(3) do |three_categories| %>
+      <ul class="sub-categories">
+        <% three_categories.each do |category| %>
+          <%= link_to category.name, category_path(category) %>
+        <% end %>
+      </ul>
+      
+    <% end %>
+
+    <%= link_to "create category", new_category_path(master_id: @category) %>
+
+
+      <div class="category-search">
+        <%= form_tag search_category_path(@category), method: :get do %>
+          <div class="box">
+            <div class="container-1">
+              <span class="icon">
+                <button type='submit' class='btn btn-success search-icon'>
+                  <%= icon("fa fa-search") %>
+                </button>
+              </span>
+              <%= text_field_tag :search_category, params[:search_category], placeholder: "Search #{@category.name}..." %>    
+            </div>
+          </div>
+        <% end %> 
+      </div>
+    </div>
+  </div>
+
+    <%= render 'searches/search', path: search_category_path(@category, search_category: params[:search_category]) %>
+
+  </div>
+
+
+  <div class="right-content-container">
+  </div>
+
+</div>

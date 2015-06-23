@@ -1,0 +1,17 @@
+<div class="group-nav-container">
+  <div class="group-name-small">
+    <div class="school-name"><%= link_to @group.school, group_path(@group) %></div>
+  </div>
+
+  <ul class="group-category-nav">
+      <%= link_to "Math", group_category_path(@group, 1, tab: params[:tab]) %>
+      <%= link_to "English", group_category_path(@group, 4, tab: params[:tab]) %>
+      <%= link_to "Science", group_category_path(@group, 5, tab: params[:tab]) %>
+      <%= link_to "History", group_category_path(@group, 21, tab: params[:tab]) %>
+      <%= link_to "Social Sciences", group_category_path(@group, 36, tab: params[:tab]) %>
+      <%= link_to "History", group_category_path(@group, 21, tab: params[:tab]) %>
+      <%= link_to "Health", group_category_path(@group, 38, tab: params[:tab]) %>
+  </ul>   
+</div>    
+
+<div class="space-group-nav-small"></div>

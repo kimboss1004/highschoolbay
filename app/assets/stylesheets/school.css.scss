@@ -1,0 +1,222 @@
+//layout
+.school-form-left-side {
+  margin: 0px;
+  display: float;
+  float: left;
+  width: 430px;
+  height: auto;
+}
+
+.school-form-right-side {
+  margin: 0px;
+  display: float;
+  float: right;
+  width: 430px;
+  height: auto;
+}
+
+
+//state container
+div.state-well {
+  margin: 20px 0px;
+  width: 100%;
+  padding: 10px;
+  background-color: white;
+  border: solid #CCCCCC 1pt;
+}
+
+
+//hover table link--------------------------------------------------
+.school-table {
+  width: 100%;
+  tr:hover {
+          background-color: #ccc;
+  }
+  tr {
+    border-top: solid #CCCCCC 1pt;
+    height: 35px;
+    td:hover {
+        cursor: pointer;
+    }
+  }
+}
+
+//search results
+.inline-state {
+  display: inline;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.school-city-zone {
+  height: 30px;
+  width: 100%;
+  a:link, a:hover, a:visited, a:active {
+    display: block;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 500;
+    display: inline-block;
+    text-align: left;
+    height: 30px;
+    line-height: 30px;
+    color: blue;
+    text-decoration: none;
+  }
+  a:hover {
+    background-color: #CCCCCC;
+  }
+}
+
+
+//school jumbotron-----------------------------------------------------------------
+.school-jumbotron {
+  width: 100%;
+  height: 300px;
+  background-image: asset-url('school.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.school-index-title {
+  margin-left: 10px;
+  font-size: 50px;
+  color: #FFFFFF;
+}
+
+.school-create-container {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 301px;
+  color: white;
+  h4 {
+    display: inline-block;
+  }
+  .custom-button {
+    margin-left: 3px;
+    border-radius: 2px;
+    display: inline-block;
+    width: 100px;
+    height: 50px;
+    text-align: center;
+    a:link, a:visited {
+      padding: 6px;
+      color: white;
+      height: 40px;
+      line-height: 40px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      background-color: #0053CF;
+    }
+    a:hover {
+      background-color: #0066FF;
+    }
+  }
+}
+
+
+
+
+
+//search--------------------------------------------------------------------------------
+.school-index-search .box{
+  width: 700px;
+  height: 50px;
+  position: relative;
+  left: 10%;
+  margin-top: 50px;
+}
+
+.school-index-search .container-1{
+  white-space: nowrap;
+  width: 100%;
+}
+
+.school-index-search .container-1 input#search_index_school, input#search_index_city{
+  width: 200px;
+  height: 50px;
+  background: #323234;
+  border: none;
+  font-size: 15pt;
+  color: white;
+  padding-left: 50px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.school-index-search .container-1 input#search_index_school::-webkit-input-placeholder, input#search_index_city::-webkit-input-placeholder {
+   color: white;
+}
+.school-index-search .container-1 input#search_index_school:-moz-placeholder, input#search_index_city::-webkit-input-placeholder { /* Firefox 18- */
+   color: white;  
+}
+.school-index-search .container-1 input#search_index_school::-moz-placeholder, input#search_index_city::-webkit-input-placeholder {  /* Firefox 19+ */
+   color: white;  
+}
+.school-index-search .container-1 input#search_index_school:-ms-input-placeholder, input#search_index_city::-webkit-input-placeholder {  
+   color: white;  
+}
+
+.school-index-search .container-1 input#search_index_school:hover, input#search_index_city:hover, .container-1 input#search_index_school:focus, input#search_index_city:focus, .container-1 input#search_index_school:active, input#search_index_city:active{
+    outline:none;
+    background: #000000;
+  }
+
+.school-index-search .search-icon {
+  width: 40px;
+  background-color: #0066FF;
+  z-index: 1;
+  position: relative;
+  left: 47px;
+  bottom: 3px;
+}
+
+
+//select box
+.school-index-search .container-1 select#search_index_state{
+  width: 200px;
+  height: 50px;
+  background: #323234;
+  border: none;
+  font-size: 15pt;
+  color: white;
+  padding-left: 50px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.school-index-search .container-1 select#search_index_state::-webkit-input-placeholder {
+   color: white;
+}
+.school-index-search .container-1 select#search_index_state:-moz-placeholder { /* Firefox 18- */
+   color: white;  
+}
+.school-index-search .container-1 select#search_index_state::-moz-placeholder {  /* Firefox 19+ */
+   color: white;  
+}
+.school-index-search .container-1 select#search_index_state:-ms-input-placeholder {  
+   color: white;  
+}
+
+.school-index-search .container-1 select#search_index_state:hover, select#search_index_state:focus, .container-1 select#search_index_state:active, {
+    outline:none;
+    background: #000000;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+

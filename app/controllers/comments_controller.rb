@@ -1,0 +1,59 @@
+class CommentsController < ApplicationController
+  before_action :require_user, only: [:create, :vote]
+
+  def create
+    if params[:question_id]
+      @question = Question.find(params[:question_id])
+      @comment = @question.comments.new(comment_params)
+      @comment.group_id = current_user.group_id
+      @comment.user = current_user
+
+      if @comment.save
+        if !(@question.answered)
+          @question.update(answered: true)
+        end
+        flash[:notice] = "Your answer has been submitted"
+      else
+        flash[:error] = "Answer cannot be empty."
+      end
+
+    else
+      @image = Image.find(params[:image_id])
+      @comment = @image.comments.new(comment_params)
+      @comment.group_id = current_user.group_id
+      @comment.user = current_user
+      if @comment.save
+        flash[:notice] = "Your answer has been submitted"
+      else
+        flash[:error] = "Answer cannot be empty."
+      end
+    end
+
+    redirect_to :back
+  end
+
+  def vote
+    @comment = Comment.find(params[:id])
+    @vote = Vote.find_by(voteable: @comment, user_id: current_user.id)
+
+    if !@vote
+      Vote.create(vote: params[:vote], user_id: current_user.id, voteable: @comment)
+    elsif @vote.vote.to_s == params[:vote]
+      return nil
+    else 
+      @vote.update(vote: params[:vote])
+    end
+    
+    respond_to do |format|
+      format.js
+    end
+  end
+
+
+  private
+
+  def comment_params
+    params.require(:comment).permit(:body)
+  end
+
+end

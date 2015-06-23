@@ -1,0 +1,27 @@
+<% if logged_in? %>
+  <% @group ||= current_user.group %>
+<% end %>
+
+<% unless @group.nil? %>
+  <br/>
+  <br/>
+  <h4><%= @group.school %> user-made categories</h4> 
+  <% Category.where(master_id: nil).each do |department| %>
+
+    <a class="btn btn-success" data-toggle="collapse" href="#gategory<%= department.id %>" aria-expanded="false" aria-controls="gategory">
+      <%= department.name %>
+    </a>
+
+    <div class="collapse" id="gategory<%= department.id %>">
+      <div class="well">
+          <%= f.collection_check_boxes :gategory_ids, branched_descendents(department), :id, :name do |sub_gategory| %>
+            <%= sub_gategory.label(class: "checkbox-inline") {sub_gategory.check_box(class: "checkbox") + sub_gategory.text} %>   
+          <% end %>
+      </div>
+    </div>
+
+  <% end %>
+<% end %>
+
+
+

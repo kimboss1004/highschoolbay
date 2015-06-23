@@ -1,0 +1,40 @@
+<div class="well">
+  <ul>
+    <li>Username: <small><%= @user.username %></small></li>
+    <% if @user.group.nil? && creator?(@user.id) %>
+      School: <%= link_to(groups_path) do %>
+        <button type="button" class="btn btn-success btn-xs">Select a school!</button>
+      <% end %>
+    <% else %>
+      <li>School: <%= link_to @user.group.school, group_path(@user.group) %></li>
+      <li><%= @user.group.school %> rank: <%= @rank %> -- points: <%= @user.votes_count %></li>
+    <% end %>
+  </ul>
+</div>
+
+<hr/>
+<br/>
+
+ 
+<%= render 'question_answer_image_navbuttons', path: user_path(@user) %>  
+
+<% if params[:tab].nil? %>
+  <% @questions.each do |question| %>
+    <%= render 'questions/question', question: question %>
+  <% end %>
+<% end %>
+
+<% if params[:tab] == "Worksheets" %>
+  <% @images.each do |image| %>
+    <%= render 'images/image_index', image: image, tab: "Worksheets" %>
+  <% end %>
+<% end %>
+
+<% if params[:tab] == "Answers" %>
+  <%= render 'answers', answers: @answers %>
+<% end %>
+
+
+
+
+

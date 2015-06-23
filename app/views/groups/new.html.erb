@@ -1,0 +1,27 @@
+<h1>new school form</h1>
+
+<%= render 'shared/errors', object: @group %>
+
+<div class="well">
+  <%= form_for @group do |f| %>
+
+    <div class="form-group">
+      <%= f.label :school, "School" %>
+      <%= f.text_field :school, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :state %>
+      <%= f.select(:state, options_for_select(us_states), {include_blank: true })%>
+    </div>
+ 
+     <div class="form-group">
+      <%= f.label :city %>
+      <%= f.text_field :city, class: "form-control" %>
+    </div>
+
+    <br/>
+
+    <%= f.submit "Add", class: 'btn btn-primary' %>
+  <% end %>
+</div>

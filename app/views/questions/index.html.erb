@@ -1,0 +1,11 @@
+<h1>Questions index</h1>
+<%= link_to new_question_path do %>
+  <button type="button" class="btn btn-info">Ask a question</button>
+<% end %>
+
+<br/>
+<br/>
+
+<% @questions.each do |question| %>
+  <%= render 'question', question: question %>
+<% end %> 

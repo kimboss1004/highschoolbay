@@ -1,0 +1,79 @@
+<div class="body-center">
+
+  <div class="left-content-container">
+
+  </div>
+
+  <div class="form-content-container">
+  
+  <%= render 'groups/group_nav' %>
+
+
+
+
+  <div class="<%= @gategory.master_category.master ? @gategory.master_categories.first.name.downcase : @gategory.master_category.name.downcase %>-jumbotron">
+    <div class="black-jumbotron">
+      <div class="hierarchy-links">
+          <%= link_to @group.school, group_path(@group) %>
+          <% @gategory.master_categories.each do |category| %>
+            >
+            <%= link_to category.name, group_category_path(@group, category) %> 
+          <% end %>
+          <% @gategory.ancestor_gategories.each do |ancestor| %>
+            >
+            <%= link_to ancestor.name , group_gategory_path(@group, ancestor, tab: params[:tab]) %> 
+          <% end %>
+      </div> 
+      <h2 class="category-name">
+        <%= @gategory.name %>
+      </h2>     
+
+      <% @gategory.sub_gategories.each_slice(3) do |three_gategories| %>
+        <ul class="sub-categories">
+          <% three_gategories.each do |gategory| %>
+            <%= link_to gategory.name, group_gategory_path(@group, gategory, tab: params[:tab]) %>
+          <% end %>
+        </ul>
+      <% end %>
+
+
+      <div class="gategory-search">
+        <%= form_tag search_group_gategory_path(@group, @gategory), method: :get do %>
+          <div class="box">
+            <div class="container-1">
+              <span class="icon">
+                <button type='submit' class='btn btn-success search-icon'>
+                  <%= icon("fa fa-search") %>
+                </button>
+              </span>
+              <%= text_field_tag :search_gategory, params[:search_gategory], placeholder: "Search #{@gategory.name}..." %>    
+            </div>
+          </div>
+        <% end %> 
+      </div>
+    </div>
+  </div>
+
+
+<%= render 'groups/question_image_answer_navbuttons', path: group_gategory_path(@group, @gategory) %>
+
+<%= render 'shared/questions_answers_images' %> 
+
+  </div>
+
+
+
+
+
+
+
+
+
+  <div class="right-content-container">
+  </div>
+
+</div>
+
+
+ 
+

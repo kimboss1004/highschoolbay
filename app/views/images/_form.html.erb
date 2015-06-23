@@ -1,0 +1,55 @@
+
+<div class="well">
+  <%= form_for image, :html => {multipart: true} do |f| %>
+    <div class="form-group">
+      <%= f.label :title, "Title" %>
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :description %>
+      <%= f.text_area :description, class: "form-control", rows: 5%>
+    </div>
+
+    <br/>
+
+    <div class="form-group">
+      <%= f.label :pictures, :class => 'control-label' %>
+      <div class="controls">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-xs-12 col-md-4">
+              <%= file_field_tag "photos[]", type: :file, multiple: true %>
+              <%= file_field_tag "photos[]", type: :file, multiple: true %>
+              <%= file_field_tag "photos[]", type: :file, multiple: true %>
+            </div>
+            <div class="col-xs-12 col-md-4">
+              <%= file_field_tag "photos[]", type: :file, multiple: true %>
+              <%= file_field_tag "photos[]", type: :file, multiple: true %>
+              <%= file_field_tag "photos[]", type: :file, multiple: true %>
+            </div>
+            <div class="col-xs-12 col-md-4">
+              <%= file_field_tag "photos[]", type: :file, multiple: true %>
+              <%= file_field_tag "photos[]", type: :file, multiple: true %>
+              <%= file_field_tag "photos[]", type: :file, multiple: true %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br/>
+
+    <%= hidden_field_tag 'group', path_value(@group, params[:group]) %>
+    <%= hidden_field_tag 'category', path_value(@category, params[:category]) %>
+    <%= hidden_field_tag 'gategory', path_value(@gategory, params[:gategory]) %>
+
+    <%= render 'categories/categories_checkboxes', f: f %>
+    <%= render 'gategories/gategories_checkboxes', f: f %>
+
+    <br/>
+    <hr/> 
+
+    <%= f.submit "Share", class: 'btn btn-primary' %>
+  <% end %>
+</div>

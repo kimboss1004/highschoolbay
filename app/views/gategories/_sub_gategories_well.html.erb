@@ -1,0 +1,12 @@
+<div class="well">
+  <ul>
+    <% gategories.each do |gategory| %>
+      <li><%= link_to gategory.name, group_gategory_path(@group,gategory) %></li>
+    <% end %>
+  </ul>
+  <% if logged_in? && member?(@group.id) %>
+    <%= link_to new_group_gategory_path(@group) + master do %>
+      <button type="button" class="btn btn-success">Create Category</button>
+    <% end %>
+  <% end %>
+</div>

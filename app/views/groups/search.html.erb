@@ -1,0 +1,52 @@
+<div class="body-center">
+
+  <div class="left-content-container">
+  </div>
+
+
+  <div class="form-content-container">
+    <div class="group-nav-container">
+      <div class="group-name small">
+        <div class="school-name"><%= link_to @group.school, group_path(@group) %></div>
+
+        <div class="group-search">
+          <%= form_tag search_group_path(@group), method: :get do %>
+            <div class="box">
+              <div class="container-1">
+                <span class="icon">
+                  <button type='submit' class='btn btn-success search-icon'>
+                    <%= icon("fa fa-search") %>
+                  </button>
+                </span>
+                <%= text_field_tag :search_group, params[:search_group], placeholder: "Search #{@group.school}..." %>    
+              </div>
+            </div>
+          <% end %> 
+        </div>
+
+      </div>
+
+      <ul class="group-category-nav">
+          <%= link_to "Math", group_category_path(@group, 1) %>
+          <%= link_to "English", group_category_path(@group, 4, tab: params[:tab]) %>
+          <%= link_to "Science", group_category_path(@group, 5, tab: params[:tab]) %>
+          <%= link_to "History", group_category_path(@group, 21, tab: params[:tab]) %>
+          <%= link_to "Social Sciences", group_category_path(@group, 36, tab: params[:tab]) %>
+          <%= link_to "History", group_category_path(@group, 21, tab: params[:tab]) %>
+          <%= link_to "Health", group_category_path(@group, 38, tab: params[:tab]) %>
+      </ul>   
+    </div>
+      
+
+    <div class="space-group-nav-search-index"></div>
+
+    <%= render 'searches/search', path: search_group_path(@group, search_group: params[:search_group]) %>
+
+  </div>
+
+
+  <div class="right-content-container">
+  </div>
+
+</div>
+

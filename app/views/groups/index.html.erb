@@ -1,0 +1,93 @@
+
+<div class="body-center">
+
+  <div class="left-content-container">
+  </div>
+
+  <div class="form-content-container">
+    <div class="school-jumbotron">
+      <div class="black-jumbotron">
+        <div class="school-index-title">
+          High Schools<br/>
+          <h3>Find your school and join it!</h3>
+        </div>    
+
+        <div class="school-index-search">
+          <%= form_tag group_search_school_index_path, method: :get do %>
+            <div class="box">
+              <div class="container-1">
+                <span class="icon">
+                  <button type='submit' class='btn btn-success search-icon'>
+                    <%= icon("fa fa-search") %>
+                  </button>
+                </span>
+                <%= text_field_tag :search_index_school, params[:search_index_school], placeholder: "Search school..." %>
+
+                <%= text_field_tag :search_index_city, params[:search_index_city], placeholder: "Search city..." %>    
+
+                <%= select_tag(:search_index_state, options_for_select(us_states), {include_blank: true, prompt: "State"}) %>
+              </div>
+            </div>
+          <% end %> 
+        </div>
+        <div class="school-create-container">
+          <h4>Can't Find you school?</h4>
+          <li class="custom-button"><%= link_to "Add school", new_group_path %></li>
+        </div>
+        
+      </div>
+    </div>
+
+
+  <div class="school-form-left-side">
+    <% seperate_array_two(0,@schools).each do |state| %>
+      <% if state.any? %>
+        <div class="state-well">
+          <h3><%= state.first.state %></h3>
+          <table class="school-table">      
+            <% state.each do |school| %>
+              <tr data-link="<%= group_path(school) %>">
+                <td class="school-name"><%= upcase_first(school.school) %></td>
+                <td class="city"><%= upcase_first(school.city) %></td>    
+              </tr>
+            <% end %>
+          </table>      
+        </div>
+      <% end %>
+    <% end %>
+
+
+  </div>
+
+
+  <div class="school-form-right-side">
+    <% seperate_array_two(1,@schools).each do |state| %>
+      <% if state.any? %>
+        <div class="state-well">
+          <h3><%= state.first.state %></h3>
+          <table class="school-table">      
+            <% state.each do |school| %>
+              <tr data-link="<%= group_path(school) %>">
+                <td><%= upcase_first(school.school) %></td>
+                <td><%= upcase_first(school.city) %></td>
+              </tr>
+            <% end %>
+          </table>      
+        </div>
+      <% end %>
+    <% end %>
+  </div> 
+
+
+
+
+
+  </div>
+
+
+  <div class="right-content-container">
+  </div>
+
+
+
+

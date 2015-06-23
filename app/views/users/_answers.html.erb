@@ -1,0 +1,13 @@
+  <% answers.each do |answer| %>
+    <% if answer.commentable.class == Question %>
+      <div class="well">
+        <%= answer.user.username %> answered the <strong>Question "<%= link_to answer.commentable.title, question_path(answer.commentable) %>"</strong>
+        <%= render 'comments/comment', comment: answer %>    
+      </div>
+    <% elsif answer.commentable.class == Image %>
+      <div class="well">
+        <%= answer.user.username %> answered the <strong>Worksheet "<%= link_to answer.commentable.title, image_path(answer.commentable) %>"</strong>
+        <%= render 'comments/comment', comment: answer %>    
+      </div>
+    <% end %>  
+  <% end %>

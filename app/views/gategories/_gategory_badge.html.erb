@@ -1,0 +1,3 @@
+<% object.gategories.each do |gategory| %>
+  <%= link_to gategory.name, group_gategory_path(gategory.group, gategory, tab: tab), class: "btn btn-success btn-xs btn-custom" %>
+<% end %>

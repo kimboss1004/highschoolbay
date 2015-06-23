@@ -1,0 +1,81 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_self
+ */
+ 
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+ @import "font-awesome-sprockets";
+ @import "font-awesome";
+ @import "navbar";
+ @import "category";
+ @import "body";
+ @import "question";
+ @import "image";
+ @import "school";
+ @import "answer";
+ @import "group";
+ @import "gategory";
+
+html {
+    position: relative;
+    min-width: 1350px;
+    min-height: 768px;
+    height: 100%;
+}
+
+body {
+  width:100%;
+  height:100%;
+  margin: 0px;
+  background-color: #F2F2F2;
+}
+
+.body-center {
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 0px;
+  width: 1350px;
+  height: auto;
+}
+
+
+div {
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+}
+
+.quiet {
+  color: #ababab;
+}
+
+.label, .badge {
+  a, a:hover, a:focus {
+    color: #fff;
+    text-decoration: none;
+  }
+}
+
+div.comment_votes {
+  padding: 10px;
+}
+
+
+
+ .well {
+  background-color: white;
+ }
+
+
+

@@ -1,0 +1,28 @@
+<nav class='form-nav'>
+  <ul class="green-pills">
+    <%= link_to "Questions", path, class: ('active' if params[:tab].nil? ) %>
+    
+    <%= link_to "Worksheets", path + '?tab=Worksheets', class: ('active' if params[:tab] == 'Worksheets' ) %>
+
+    <%= link_to "Answer", path + '?tab=Answers', class: ('active' if params[:tab] == 'Answers' ) %>
+  </ul>
+
+<% if params[:tab] == nil %>
+  <%= render 'questions/modal' %>
+<% elsif params[:tab] == "Worksheets" %>
+  <%= render 'images/modal' %>
+<% end %>
+
+
+  <ul class="form-sort">
+    <%= link_to "New", path + (params[:tab] ? "?tab=#{params[:tab]}" : ""), class: ('active' if params[:sub_tab].nil? ) %>
+    
+    <%= link_to "Popular", path + (params[:tab] ? "?tab=#{params[:tab]}&sub_tab=Popular" : "?sub_tab=Popular"), class: ('active' if params[:sub_tab] == 'Popular' ) %>
+
+    <%= link_to "Favorite", path + (params[:tab] ? "?tab=#{params[:tab]}&sub_tab=Favorite" : "?sub_tab=Favorite"), class: ('active' if params[:sub_tab] == 'Favorite' ) %>
+  </ul>
+
+</nav>
+
+
+

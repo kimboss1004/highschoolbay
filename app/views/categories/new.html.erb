@@ -1,0 +1,32 @@
+<%= render 'shared/errors', object: @category %>
+
+<div class="well">
+  <%= form_for @category do |f| %>
+
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+
+
+    <h4>Master Category</h4> 
+    <ul>
+      <% Category.where(master_id: nil).each do |department| %>
+          <div class="form-group">
+            <%= f.radio_button :master_id, department.id, class: "radio-inline" %>
+            <%= f.label :master_id, department.name %>
+            <br/>
+            <ul>
+              <%= f.collection_radio_buttons(:master_id, department.descendents, :id, :name) do |descendent| %>
+                <%= descendent.label(class: "radio-inline") { descendent.radio_button(class: "radio") + descendent.text} %>
+              <% end %>                
+            </ul>
+          </div>
+      <% end %>      
+    </ul>
+
+
+
+    <%= f.submit "Create", class: 'btn btn-primary' %>
+  <% end %>
+</div>

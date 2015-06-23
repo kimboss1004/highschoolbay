@@ -1,0 +1,14 @@
+<div class="row margin-right">
+  <div class="col-md-5">
+      <%= form_for [object,comment] do |f| %>
+      <div class="form-group">
+        <%= f.text_area :body, rows: 5, class: "form-control" %>        
+      </div>
+
+        <%= f.submit "Answer", class: 'btn btn-primary' %>
+      <% end %>   
+  </div>
+  <div class="col-md-7"></div>
+</div>
+
+

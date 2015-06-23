@@ -1,0 +1,11 @@
+<ul class="nav nav-tabs">
+  <li role="presentation" class="<%= 'active' if params[:sub_tab].nil? %>">
+    <%= link_to "New", path  %>
+  </li>
+  <li role="presentation" class="<%= 'active' if params[:sub_tab] == 'Popular' %>">
+    <%= link_to "Popular this week", path + (path.include?('?') ? "&sub_tab=Popular" : "?sub_tab=Popular") %>
+  </li>
+  <li role="presentation" class="<%= 'active' if params[:sub_tab] == 'Favorite' %>">
+    <%= link_to "Favorite this week", path + (path.include?('?') ? "&sub_tab=Favorite" : "?sub_tab=Favorite") %>
+  </li>
+</ul>
