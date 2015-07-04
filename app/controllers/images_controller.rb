@@ -1,5 +1,6 @@
 class ImagesController < ApplicationController
-  before_action :require_user, only: [:new, :create, :vote]
+  before_action :require_user, only: [:new, :create]
+  before_action :require_user_vote, only: [:vote]
 
 
   def show

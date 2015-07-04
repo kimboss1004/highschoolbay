@@ -26,7 +26,6 @@
   .question-info {
     color: rgba(108, 108, 108,0.8);
 
-    font-size: 18px;
     padding: 0px;
     position: relative;
     bottom: 3px;
@@ -41,9 +40,12 @@
     }
 
     i.small {
-      font-size: 8px;
+      font-size: 6px;
       position: relative;
       bottom: 2px;
+    }
+    small {
+      font-size: 13px;
     }
 
   }
@@ -102,7 +104,7 @@
   border-left: solid #E3E3E3 1pt;
   margin-top: 5px;
   position: relative;
-
+  
   p {
     font-weight: 800px;
     position: relative;
@@ -206,4 +208,72 @@ margin-left: 7%;
   background-size: cover;
 }
 
+// question-form ------------------------------------------------
+.no-padding {
+  padding: 0px;
+}
 
+.qw-form-container {
+  width: 100%;
+  background-color: #FFFFFF;
+  border: solid #CDCDCD 1px;
+  .label {
+    font-size: 20px;
+    font-weight: 300;
+    margin-bottom: 5px;
+    padding-left: 3px;
+    color: black;
+    display: block;
+  }
+  p {
+    font-size: 25px;
+    font-weight: 400px;
+    width: 95%;
+    padding: 15px 0px 5px 47px;
+  }
+  .qw-form-input {
+    width: 90%;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0px;
+    .custom-border-input {
+      border: solid #00B800 1px;
+    }
+  .buttons-centered {
+    text-align: center;
+  }
+  }
+  .bottom-nav {
+    width: 100%;
+    height: 50px;
+    margin-top: 25px;
+    background-color: #F7F7F7;
+    border-top: solid #CDCDCD 1px;
+    .custom-blue {
+      position: relative;
+      top: 6px;
+      left: 88%;
+      background-color: #0099FF;
+      color: white;
+      font-size: 17px;
+      font-weight: 500;
+    }
+    .custom-blue:hover{
+      background-color: #008AE6;
+    }
+  }
+  .upload-row {
+   display: block;
+   width: 100%;
+   text-align: center;
+   padding: 10px;
+   .upload-button {
+    display: inline-block;
+    padding: 0px;
+    width: 160px;
+    margin-left: 5px;
+    font-size: 10px;
+   }
+  }
+}

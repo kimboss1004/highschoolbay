@@ -1,0 +1,95 @@
+<div class="body-center">
+
+  <div class="left-content-container">
+  </div>
+
+  <div class="form-content-container">
+    <h2 class="notification">
+      <%= upcase_first(current_user.username) %>'s' Notifications
+    </h2>
+    <% @notifications.each do |notification| %>
+      <div class="<%= notification.checked ? 'checked' : 'unchecked' %> notification">
+        <div class="contents">
+          <!-- ======================================================================================== -->
+          <% if notification.postable_type == 'Question' %>
+            <% if notification.notificable_type == 'Vote' %>
+              <p class="username"><%= upcase_first(notification.sender.username) %></p> 
+              <p class='vote-type'><%= notification.notificable.vote ? 'liked' : 'disliked' %></p> your 
+              <p class='question-type'>Question</p> -
+              <p class='topic'><%= notification.postable.title %></p>
+            <% else %>
+              <% if notification.postable.user == current_user %>
+                <p class="username"><%= upcase_first(notification.sender.username) %></p> 
+                <p class='comment-type'>answered</p> your 
+                <p class='question-type'>Question</p> -
+                <p class='topic'><%= notification.postable.title %></p>
+              <% else %>
+                <p class="username"><%= upcase_first(notification.sender.username) %></p> also 
+                <p class='comment-type'>answered</p> the 
+                <p class='question-type'>Question</p> -
+                <p class='topic'><%= notification.postable.title %></p>
+              <% end %>
+            <% end %>
+            <%= link_to question_path(notification.postable) do %>
+              <span></span>
+            <% end %>
+
+        <!-- ===================================================================================== -->
+          <% elsif notification.postable_type == 'Image' %>
+            <% if notification.notificable_type == 'Vote' %>
+              <p class="username"><%= upcase_first(notification.sender.username) %></p> 
+              <p class='vote-type'><%= notification.notificable.vote ? 'liked' : 'disliked' %></p> your 
+              <p class='worksheet-type'>Worksheet</p> -
+              <p class='topic'><%= notification.postable.title %></p>
+            <% else %>
+              <% if notification.postable.user == current_user %>
+                <p class="username"><%= upcase_first(notification.sender.username) %></p> 
+                <p class='comment-type'>commented</p> on your 
+                <p class='worksheet-type'>Worksheet</p> -
+                <p class='topic'><%= notification.postable.title %></p>
+              <% else %>
+                <p class="username"><%= upcase_first(notification.sender.username) %></p> 
+                also <p class='comment-type'>commented</p> on the 
+                <p class='worksheet-type'>Worksheet</p> -
+                <p class='topic'><%= notification.postable.title %></p>
+              <% end %>
+            <% end %>
+            <%= link_to image_path(notification.postable) do %>
+              <span></span>
+            <% end %>
+        <!-- ==================================================================================== -->
+          <% else %>
+            <p class="username"><%= upcase_first(notification.sender.username) %></p> 
+            <p class='vote-type'><%= notification.notificable.vote ? 'liked' : 'disliked' %></p> your 
+            <p class='comment-orange'>comment</p> -
+            <p class='topic'><%= notification.postable.body %></p>
+
+            <%= link_to (notification.postable.commentable_type == 'Question' ? question_path(notification.postable.commentable) : image_path(notification.postable.commentable)) do %>
+              <span></span>
+            <% end %>
+
+          <% end %>             
+        </div>
+        <p class="date">
+          <%= notification.created_at.strftime("%m/%d/%Y") %>
+        </p>
+        <p class="time"> 
+          <%= notification.created_at.strftime("%l:%M %P") %>
+        </p>      
+      
+
+
+      </div>
+    <% end %>
+    <br/>
+    <%= paginate @notifications %>
+  </div>
+   
+
+
+  <div class="right-content-container">
+  </div>
+
+</div>
+
+

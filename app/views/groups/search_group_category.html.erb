@@ -2,6 +2,24 @@
 <div class="body-center">
 
   <div class="left-content-container">
+    <p>Custom Categories
+      <button type="button" class="custom-info" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Custom categories are categories created by members of school, always labeled (custom categories)">
+        <i class="fa fa-question-circle"></i>
+      </button>
+    </p>
+
+    <h4><%= @category.name %></h4>
+    <ul class="gategory-links">
+      <% @category.gategories.each do |gategory| %>
+        <%= link_to upcase_first(gategory.name), group_gategory_path(@group, gategory) %>
+      <% end %>      
+      <br/>
+      <% if logged_in? && member?(@group.id) %>
+        <%= link_to new_group_gategory_path(@group) + "?category_id=#{@category.id}" do %>
+          <button type="button" class="btn btn-success green">Create Category</button>
+        <% end %>
+      <% end %>
+    </ul>
   </div>
 
 

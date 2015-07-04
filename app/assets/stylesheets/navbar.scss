@@ -7,7 +7,7 @@
     padding-right: 0px;
     height: 50px;
     width: 100%;
-    background-color: #5FBF7E;
+    background-color: #339933;
     z-index: 10;
     position: fixed;
   }
@@ -23,7 +23,7 @@
     padding-right: 0px;
     height: 50px;
     width: 100%;
-    background-color: #5FBF7E;
+    background-color: #339933;
     z-index: 10;
   }
 }
@@ -33,7 +33,7 @@
   display: inline-block;
   position: relative;
   bottom: 20px;
-  left: 5px;
+  left: 10px;
   a:link, a:hover, a:visited, a:active {
     color: white;
     font-size: 30px;
@@ -43,20 +43,21 @@
 }
 
 
-
+.dropdown-menu {
+  min-width: 100px;
+}
 
 ul.nav-right {
   position: absolute;
-  top: 17px;
+  top: 15px;
   right: 25px;
 }
 
 ul .nav-item {
   display: inline-block;
   margin: 0px 10px;
-
   a:link, a:hover, a:visited, a:active {
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 700;
     padding: 10px 5px;
     background-color: none;
@@ -66,6 +67,46 @@ ul .nav-item {
     background-color: #56AC71;
   }
   a:link, a:visited {
+    color: white;
+  }
+  span.notification-badge {
+    height: 15px;
+    position: relative;
+    bottom: 0px;
+    right: 5px;
+    background-color: red;
+    color: white;
+  }
+}
+
+.login {
+  display: inline-block;
+  margin: 0px 10px;
+  a:link, a:hover, a:visited, a:active {
+    border-radius: 2px;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 4px 7px;
+    background-color: #45B46A;
+    text-decoration: none;
+    border: solid 1px #007C29;
+    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, .1);
+    color: white;
+  }
+}
+
+.school {
+  display: inline-block;
+  margin: 0px 10px;
+  a:link, a:hover, a:visited, a:active {
+    border-radius: 3px;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 4px 7px;
+    background-color: #0099FF;
+    text-decoration: none;
+    border: solid 1px #007C29;
+    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, .1);
     color: white;
   }
 }
@@ -92,6 +133,7 @@ ul.nav-main-categories {
   width: 100%;
   height: 35px;
   padding: 0px;
+  padding-left: 20px;
   box-shadow: 6px 6px 10px #181818;
   background-color: rgba(62, 126, 83, 0.60);
   a:link, a:hover, a:visited, a:active {

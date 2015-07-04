@@ -1,6 +1,10 @@
 class SessionsController < ApplicationController
+  before_action :require_user, only: [:destroy]
  
   def new
+    if params[:log_return]
+      session[:log_return] = params[:log_return]
+    end
     
   end
 
@@ -10,9 +14,9 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id 
       flash[:notice] = "#{user.username}, you have logged in."
-      redirect_to root_path
+      redirect_to (session[:log_return] ? session[:log_return] : root_path)
     else
-      flash[:notice] = " Incorrect username or password."
+      flash[:error] = " Incorrect username or password."
       render :new
     end
   end

@@ -1,4 +1,4 @@
-<div class="body-center">
+
 
   <div class="left-content-container">
   </div>
@@ -11,13 +11,27 @@
       </div>
     </div>
     <%= render 'groups/question_image_answer_navbuttons', path: categories_path %>     
-    <%= render 'shared/questions_answers_images' %>    
+      <%= render 'shared/questions_answers_images' %>    
+   
   </div>
 
 
   <div class="right-content-container">
+    <div class="leaderboard">
+      <h2>Leaderboard</h2>
+      <div class="sub-titles">
+        <p class="school">HighschoolBay</p>
+        <p class="points">Points</p>
+      </div>
+      <% @users.each_with_index do |user, index| %>
+        <div class="user">
+          <p class="rank"><%= index + 1 %></p>
+          <p class="username"><%= link_to upcase_first(user.username), user_path(user) %></p>
+          <p class="points"><%= user.votes_count %></p>
+        </div>
+      <% end %>
+    </div>
   </div>
 
-</div>
 
 

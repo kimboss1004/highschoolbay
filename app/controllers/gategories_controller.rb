@@ -12,6 +12,7 @@ class GategoriesController < ApplicationController
     @gategory = Gategory.new(gategory_params)
     @group = Group.find(params[:group_id])
     @gategory.group = @group
+    @parent = (params[:gategory].include?(:master_id) ? Category.find(params[:gategory][:master_id].to_i) : Gategory.find(params[:gategory][:gmaster_id].to_i))
 
     if @gategory.save
       flash[:notice] = "#The category {@gategory.name} has been created."
@@ -25,6 +26,7 @@ class GategoriesController < ApplicationController
     @group = Group.find(params[:group_id])
     @gategory = Gategory.find(params[:id])
     @category = @gategory.master_category
+    @users = User.where(group_id: @group).order('votes_count DESC').limit(10)
 
     if params[:tab].nil?
       @question = Question.new(categories: @category.ancestor_objects, gategories: @gategory.ancestor_gategories)

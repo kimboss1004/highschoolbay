@@ -1,6 +1,7 @@
 <% if params[:tab] == nil %>
   <% @questions.each do |question| %>
-      <%= render 'questions/question', question: question %>   
+      <%= render 'questions/question', question: question %> 
+
   <% end %>
   <%= paginate @questions %>
 
@@ -36,4 +37,7 @@
         <%= render 'questions/question', question: question %>   
   <% end %>
   <%= paginate @unanswered %>
+
+
+  
 <% end %>

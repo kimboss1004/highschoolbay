@@ -8,7 +8,7 @@ class Group < ActiveRecord::Base
   validates :school, presence: true, length: { maximum: 30 }
   validates_uniqueness_of :school, scope: [:state, :city]
   validates :state, presence: true
-  validates :city, presence: true
+  validates :city, presence: true, length: { maximum: 26 }
 
 
   searchable do

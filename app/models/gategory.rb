@@ -10,7 +10,7 @@ class Gategory < ActiveRecord::Base
   has_many :images, through: :gategorables, source: :gategorable, source_type: "Image"
 
   validates_uniqueness_of :name, scope: :group_id
-  validates :name, presence: true
+  validates :name, presence: true, length: { maximum: 30 }
 
 
  def ancestor_gategories

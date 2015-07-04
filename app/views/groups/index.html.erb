@@ -47,8 +47,8 @@
           <table class="school-table">      
             <% state.each do |school| %>
               <tr data-link="<%= group_path(school) %>">
-                <td class="school-name"><%= upcase_first(school.school) %></td>
-                <td class="city"><%= upcase_first(school.city) %></td>    
+                <td><%= upcase_first(school.school) %></td>
+                <td class="city"><%= upcase_first(school.city) %></td><td><%= school.users.size %></td>
               </tr>
             <% end %>
           </table>      
@@ -65,11 +65,12 @@
       <% if state.any? %>
         <div class="state-well">
           <h3><%= state.first.state %></h3>
-          <table class="school-table">      
+          <table class="school-table"> 
             <% state.each do |school| %>
               <tr data-link="<%= group_path(school) %>">
                 <td><%= upcase_first(school.school) %></td>
                 <td><%= upcase_first(school.city) %></td>
+                <td><%= school.users.size %></td>
               </tr>
             <% end %>
           </table>      

@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
-  before_action :require_user, only: [:create, :vote]
+  before_action :require_user_comments, only: [:create]
+  before_action :require_user_vote, only: [:vote]
 
   def create
     if params[:question_id]
@@ -55,5 +56,13 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:body)
   end
+
+  def require_user_comments
+    unless logged_in?
+      flash[:error] = "Must be logged in to access that page"
+      redirect_to :back
+    end
+  end
+
 
 end

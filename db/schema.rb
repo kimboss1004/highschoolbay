@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150614212500) do
+ActiveRecord::Schema.define(version: 20150701021737) do
 
   create_table "categorables", force: :cascade do |t|
     t.integer "category_id"
@@ -89,6 +89,19 @@ ActiveRecord::Schema.define(version: 20150614212500) do
   add_index "impressions", ["impressionable_type", "impressionable_id", "session_hash"], name: "poly_session_index"
   add_index "impressions", ["impressionable_type", "message", "impressionable_id"], name: "impressionable_type_message_index"
   add_index "impressions", ["user_id"], name: "index_impressions_on_user_id"
+
+  create_table "notifications", force: :cascade do |t|
+    t.string   "postable_type"
+    t.integer  "postable_id"
+    t.integer  "reciever_id"
+    t.integer  "sender_id"
+    t.string   "notificable_type"
+    t.integer  "notificable_id"
+    t.boolean  "checked"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "checked_at"
+  end
 
   create_table "pictures", force: :cascade do |t|
     t.integer  "image_id"

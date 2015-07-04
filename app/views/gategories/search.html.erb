@@ -13,7 +13,7 @@
 
 
 
-  <div class="search-height <%= @gategory.master_category.master ? @gategory.master_categories.first.name.downcase : @gategory.master_category.name.downcase %>-jumbotron">
+  <div class="custom-jumbotron">
     <div class="black-jumbotron">
       <div class="hierarchy-links">
           <%= link_to @group.school, group_path(@group) %>
@@ -26,9 +26,15 @@
             <%= link_to ancestor.name , group_gategory_path(@group, ancestor, tab: params[:tab]) %> 
           <% end %>
       </div> 
-      <h2 class="search-gategory-name">
-        Search <%= @gategory.name %>
-      </h2>     
+      <h2 class="category-name">
+        Search <%= upcase_first(@gategory.name) %> 
+        <span>
+          (custom category 
+          <button type="button" class="custom-info-large" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Custom categories are categories created by members of school, always labeled (custom categories)"><i class="fa fa-question"></i>
+          </button> )          
+        </span>
+
+      </h2>      
 
       <div class="gategory-search">
         <%= form_tag search_group_gategory_path(@group, @gategory), method: :get do %>
@@ -48,7 +54,7 @@
   </div>
 
 
-<%= render 'searches/search', path: group_gategory_path(@group, @gategory, search_gategory: params[:search_gategory]) %>
+<%= render 'searches/search', path: search_group_gategory_path(@group, @gategory, search_gategory: params[:search_gategory]) %>
 
 
   </div>

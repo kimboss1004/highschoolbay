@@ -1,27 +1,21 @@
-<%= render 'shared/errors', object: @user %>
-
-<div class="well">
+<div class="register-container">
+  <%= render 'shared/errors', object: @user %>
+  <h2 class="sign-up">Sign up</h2>
   <%= form_for @user do |f| %>
 
     <div class="form-group">
-      <%= f.label :username %>
-      <%= f.text_field :username, class: "form-control" %>
+      <%= f.text_field :username, class: "form-control", placeholder: "Username", autofocus: true %>
     </div>
 
     <div class="form-group">
-      <%= f.label :password %>
-      <%= f.password_field :password, class: "form-control" %>
+      <%= f.password_field :password, placeholder: "Password" ,class: "form-control" %>
     </div>
 
     <div class="form-group">
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation, class: "form-control" %>
+      <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Confirm password" %>
     </div>
  
-    <br/>
 
-    <br/>
-
-    <%= f.submit "Register", class: 'btn btn-primary' %>
+    <%= f.submit "Register", class: 'register-button' %>
   <% end %>
 </div>

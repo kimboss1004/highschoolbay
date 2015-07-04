@@ -1,40 +1,117 @@
-<div class="well">
-  <ul>
-    <li>Username: <small><%= @user.username %></small></li>
+
+
+
+
+
+<div class="body-center">
+
+  <div class="left-content-container">
+  </div>
+
+  <div class="form-content-container">
+
+
+
+
+<div class="user-jumbotron">
+  <h1>
+    <%= @user.username %>
+  </h1>
+
     <% if @user.group.nil? && creator?(@user.id) %>
-      School: <%= link_to(groups_path) do %>
-        <button type="button" class="btn btn-success btn-xs">Select a school!</button>
-      <% end %>
+          <%= link_to groups_path, class: "gategory_create_show join" do %>
+            <button type="button" class="btn btn-success green">Join School</button>
+          <% end %>
     <% else %>
-      <li>School: <%= link_to @user.group.school, group_path(@user.group) %></li>
-      <li><%= @user.group.school %> rank: <%= @rank %> -- points: <%= @user.votes_count %></li>
+      <%= link_to @user.group.school, group_path(@user.group), class: "user-school" %>
+      <div class="rank">
+        <span class="number"><%= @rank  %></span>
+        <span class="sub">Rank</span>  
+      </div>
+      
     <% end %>
-  </ul>
+
+  <div class="shaded">
+
+    <a href=""><%= @user.votes_count %></a>
+    <%= link_to @user.questions.size, user_path(@user) %>
+    <%= link_to @user.images.size, user_path(@user, tab: "Worksheets") %>
+    <%= link_to @user.comments.size, user_path(@user, tab: "Answers") %>
+  </div>
+  <div class="link-titles">
+    <h2>Points</h2>
+    <h2>Questions</h2>
+    <h2>Worksheets</h2>
+    <h2>Answers</h2>
+  </div>
+
 </div>
 
-<hr/>
-<br/>
 
- 
-<%= render 'question_answer_image_navbuttons', path: user_path(@user) %>  
 
-<% if params[:tab].nil? %>
-  <% @questions.each do |question| %>
-    <%= render 'questions/question', question: question %>
+  <nav class='form-nav'>
+    <ul class="green-pills">
+      <%= link_to "Questions", user_path(@user), class: ('active' if params[:tab].nil? ) %>
+      <%= link_to "Worksheets", user_path(@user, tab: "Worksheets"), class: ('active' if params[:tab] == 'Worksheets' ) %>
+      <%= link_to "Answers", user_path(@user, tab: "Answers"), class: ('active' if params[:tab] == 'Answers' ) %>
+    </ul>
+  </nav>
+
+  <% if params[:tab] == nil %>
+    <% @questions.each do |question| %>
+        <%= render 'questions/question', question: question %>   
+    <% end %>
+    <%= paginate @questions %>
+
+  <% elsif params[:tab] == "Worksheets" %>
+    <div class="form-left-side">
+      <% seperate_array_tri(0,@images).each do |image| %>
+        <%= render 'images/image_index', image: image %>
+      <% end %>
+    </div>
+
+    <div class="form-middle-side">
+      <% seperate_array_tri(1,@images).each do |image| %>
+        <%= render 'images/image_index', image: image %>
+      <% end %>    
+    </div>
+
+    <div class="form-right-side">
+      <% seperate_array_tri(2,@images).each do |image| %>
+        <%= render 'images/image_index', image: image %>
+      <% end %>
+    </div>  
+
+    <%= paginate @images %>
+
+  <% elsif params[:tab] == "Answers" %>
+    <% @answers.each do |answer| %>
+      <div class="answers">
+        <div class="answer-content user-show-comment">
+            <p><%= answer.body %></p>
+          <div  class='answer-info'>
+            <small>
+              <span>
+                <%= answer.user.username %>
+                <i class="fa fa-circle small"></i>
+                <%= display_date(answer.created_at) %>
+              </span>  
+            </small>
+          </div>
+        </div>
+      </div>  
+    <% end %>
+    <%= paginate @answers %>
+
   <% end %>
-<% end %>
 
-<% if params[:tab] == "Worksheets" %>
-  <% @images.each do |image| %>
-    <%= render 'images/image_index', image: image, tab: "Worksheets" %>
-  <% end %>
-<% end %>
-
-<% if params[:tab] == "Answers" %>
-  <%= render 'answers', answers: @answers %>
-<% end %>
+</div>
 
 
+  <div class="right-content-container">
+  </div>
+
+</div>
 
 
 

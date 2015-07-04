@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.turbolinks
 //= require turbolinks
 //= require_tree .
 //= require bootstrap-sprockets
@@ -23,5 +24,9 @@ $(document).ready(function() {
       window.location = this.dataset.link
     });
 
+
+  $(function () {
+    $('[data-toggle="popover"]').popover()
+  });
 
 });

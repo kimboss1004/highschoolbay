@@ -33,7 +33,8 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :create,:edit,:update] do
     member do
       post :member
-    end
+      post :notifications
+    end 
   end
 
   get '/login', to: 'sessions#new'

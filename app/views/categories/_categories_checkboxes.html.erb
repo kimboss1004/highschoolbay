@@ -1,23 +1,28 @@
-<h4>Category</h4> 
+<div class="form-group qw-form-input">
+  <h4 class="label">Category</h4> 
+  <div class="buttons-centered">
+    <% Category.where(master_id: nil).each do |department| %>
+      <a class="btn btn-info" data-toggle="collapse" href="#category<%= department.id %>" aria-expanded="false" aria-controls="category">
+          <%= department.name %>
+      </a>    
+   
 
-<% Category.where(master_id: nil).each do |department| %>
-  <a class="btn btn-info" data-toggle="collapse" href="#category<%= department.id %>" aria-expanded="false" aria-controls="category">
-      <%= department.name %>
-  </a>
 
-  <div class="collapse" id="category<%= department.id %>">
-    <div class="well">
-      <%= f.collection_check_boxes :category_ids, [department], :id, :name do |d| %>
-        <%= d.label(class: "checkbox-inline") {d.check_box(class: "checkbox") + d.text} %>
-      <% end %>
-      <hr/>
-      <%= f.collection_check_boxes :category_ids, department.descendents, :id, :name do |descendent| %>
-        <%= descendent.label(class: "checkbox-inline") {descendent.check_box(class: "checkbox") + descendent.text} %>   
-      <% end %>
-    </div>
+      <div class="collapse" id="category<%= department.id %>">
+        <div class="well custom-border-input">
+          <%= f.collection_check_boxes :category_ids, [department], :id, :name do |d| %>
+            <%= d.label(class: "checkbox-inline") {d.check_box(class: "checkbox") + d.text} %>
+          <% end %>
+          <hr/>
+          <%= f.collection_check_boxes :category_ids, department.descendents, :id, :name do |descendent| %>
+            <%= descendent.label(class: "checkbox-inline") {descendent.check_box(class: "checkbox") + descendent.text} %>   
+          <% end %>
+        </div>
+      </div>
+
+    <% end %>
   </div>
-
-<% end %>
+</div>
 
 
 

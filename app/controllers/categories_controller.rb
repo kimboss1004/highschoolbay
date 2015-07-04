@@ -2,6 +2,7 @@ class CategoriesController < ApplicationController
 
   def index
     @categories = Category.where(master_id: nil)
+    @users = User.order('votes_count DESC').limit(10)
 
     if params[:tab].nil?
       @question = Question.new
@@ -19,6 +20,7 @@ class CategoriesController < ApplicationController
  
   def show
     @category = Category.find(params[:id])
+    @users = User.order('votes_count DESC').limit(10)
 
     if params[:tab].nil?
       @question = Question.new(categories: @category.ancestor_objects)

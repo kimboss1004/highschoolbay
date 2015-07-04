@@ -1,24 +1,30 @@
-<h3>Create sub-category of <%= @parent.name %></h3>
-<%= render 'shared/errors', object: @gategory %>
+  <div class="left-content-container">
 
-<div class="well">
-  <%= form_for [@group, @gategory] do |f| %>
+  </div>
 
-    <div class="form-group">
-      <%= f.label :name, "sub-category" %>
-      <%= f.text_field :name, class: "form-control" %>
+  <div class="form-content-container">
+    <%= render 'groups/group_nav' %>
+    <div class="custom-create-bg">
+      <div class="create-gategory-container">
+      <%= render 'shared/errors', object: @gategory %>
+      <h2><%= @parent.name %> custom category</h2>
+        <%= form_for [@group, @gategory] do |f| %>
+
+          <div class="form-group">
+            <%= f.text_field :name, class: "form-control", placeholder: "Category" %>
+          </div>
+
+          <% if @parent.class.to_s == "Category" %>
+            <%= f.hidden_field :master_id, value: @parent.id %>
+          <% else %>
+            <%= f.hidden_field :gmaster_id, value: @parent.id %>
+          <% end %>
+
+          <%= f.submit "Create custom category" %>
+        <% end %>
+      </div>      
     </div>
 
-    <% if @parent.class.to_s == "Category" %>
-      <%= f.hidden_field :master_id, value: @parent.id %>
-    <% else %>
-      <%= f.hidden_field :gmaster_id, value: @parent.id %>
-    <% end %>
 
-    <%= f.submit "Create", class: 'btn btn-primary' %>
-  <% end %>
-</div>
 
-<% if false %>
-  <h2>sdf</h2>
-<% end %>
+  </div>

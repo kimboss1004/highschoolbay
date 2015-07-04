@@ -12,10 +12,14 @@ class Question < ActiveRecord::Base
   has_many :gategories, through: :gategorables
 
   has_many :comments, as: :commentable, :dependent => :destroy
+  has_many :commentors, through: :comments, source: :user
+
   has_many :votes, as: :voteable, :dependent => :destroy
 
-  validates :title, presence: true
+  validates :title, presence: true, length: { maximum: 200 }
   validates :categories, presence: true
+
+  has_many :notifications, as: :postable, :dependent => :destroy
 
   searchable do
     text :title, :boost => 3.0

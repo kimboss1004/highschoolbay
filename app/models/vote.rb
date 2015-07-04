@@ -4,11 +4,9 @@ class Vote < ActiveRecord::Base
 
   validates_uniqueness_of :user_id, scope: [:voteable_id, :voteable_type]
 
-  after_create :inc_dec_counters
-  after_update :inc_dec_counters_update
+  after_create :inc_dec_counters, :user_inc_dec_counters, :notify_creator
 
-  after_create :user_inc_dec_counters
-  after_update :user_inc_dec_counters_update
+  after_update :inc_dec_counters_update, :user_inc_dec_counters_update, :notify_creator
 
   private
 
@@ -54,6 +52,13 @@ class Vote < ActiveRecord::Base
         user.decrement(:votes_count, 2)
         user.save
       end
+    end
+  end
+
+
+  def notify_creator
+    unless self.user == self.voteable.user
+      Notification.create(reciever: self.voteable.user, sender_id: self.user.id, postable: self.voteable, notificable: self)
     end
   end
 

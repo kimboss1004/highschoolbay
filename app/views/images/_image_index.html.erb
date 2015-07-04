@@ -9,7 +9,9 @@
   <p><%= link_to image.title, image_path(image) %></p>
   <% unless image.pictures.empty? %>
       <div class="image-container">
-        <%= image_tag image.pictures.first.photo.url(:small), class: "image" %>
+        <%= link_to image_path(image) do %>
+          <%= image_tag image.pictures.first.photo.url(:small), class: "image" %>
+        <% end %>
       </div>
   <% end %>
 

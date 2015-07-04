@@ -1,5 +1,5 @@
   <button type="button" class="btn btn-info nav-modal-button" data-toggle="modal" data-target="#myModal">
-    Post a Worksheet
+    Post Worksheet
   </button>
 
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -9,11 +9,8 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title" id="myModalLabel">Worksheet</h4>
         </div>
-        <div class="modal-body">
+        <div class="modal-body no-padding">
           <%= render 'images/form', image: @image %>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>

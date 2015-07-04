@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  helper_method :current_user, :logged_in?, :require_user, :creator?, :member?, :seperate_array_tri, :branched_descendents
+  helper_method :current_user, :logged_in?, :require_user, :creator?, :member?, :seperate_array_tri, :branched_descendents, :autofocus?
 
   def current_user
     current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -16,8 +16,14 @@ class ApplicationController < ActionController::Base
   def require_user
     unless logged_in?
       flash[:error] = "Must be logged in to access that page"
-      redirect_to :back
+      redirect_to login_path(log_return: (request.fullpath == questions_path || request.fullpath == images_path ? root_path : request.fullpath))
     end
+  end
+
+  def require_user_vote
+    unless logged_in?
+      render 'votes/require_user'
+    end  
   end
 
   def creator?(user_id)
@@ -51,9 +57,9 @@ class ApplicationController < ActionController::Base
     if params[:sub_tab].nil?
       objects = objects.order('created_at desc')
     elsif params[:sub_tab] == "Popular"
-      objects = objects.where(:created_at => 1.weeks.ago..DateTime.now.end_of_day).order('views desc').order('created_at desc')
+      objects = objects.where(:created_at => 2.weeks.ago..DateTime.now.end_of_day).order('views desc').order('created_at desc')
     elsif params[:sub_tab] == "Favorite"
-      objects = objects.where(:created_at => 1.weeks.ago..DateTime.now.end_of_day).order('votes_count desc').order('created_at desc')
+      objects = objects.where(:created_at => 2.weeks.ago..DateTime.now.end_of_day).order('votes_count desc').order('created_at desc')
     end
     return objects.page(params[:page]).per(30)
   end
@@ -100,12 +106,20 @@ class ApplicationController < ActionController::Base
 
  end
 
-def category_children(next_generation)
+ def category_children(next_generation)
   output = []
   next_generation.each do |individual|
     output << individual.sub_categories      
   end
   return output.flatten
+ end
+
+ def autofocus?(url)
+  if url == login_path || url == register_path || url == new_group_path
+    return false
+  else
+    true
+  end 
  end
 
   

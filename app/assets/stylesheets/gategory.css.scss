@@ -12,6 +12,16 @@ h2.search-gategory-name {
   height: 140px;
 }
 
+
+//gategory background
+.custom-jumbotron {
+  width: 100%;
+  height: auto;
+  background-image: asset-url('custom.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 //search
 .gategory-search .box{
   width: 50%;
@@ -72,4 +82,117 @@ h2.search-gategory-name {
   left: 450px;
   top: 10px;
   font-weight: 300;
+}
+
+//left-container -------------------------------------------------------------
+.left-content-container {
+  .gategory-links {
+    padding-left:20px;
+    margin-bottom: 20px;
+    a:link, a:visited, a:active {
+      margin: -7px 0px;
+      color: #2E8AE6;
+      padding: 0px;
+      font-size: 13px;
+      display: block;
+      height: 30px;
+      line-height: 30px;
+      text-decoration: none;
+    }  
+    a:hover {
+      color: black;
+    }
+  }
+  h4{
+    margin-left: 15px;
+    margin-bottom: 15px;
+    color: #9D9D9D;
+  }  
+  p {
+    margin-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    color: #A7A7A7;
+    font-size: 15px;
+    border-bottom: solid #D6D6D6 1px;
+  }
+
+  .green {
+    background-color: #00CC99;
+    width: 88%;
+  }
+}
+
+//info on gategories-----------------------
+.custom-info {
+  border: none;
+  background-color: white;
+  font-size: 18px;
+}
+.custom-info-large {
+  border: none;
+  background-color: rgba(40, 40, 40,0.4);
+  font-size: 27px;
+  color: white;
+  z-index: 100;
+}
+
+//button for create in show page gategories-------------------
+.gategory_create_show {
+  margin-left: 20px;
+  margin-top: 10px;
+  position: relative;
+  top: 45px;
+  right: 10px;
+  display: inline;
+  .green {
+    background-color: #00CC99;
+    font-size: 13px;
+
+  }
+}
+
+// create gategory -------------------------------------------
+.custom-create-bg {
+  background-image: asset-url('custom.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+}
+
+
+.create-gategory-container {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  width: 40%;
+
+  h2 {
+    font-size: 35px;
+    color: black;
+    font-weight: 200;
+    padding-bottom: 26px;
+  }
+  input {
+    height: 50px;
+    margin-top: -5px;
+    border-radius: 2px;
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #e5e5e5;
+    color: #101010;
+    font-size: 16px;
+    font-weight: 300;
+  }
+  input[type=submit] {
+  border: none;
+    background-color: #0099FF;
+    color: white;
+    font-weight: 400;
+    font-size: 18px;
+  }  
+  input[type=submit]:hover {
+   background-color: #008AE6;
+  }
+
 }

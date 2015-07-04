@@ -1,55 +1,41 @@
-
-<div class="well">
+ <div class="qw-form-container">
   <%= form_for image, :html => {multipart: true} do |f| %>
-    <div class="form-group">
-      <%= f.label :title, "Title" %>
-      <%= f.text_field :title, class: "form-control" %>
+    <div class="form-group qw-form-input">
+      <%= f.label :title, "Title", class: 'label' %>
+      <%= f.text_field :title, class: "form-control custom-border-input", placeholder: "Ask your question..." %>
     </div>
 
-    <div class="form-group">
-      <%= f.label :description %>
-      <%= f.text_area :description, class: "form-control", rows: 5%>
+    <div class="form-group qw-form-input">
+      <%= f.label :description, class: 'label' %>
+      <%= f.text_area :description, rows: 5, placeholder: "Add your Description...", class: "form-control custom-border-input" %>
     </div>
 
-    <br/>
 
-    <div class="form-group">
-      <%= f.label :pictures, :class => 'control-label' %>
-      <div class="controls">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-xs-12 col-md-4">
-              <%= file_field_tag "photos[]", type: :file, multiple: true %>
-              <%= file_field_tag "photos[]", type: :file, multiple: true %>
-              <%= file_field_tag "photos[]", type: :file, multiple: true %>
-            </div>
-            <div class="col-xs-12 col-md-4">
-              <%= file_field_tag "photos[]", type: :file, multiple: true %>
-              <%= file_field_tag "photos[]", type: :file, multiple: true %>
-              <%= file_field_tag "photos[]", type: :file, multiple: true %>
-            </div>
-            <div class="col-xs-12 col-md-4">
-              <%= file_field_tag "photos[]", type: :file, multiple: true %>
-              <%= file_field_tag "photos[]", type: :file, multiple: true %>
-              <%= file_field_tag "photos[]", type: :file, multiple: true %>
-            </div>
-          </div>
-        </div>
+    <div class="form-group qw-form-input">
+      <%= f.label :pictures, :class => 'label' %>
+      <div class="upload-row">
+        <%= file_field_tag "photos[]", type: :file, multiple: true, class: "upload-button" %>
+        <%= file_field_tag "photos[]", type: :file, multiple: true, class: "upload-button" %> 
+        <%= file_field_tag "photos[]", type: :file, multiple: true, class: "upload-button" %> 
+      </div>
+      <div class="upload-row">
+        <%= file_field_tag "photos[]", type: :file, multiple: true, class: "upload-button" %>
+        <%= file_field_tag "photos[]", type: :file, multiple: true, class: "upload-button" %>  
+        <%= file_field_tag "photos[]", type: :file, multiple: true, class: "upload-button" %>       
       </div>
     </div>
 
-    <br/>
 
     <%= hidden_field_tag 'group', path_value(@group, params[:group]) %>
     <%= hidden_field_tag 'category', path_value(@category, params[:category]) %>
     <%= hidden_field_tag 'gategory', path_value(@gategory, params[:gategory]) %>
 
     <%= render 'categories/categories_checkboxes', f: f %>
+    <br/>
     <%= render 'gategories/gategories_checkboxes', f: f %>
 
-    <br/>
-    <hr/> 
-
-    <%= f.submit "Share", class: 'btn btn-primary' %>
+    <div class="bottom-nav">
+      <%= f.submit "Share", class: 'btn btn-primary custom-blue' %>
+    </div>
   <% end %>
 </div>

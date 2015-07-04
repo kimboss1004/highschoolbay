@@ -16,7 +16,7 @@
             <i class="fa fa-search"></i>
           </button>
           </span>
-          <%= text_field_tag :search, params[:search], placeholder: 'Search...' %>    
+          <%= text_field_tag :search, params[:search], placeholder: 'Search...', autofocus: autofocus?(request.fullpath) %>    
         </div>
       </div>
     <% end %> 
@@ -26,9 +26,17 @@
 
 <ul class="nav-right">
     <% if logged_in? %>
-      
-        <li class="dropdown nav-item">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Account <span class="caret"></span></a>
+        <li class='school'>
+          <% if current_user.group %>
+            <%= link_to current_user.group.school, group_path(current_user.group) %>
+          <% else %>
+            <%= link_to groups_path  do %>
+              Find School
+            <% end %>
+          <% end %>
+        </li> 
+        <li class="dropdown nav-item pull-right">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-bars fa-lg"></i><span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li class="account-links"><%= link_to "Profile", user_path(current_user) %></li>
             <li class="account-links"><%= link_to "Settings", edit_user_path(current_user) %></li>
@@ -37,19 +45,20 @@
           </ul>
         </li>
         <li class='nav-item'>
-          <% if current_user.group %>
-            <%= link_to current_user.group.school, group_path(current_user.group) %>
-          <% else %>
-            <%= link_to " Join A School", groups_path %>
+          <%= link_to notifications_user_path(current_user), method: 'post' do %>
+            <i class="fa fa-globe fa-lg"></i>
+            <% if current_user.unchecked_notifications %>
+              <span class="notification-alert"><%= current_user.unchecked_notifications %></span>
+            <% end %>
           <% end %>
         </li>
 
     <% else %>
-        <li class='nav-item'>
-          <%= link_to "Join A School", groups_path %>
+        <li class='school'>
+          <%= link_to "Find School", groups_path %>
         </li>
-        <li class="nav-item">
-          <%= link_to "Login", login_path %>
+        <li class="login">
+          <%= link_to "Log in", login_path(log_return: request.fullpath) %>
         </li>        
     
 
@@ -63,8 +72,6 @@
     <%= link_to "History", category_path(21) %>
     <%= link_to "Social Sciences", category_path(36) %>
     <%= link_to "History", category_path(21) %>
-    <%= link_to "Sports", category_path(27) %>
-    <%= link_to "Life", category_path(39) %>
     <%= link_to "Health", category_path(38) %>
   </ul>
 </div>

@@ -12,6 +12,7 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:group_id])
     @category = Category.find(params[:id])
     @gategories = @category.gategories.where(group_id: params[:group_id])
+    @users = User.where(group_id: @group).order('votes_count DESC').limit(10)
 
     if params[:tab].nil?
       @question = Question.new(categories: @category.ancestor_objects)
@@ -151,6 +152,7 @@ class GroupsController < ApplicationController
         fulltext params[:search_index_state], :fields => :state
         fulltext params[:search_index_city], :fields => :city
       end
+      paginate(page: params[:page], per_page: 15)
     end
     @results = search.results
   end

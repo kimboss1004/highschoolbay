@@ -4,6 +4,14 @@ module ApplicationHelper
     dt.strftime("%m/%d/%Y %l:%M%P")
   end
 
+  def brief_notification(string)
+    if string.length > 65
+      string = string[0..64]
+      string = string + "..."
+    end
+    return string
+  end
+
   def us_states
       [
         'Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia',

@@ -26,6 +26,8 @@
  @import "answer";
  @import "group";
  @import "gategory";
+ @import "user";
+ @import "notification";
 
 html {
     position: relative;
@@ -38,13 +40,13 @@ body {
   width:100%;
   height:100%;
   margin: 0px;
-  background-color: #F2F2F2;
+  background-color: #fafafa;
 }
 
 .body-center {
   margin-right: auto;
   margin-left: auto;
-  margin-top: 0px;
+  margin-top: 10px;
   width: 1350px;
   height: auto;
 }
@@ -75,6 +77,14 @@ div.comment_votes {
 
  .well {
   background-color: white;
+ }
+
+ .flash {
+  position: fixed;
+  top: 100px;
+  width: 94%;
+  margin-left: 50px;
+  z-index: 50;
  }
 
 

@@ -4,12 +4,12 @@
   <div class="left-content-container">
   </div>
 
-  <div class="form-content-container group-background">
+  <div class="form-content-container">
   
   <div class="group-nav-container">
     <div class="group-name">
-      <div class="school-name"><%= @group.school %></div>
-      <p><%= @group.city %>, <%= @group.state %></p>
+      <div class="school-name"><%= upcase_first(@group.school) %></div>
+      <p><%= upcase_first(@group.city) %>, <%= @group.state %></p>
       <p>
         <%= @group.users.size %> 
         <i class="fa fa-users"></i>
@@ -17,7 +17,7 @@
 
       <% if logged_in? %>
         <% if !current_user.group %>
-          <%= link_to "Join", member_user_path(current_user.id, group_id: @group.id), method: 'post', class: 'btn btn-success' %>
+          <%= link_to "Join", member_user_path(current_user.id, group_id: @group.id), method: 'post', class: 'btn btn-success join-green' %>
         <% elsif current_user.group == @group %>
           <%= link_to "Leave", member_user_path(current_user.id, group_id: nil), method: 'post', class: 'btn btn-danger' %>
         <% end %>
@@ -66,6 +66,20 @@
 
 
   <div class="right-content-container">
+    <div class="leaderboard">
+      <h2>Leaderboard</h2>
+      <div class="sub-titles">
+        <p class="school"><%= @group.school %></p>
+        <p class="points">Points</p>
+      </div>
+      <% @users.each_with_index do |user, index| %>
+        <div class="user">
+          <p class="rank"><%= index + 1 %></p>
+          <p class="username"><%= link_to upcase_first(user.username), user_path(user) %></p>
+          <p class="points"><%= user.votes_count %></p>
+        </div>
+      <% end %>
+    </div>
   </div>
 
 </div>

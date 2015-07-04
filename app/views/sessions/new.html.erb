@@ -1,19 +1,17 @@
 
-<h2>Login</h2>
-<hr/>
-
-<div class='row'>
-  <div class='well span4'>
+<div class="login-container">
+  <h2 class="login">Sign into you account</h2>
     <%= form_tag sessions_path do %>
-      <div class="control-group">
-        <%= label_tag :username %>
-        <%= text_field_tag :username %>
+      <div class="form-group">
+        <%= text_field_tag :username, nil,  class: "form-control", placeholder: "Username", autofocus: true %>
       </div>
-      <div class="control-group">
-        <%= label_tag :password %>
-        <%= password_field_tag :password %>
+      <div class="form-group">
+        <%= password_field_tag :password, nil, placeholder: "Password" ,class: "form-control" %>
       </div>
-      <%= submit_tag "Login", class: "btn btn-primary" %>
+      <%= submit_tag "Sign in" %>
     <% end %>
-  </div>
-</div>
+<%= link_to "Create Account", register_path, class: "register-button" %>
+   
+
+
+

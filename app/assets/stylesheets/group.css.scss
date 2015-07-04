@@ -21,7 +21,7 @@
 .group-nav-container {
   position: fixed;
   margin-top: 5px;
-  width: 880px;
+  width: 890px;
   z-index: 10;
   box-shadow: 0px 0px 10px #181818;
   .small {
@@ -219,5 +219,13 @@ ul.group-category-nav {
   position: relative;
   left: 47px;
   bottom: 2px;
+}
+
+//-------green join--------------------------------
+.join-green {
+  background-color: #00CC00;
+  width: 150px;
+  font-weight: 800;
+  font-size: 18px;
 }
 

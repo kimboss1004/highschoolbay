@@ -15,7 +15,7 @@
     <div  class='answer-info'>
       <small>
         <span>
-          <%= comment.user.username %>
+          <%= link_to comment.user.username, user_path(comment.user) %>
           <i class="fa fa-circle small"></i>
           <%= display_date(comment.created_at) %>
         </span>  

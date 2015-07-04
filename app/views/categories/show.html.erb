@@ -1,11 +1,6 @@
 
 <div class="left-content-container">
-  <h3><%= @category.name %></h3>
-  <ul>
-    <% @category.sub_categories.each do |s| %>
-      <li><%= link_to s.name, category_path(s) %></li>
-    <% end %>
-  </ul>
+
 </div>
 
 <div class="form-content-container">
@@ -55,5 +50,19 @@
 </div>
 
 
-<div class="right-content-container">
-</div>
+  <div class="right-content-container">
+    <div class="leaderboard">
+      <h2>Leaderboard</h2>
+      <div class="sub-titles">
+        <p class="school">HighschoolBay</p>
+        <p class="points">Points</p>
+      </div>
+      <% @users.each_with_index do |user, index| %>
+        <div class="user">
+          <p class="rank"><%= index + 1 %></p>
+          <p class="username"><%= link_to upcase_first(user.username), user_path(user) %></p>
+          <p class="points"><%= user.votes_count %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>

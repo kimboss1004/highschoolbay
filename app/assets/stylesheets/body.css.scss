@@ -2,8 +2,8 @@
 @media (min-width: 1350px) { 
   .left-content-container {
     width: 190px;
-    height: 1000px;
-    margin-left: 2px;
+    height: auto;
+    margin-right: 10px;
     position: fixed;
   }
 
@@ -16,7 +16,7 @@
   }
 
   .form-content-container {
-    width: 880px;
+    width: 890px;
     height: auto;
     display: inline-block;
     margin-left: 200px;
@@ -34,14 +34,14 @@
 @media (max-width: 1350px) { 
   .left-content-container {
     width: 190px;
-    height: 1000px;
+    height: auto;
     display: float;
     float: left;
-    margin-left: 2px;
+    margin-right: 10px;
   }
 
   .right-content-container {
-    width: 260px;
+    width: 250px;
     height: 1000px;
     display: float;
     float: right;
@@ -63,17 +63,17 @@
 
  //shared-layouts between big and small screen---------
   .left-content-container {
-    height: 1000px;
+    height: auto;
     background-color: #FFFFFF;
     border: solid #E3E3E3 1pt;
   }
 
   .right-content-container {
-    background-color: #FFFFFF;
-    border: solid #E3E3E3 1pt;
+
   }
 
   .form-content-container {
+    position: relative;
   }
 
 

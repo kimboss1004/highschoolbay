@@ -11,7 +11,7 @@
 
 
 
-  <div class="<%= @gategory.master_category.master ? @gategory.master_categories.first.name.downcase : @gategory.master_category.name.downcase %>-jumbotron">
+  <div class="custom-jumbotron">
     <div class="black-jumbotron">
       <div class="hierarchy-links">
           <%= link_to @group.school, group_path(@group) %>
@@ -21,11 +21,17 @@
           <% end %>
           <% @gategory.ancestor_gategories.each do |ancestor| %>
             >
-            <%= link_to ancestor.name , group_gategory_path(@group, ancestor, tab: params[:tab]) %> 
+            <%= link_to upcase_first(ancestor.name) , group_gategory_path(@group, ancestor, tab: params[:tab]) %> 
           <% end %>
       </div> 
       <h2 class="category-name">
-        <%= @gategory.name %>
+        <%= upcase_first(@gategory.name) %> 
+        <span>
+          (custom category 
+          <button type="button" class="custom-info-large" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Custom categories are categories created by members of school, always labeled (custom categories)"><i class="fa fa-question"></i>
+          </button> )          
+        </span>
+
       </h2>     
 
       <% @gategory.sub_gategories.each_slice(3) do |three_gategories| %>
@@ -35,7 +41,11 @@
           <% end %>
         </ul>
       <% end %>
-
+        <% if logged_in? && member?(@group.id) %>
+          <%= link_to new_group_gategory_path(@group) + "?gategory_id=#{@gategory.id}", class: "gategory_create_show" do %>
+            <button type="button" class="btn btn-success green">Create Category</button>
+          <% end %>
+        <% end %>
 
       <div class="gategory-search">
         <%= form_tag search_group_gategory_path(@group, @gategory), method: :get do %>
@@ -70,6 +80,20 @@
 
 
   <div class="right-content-container">
+    <div class="leaderboard">
+      <h2>Leaderboard</h2>
+      <div class="sub-titles">
+        <p class="school"><%= @group.school %></p>
+        <p class="points">Points</p>
+      </div>
+      <% @users.each_with_index do |user, index| %>
+        <div class="user">
+          <p class="rank"><%= index + 1 %></p>
+          <p class="username"><%= link_to upcase_first(user.username), user_path(user) %></p>
+          <p class="points"><%= user.votes_count %></p>
+        </div>
+      <% end %>
+    </div>
   </div>
 
 </div>

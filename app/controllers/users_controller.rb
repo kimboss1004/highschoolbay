@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :require_user, only: [:edit,:update]
-  before_action :can_user_edit_account, only: [:edit,:update]
+  before_action :require_user, only: [:edit,:update, :notifications]
+  before_action :can_user_edit_account, only: [:edit,:update, :notifications]
 
   def index
     
@@ -11,11 +11,11 @@ class UsersController < ApplicationController
     @rank =  User.where(group_id: @user.group).order('votes_count desc').index{ |user| user.id == @user.id } + 1
 
     if params[:tab].nil?
-      @questions = Question.where(user_id: @user).order('created_at desc')
+      @questions = Question.where(user_id: @user).order('created_at desc').page(params[:page]).per(30)
     elsif params[:tab] == "Worksheets"
-      @images = Image.where(user_id: @user).order('created_at desc')
+      @images = Image.where(user_id: @user).order('created_at desc').page(params[:page]).per(30)
     elsif params[:tab] == "Answers"
-      @answers = Comment.where(user_id: @user).order('created_at desc')
+      @answers = Comment.where(user_id: @user, commentable_type: "Question").order('created_at desc').page(params[:page]).per(30)
     end
   end
 
@@ -28,10 +28,10 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:notice] = "You have succesfully registered!"
-      redirect_to login_path
+      redirect_to groups_path
     else
       render :new
-    end
+    end 
   end
 
   def edit
@@ -61,6 +61,15 @@ class UsersController < ApplicationController
     end
     redirect_to :back
   end
+
+  def notifications
+    @notifications = current_user.notifications.order('created_at desc').page(params[:page]).per(30)
+
+    render :notifications
+
+    @notifications.where(checked: nil).update_all(checked: true, checked_at: Time.now)
+  end
+
 
 
 private
