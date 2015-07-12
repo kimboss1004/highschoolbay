@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :comments, :dependent => :destroy
   has_many :votes
   has_many :notifications, class_name: 'Notification', foreign_key: 'reciever_id', :dependent => :destroy
+  has_many :classes, class_name: 'MyClass', foreign_key: 'user_id', :dependent => :destroy
   belongs_to :group
 
   has_secure_password

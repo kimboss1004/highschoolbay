@@ -1,3 +1,4 @@
+
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
@@ -12,17 +13,41 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.turbolinks
-//= require turbolinks
-//= require_tree .
 //= require bootstrap-sprockets
+//= require_tree .
 
 $(document).ready(function() {
 
+      $(function() {
+        $('#my-menu').mmenu({
+          extensions  : [ 'effect-slide-menu', "border-full", "pageshadow" ],
+          counters  : true,
+          navbar    : {
+            title : null,
+            content : ['next', 'previous', 'title']
+          },
+          dragOpen : {
+            open : false
+          }
+        });
+      });
+
+      var API = $("#my-menu").data( "mmenu" );
+      
+      $("#my-button").click(function() {
+         API.open();
+      });
+
+});
+
+
+
+
+$(document).ready(function() {
    
-    $("tr[data-link]").click(function() {
-      window.location = this.dataset.link
-    });
+  $("tr[data-link]").click(function() {
+    window.location = this.dataset.link
+  });
 
 
   $(function () {

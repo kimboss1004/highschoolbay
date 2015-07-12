@@ -44,5 +44,4 @@ module ApplicationHelper
     words.join(" ")
   end
 
-
 end

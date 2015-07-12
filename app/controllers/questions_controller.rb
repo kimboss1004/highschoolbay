@@ -12,6 +12,9 @@ class QuestionsController < ApplicationController
 
   def new
     @question = Question.new
+    if params[:mobile_category]
+      @queston.category_ids = params[:mobile_category].to_i
+    end
   end
 
   def create

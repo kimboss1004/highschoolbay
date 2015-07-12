@@ -1,12 +1,15 @@
-<h1>Worksheet index</h1>
-<%= link_to new_image_path do %>
-  <button type="button" class="btn btn-info">Share a worksheet</button>
-<% end %>
+<div class="body-center">
+  <h1>Worksheet index</h1>
+  <%= link_to new_image_path do %>
+    <button type="button" class="btn btn-info">Share a worksheet</button>
+  <% end %>
 
-<br/>
-<br/>
+  <br/>
+  <br/>
 
-<% tab ||= nil %>
-<% @images.each do |image| %>
-  <%= render 'image_index', image: image, tab: "Worksheets" %>
-<% end %> 
+  <% tab ||= nil %>
+  <% @images.each do |image| %>
+    <%= render 'image_index', image: image, tab: "Worksheets" %>
+  <% end %> 
+
+</div>

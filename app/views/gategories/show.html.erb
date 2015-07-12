@@ -34,6 +34,18 @@
 
       </h2>     
 
+
+      <% if current_user.group == @group %>
+        <ul class="add-class-button">
+          <% if current_user.classes.where(classable_type: 'Gategory', classable_id: @gategory).any? %>
+            <%= link_to "Drop Class", my_classes_delete_path(classable_type: 'Gategory', classable_id: @gategory), method: 'delete', class: 'btn' %>
+          <% else %>
+            <%= link_to "Add Class", my_classes_path(classable_type: 'Gategory', classable_id: @gategory), method: 'post', class: 'btn' %>
+          <% end %>        
+        </ul>
+      <% end %>
+
+
       <% @gategory.sub_gategories.each_slice(3) do |three_gategories| %>
         <ul class="sub-categories">
           <% three_gategories.each do |gategory| %>

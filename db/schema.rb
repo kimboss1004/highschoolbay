@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150701021737) do
+ActiveRecord::Schema.define(version: 20150706221346) do
 
   create_table "categorables", force: :cascade do |t|
     t.integer "category_id"
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20150701021737) do
     t.datetime "updated_at"
     t.integer  "views",       default: 0
     t.integer  "votes_count", default: 0
+    t.text     "tag"
   end
 
   create_table "impressions", force: :cascade do |t|
@@ -89,6 +90,12 @@ ActiveRecord::Schema.define(version: 20150701021737) do
   add_index "impressions", ["impressionable_type", "impressionable_id", "session_hash"], name: "poly_session_index"
   add_index "impressions", ["impressionable_type", "message", "impressionable_id"], name: "impressionable_type_message_index"
   add_index "impressions", ["user_id"], name: "index_impressions_on_user_id"
+
+  create_table "my_classes", force: :cascade do |t|
+    t.integer "user_id"
+    t.string  "classable_type"
+    t.integer "classable_id"
+  end
 
   create_table "notifications", force: :cascade do |t|
     t.string   "postable_type"

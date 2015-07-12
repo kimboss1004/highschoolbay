@@ -57,6 +57,10 @@ Rails.application.routes.draw do
 
   resources :searches, only: [:index]
 
+  resources :my_classes, only: [:create]
+  delete 'my_classes/delete', to: 'my_classes#destroy'
+  get 'my_classes/info', to: 'my_classes#info'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

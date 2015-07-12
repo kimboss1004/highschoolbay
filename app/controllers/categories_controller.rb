@@ -16,6 +16,7 @@ class CategoriesController < ApplicationController
       @unanswered = Question.where(answered: nil)
       @unanswered = sub_tab(@unanswered)
     end
+
   end
  
   def show

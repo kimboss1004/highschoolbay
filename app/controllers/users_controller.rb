@@ -57,6 +57,7 @@ class UsersController < ApplicationController
     if @user.group
       flash[:notice] = "You are a now member of #{@user.group.school}."
     else
+      @user.classes.destroy_all
       flash[:error] = "You have left #{old_group.school}."
     end
     redirect_to :back

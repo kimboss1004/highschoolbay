@@ -29,6 +29,22 @@
         <li class='school'>
           <% if current_user.group %>
             <%= link_to current_user.group.school, group_path(current_user.group) %>
+            <li class="dropdown nav-item pull-left dropdown-classes">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-book fa-lg"></i> <i class="fa fa-caret-down small-arrow"></i></a>
+              <ul class="dropdown-menu" role="menu">
+                <li class="my-classes-title">My classes</li>
+                <% current_user.classes.each do |my_class| %>
+                  <li class="my-classes-links">
+                    <%= link_to my_class.classable.name, (my_class.classable_type == 'Category' ? group_category_path(current_user.group, my_class.classable_id) : group_gategory_path(current_user.group, my_class.classable_id)) %>
+                  </li>
+                <% end %>
+                <li class="add-class">
+                  <%= link_to my_classes_info_path do %>
+                    Add class <i class="fa fa-plus my-class"></i>
+                  <% end %>
+                </li>
+              </ul>
+            </li>
           <% else %>
             <%= link_to groups_path  do %>
               Find School
@@ -37,7 +53,7 @@
         </li> 
         <li class="dropdown nav-item pull-right">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-bars fa-lg"></i><span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
+          <ul class="dropdown-menu account" role="menu">
             <li class="account-links"><%= link_to "Profile", user_path(current_user) %></li>
             <li class="account-links"><%= link_to "Settings", edit_user_path(current_user) %></li>
             <li class="divider"></li>

@@ -26,6 +26,7 @@ class Image < ActiveRecord::Base
   searchable do
     text :title, :boost => 3.0
     text :description, :boost => 2.0
+    text :tag, :boost => 2.0
     text :comments do
       comments.map(&:body)
     end
