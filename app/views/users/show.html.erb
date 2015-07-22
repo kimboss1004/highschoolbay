@@ -34,8 +34,8 @@
   <div class="shaded">
 
     <a href=""><%= @user.votes_count %></a>
-    <%= link_to @user.questions.size, user_path(@user) %>
-    <%= link_to @user.images.size, user_path(@user, tab: "Worksheets") %>
+    <%= link_to @user.questions.size, user_path(@user, tab: "Questions") %>
+    <%= link_to @user.images.size, user_path(@user) %>
     <%= link_to @user.comments.size, user_path(@user, tab: "Answers") %>
   </div>
   <div class="link-titles">
@@ -51,19 +51,14 @@
 
   <nav class='form-nav'>
     <ul class="green-pills">
-      <%= link_to "Questions", user_path(@user), class: ('active' if params[:tab].nil? ) %>
-      <%= link_to "Worksheets", user_path(@user, tab: "Worksheets"), class: ('active' if params[:tab] == 'Worksheets' ) %>
+      <%= link_to "Worksheets", user_path(@user), class: ('active' if params[:tab].nil?) %>
+      <%= link_to "Questions", user_path(@user, tab: 'Questions'), class: ('active' if params[:tab] == 'Questions' ) %>
       <%= link_to "Answers", user_path(@user, tab: "Answers"), class: ('active' if params[:tab] == 'Answers' ) %>
     </ul>
   </nav>
 
   <% if params[:tab] == nil %>
-    <% @questions.each do |question| %>
-        <%= render 'questions/question', question: question %>   
-    <% end %>
-    <%= paginate @questions %>
 
-  <% elsif params[:tab] == "Worksheets" %>
     <div class="form-left-side">
       <% seperate_array_tri(0,@images).each do |image| %>
         <%= render 'images/image_index', image: image %>
@@ -81,8 +76,13 @@
         <%= render 'images/image_index', image: image %>
       <% end %>
     </div>  
-
     <%= paginate @images %>
+
+  <% elsif params[:tab] == "Questions" %>
+    <% @questions.each do |question| %>
+        <%= render 'questions/question', question: question %>   
+    <% end %>
+    <%= paginate @questions %>
 
   <% elsif params[:tab] == "Answers" %>
     <% @answers.each do |answer| %>

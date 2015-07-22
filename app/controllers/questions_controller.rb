@@ -24,7 +24,7 @@ class QuestionsController < ApplicationController
     @question.user = current_user
     if @question.save
       flash[:notice] = "Your question has been submitted."
-      redirect_to dynamic_post_path(params, nil)
+      redirect_to dynamic_post_path(params, "Questions")
     else
       render :new
     end
@@ -42,8 +42,11 @@ class QuestionsController < ApplicationController
       @vote.update(vote: params[:vote])
     end
 
+    request.format = :mobilejs if mobile_device?
+
     respond_to do |format|
       format.js
+      format.mobilejs
     end
   end
 

@@ -1,16 +1,16 @@
 <nav class='form-nav'>
   <ul class="green-pills">
-    <%= link_to "Questions", path, class: ('active' if params[:tab].nil? ) %>
-    
-    <%= link_to "Worksheets", path + '?tab=Worksheets', class: ('active' if params[:tab] == 'Worksheets' ) %>
+    <%= link_to "Worksheets", path, class: ('active' if params[:tab].nil? ) %>
+
+    <%= link_to "Questions", path + '?tab=Questions', class: ('active' if params[:tab] == "Questions") %>
 
     <%= link_to "Answer", path + '?tab=Answers', class: ('active' if params[:tab] == 'Answers' ) %>
   </ul>
 
-<% if params[:tab] == nil %>
-  <%= render 'questions/modal' %>
-<% elsif params[:tab] == "Worksheets" %>
+<% if params[:tab].nil? %>
   <%= render 'images/modal' %>
+<% elsif params[:tab] == "Questions" %>
+  <%= render 'questions/modal' %>
 <% end %>
 
 

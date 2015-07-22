@@ -61,7 +61,7 @@
           </ul>
         </li>
         <li class='nav-item'>
-          <%= link_to notifications_user_path(current_user), method: 'post' do %>
+          <%= link_to notifications_user_path(current_user) do %>
             <i class="fa fa-globe fa-lg"></i>
             <% if current_user.unchecked_notifications %>
               <span class="notification-alert"><%= current_user.unchecked_notifications %></span>
@@ -87,7 +87,6 @@
     <%= link_to "Science", category_path(5) %>
     <%= link_to "History", category_path(21) %>
     <%= link_to "Social Sciences", category_path(36) %>
-    <%= link_to "History", category_path(21) %>
     <%= link_to "Health", category_path(38) %>
   </ul>
 </div>

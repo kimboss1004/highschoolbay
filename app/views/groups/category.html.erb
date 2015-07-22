@@ -38,7 +38,7 @@
         <h2 class="category-name">
           <%= @category.name %>
         </h2>     
-        <% if current_user.group == @group %>
+        <% if logged_in? && current_user.group == @group %>
           <ul class="add-class-button">
             <% if current_user.classes.where(classable_type: 'Category', classable_id: @category).any? %>
               <%= link_to "Drop Class", my_classes_delete_path(classable_type: 'Category', classable_id: @category), method: 'delete', class: 'btn' %>

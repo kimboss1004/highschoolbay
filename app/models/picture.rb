@@ -3,8 +3,8 @@ class Picture < ActiveRecord::Base
 
   has_attached_file :photo,
     :styles => { :small => "300x300>", :large => "1100x1500" },
-    :url  => "/assets/pictures/:id/:style/:basename.:extension",
-    :path => ":rails_root/public/assets/pictures/:id/:style/:basename.:extension"
+  :url => "/images/products/:id/:style/:basename.:extension",
+  :path => ":rails_root/public/images/products/:id/:style/:basename.:extension"
 
   do_not_validate_attachment_file_type :photo
   validates_attachment_presence :photo

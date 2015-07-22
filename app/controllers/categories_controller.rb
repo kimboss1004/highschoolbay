@@ -5,18 +5,17 @@ class CategoriesController < ApplicationController
     @users = User.order('votes_count DESC').limit(10)
 
     if params[:tab].nil?
-      @question = Question.new
-      @questions = Question.all
-      @questions = sub_tab(@questions)
-    elsif params[:tab] == "Worksheets"
       @image = Image.new
       @images = Image.all
       @images = sub_tab(@images)
+    elsif params[:tab] == "Questions"
+      @question = Question.new
+      @questions = Question.all
+      @questions = sub_tab(@questions)
     elsif params[:tab] == "Answers" 
       @unanswered = Question.where(answered: nil)
       @unanswered = sub_tab(@unanswered)
     end
-
   end
  
   def show
@@ -24,13 +23,13 @@ class CategoriesController < ApplicationController
     @users = User.order('votes_count DESC').limit(10)
 
     if params[:tab].nil?
-      @question = Question.new(categories: @category.ancestor_objects)
-      @questions = Question.joins(:categories).where("categories.id == '#{@category.id}'")
-      @questions = sub_tab(@questions)
-    elsif params[:tab] == "Worksheets"
       @image = Image.new(categories: @category.ancestor_objects)
       @images = Image.joins(:categories).where("categories.id == '#{@category.id}'")
       @images = sub_tab(@images)
+    elsif params[:tab] == "Questions"
+      @question = Question.new(categories: @category.ancestor_objects)
+      @questions = Question.joins(:categories).where("categories.id == '#{@category.id}'")
+      @questions = sub_tab(@questions)
     elsif params[:tab] == "Answers" 
       @unanswered = Question.where(answered: nil).joins(:categories).where("categories.id == '#{@category.id}'")
       @unanswered = sub_tab(@unanswered)

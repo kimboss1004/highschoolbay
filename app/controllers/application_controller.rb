@@ -22,6 +22,7 @@ class ApplicationController < ActionController::Base
 
   def require_user_vote
     unless logged_in?
+      request.format = :mobilejs if mobile_device?
       render 'votes/require_user'
     end  
   end
@@ -61,7 +62,7 @@ class ApplicationController < ActionController::Base
     elsif params[:sub_tab] == "Favorite"
       objects = objects.where(:created_at => 2.weeks.ago..DateTime.now.end_of_day).order('votes_count desc').order('created_at desc')
     end
-    return objects.page(params[:page]).per(30)
+    return objects.page(params[:page]).per(15)
   end
 
   def min_match_num(str)
@@ -123,11 +124,20 @@ class ApplicationController < ActionController::Base
  end
 
  def mobile_device?
+  if session[:mobile_param]
+    session[:mobile_param] == "1"
+  else
     request.user_agent =~ /Mobile|webOS/
+  end
  end
 
  def prepare_for_mobile
-   request.format = :mobile if mobile_device?
+    session[:mobile_param] = params[:mobile] if params[:mobile]
+    request.format = :mobile if mobile_device?
+ end
+
+ def group_nav
+  @group_nav = true
  end
 
   

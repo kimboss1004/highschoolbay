@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :create,:edit,:update] do
     member do
       post :member
-      post :notifications
+      get :notifications
     end 
   end
 

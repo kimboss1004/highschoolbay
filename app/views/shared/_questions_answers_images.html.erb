@@ -1,14 +1,4 @@
 <% if params[:tab] == nil %>
-  <% @questions.each do |question| %>
-      <%= render 'questions/question', question: question %> 
-
-  <% end %>
-  <%= paginate @questions %>
-
- 
-
-<% elsif params[:tab] == "Worksheets" %>
-
   <div class="form-left-side">
     <% seperate_array_tri(0,@images).each do |image| %>
       <%= render 'images/image_index', image: image %>
@@ -26,11 +16,14 @@
       <%= render 'images/image_index', image: image %>
     <% end %>
   </div>  
-
-
-
   <%= paginate @images %>
 
+<% elsif params[:tab] == "Questions" %>
+
+  <% @questions.each do |question| %>
+      <%= render 'questions/question', question: question %> 
+  <% end %>
+  <%= paginate @questions %>
   
 <% elsif params[:tab] == "Answers" %>
   <% @unanswered.each do |question| %>

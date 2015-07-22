@@ -15,35 +15,36 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require_tree .
+//= require_self
 
 $(document).ready(function() {
 
-      $(function() {
-        $('#my-menu').mmenu({
-          extensions  : [ 'effect-slide-menu', "border-full", "pageshadow" ],
-          counters  : true,
-          navbar    : {
-            title : null,
-            content : ['next', 'previous', 'title']
-          },
-          dragOpen : {
-            open : false
-          }
-        });
-      });
-
-      var API = $("#my-menu").data( "mmenu" );
-      
-      $("#my-button").click(function() {
-         API.open();
-      });
-
-});
+  $(function() {
+    $('#my-menu').mmenu({
+      extensions  : [ 'effect-slide-menu', "border-full", "pageshadow" ],
+      counters  : true,
+      navbar    : {
+        title : null,
+        content : ['next', 'previous', 'title']
+      }
+    });
+  });
 
 
+  var API = $("#my-menu").data( "mmenu" );
+  $("#my-button").click(function() {
+    API.open();
+  });
 
 
-$(document).ready(function() {
+  $("#flip").click(function(){
+      $("#panel").slideToggle("fast");
+  });
+
+  $("#gflip").click(function(){
+      $("#gpanel").slideToggle("fast");
+  });
+
    
   $("tr[data-link]").click(function() {
     window.location = this.dataset.link
@@ -54,4 +55,61 @@ $(document).ready(function() {
     $('[data-toggle="popover"]').popover()
   });
 
+// ------------------- make selected categories orange ---------------------------------------------
+    $('input[type=checkbox]:checked').each(function() {
+        $('a#' + this.id).css("background-color", "orange");
+    });
+
+
+// ------------------------------------------------------------------
+  $("a.check-enabled").click(function(){
+
+      if ($('input#' + $(this).attr('id')).prop('checked') == false) {
+        $('input#' + $(this).attr('id')).prop('checked', true);
+        $(this).css("background-color", "orange");
+      } else {
+        $('input#' + $(this).attr('id')).prop('checked', false);
+        $(this).css("background-color", "#458FFF");
+      }
+  });
+
+    $("a.gcheck-enabled").click(function(){
+
+      if ($('input#' + $(this).attr('id')).prop('checked') == false) {
+        $('input#' + $(this).attr('id')).prop('checked', true);
+        $(this).css("background-color", "orange");
+      } else {
+        $('input#' + $(this).attr('id')).prop('checked', false);
+        $(this).css("background-color", "#339933");
+      }
+  });
+// ----------------------------------- --------------------------------
+
+  $("a.category-head-checkbox").click(function(){
+
+      if ($('a#' + $(this).attr('id')).hasClass('collapsed')) {
+        $('input#' + $(this).attr('id')).prop('checked', true);
+        $(this).css("background-color", "orange");
+        $('a#' + $(this).attr('id')).removeClass('collapsed');
+
+      } else {
+        $('input#' + $(this).attr('id')).prop('checked', false);
+        $(this).css("background-color", "#458FFF");
+      }
+  });
+
+  $("a.gategory-head-checkbox").click(function(){
+
+      if ($('input#' + $(this).attr('id')).prop('checked') == false) {
+        $('input#' + $(this).attr('id')).prop('checked', true);
+        $('a#' + $(this).attr('id')).css("background-color", "orange");
+        $(this).css("background-color", "green");
+      } 
+  });
+
+
 });
+
+
+
+

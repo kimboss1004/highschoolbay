@@ -11,9 +11,9 @@ class UsersController < ApplicationController
     @rank =  User.where(group_id: @user.group).order('votes_count desc').index{ |user| user.id == @user.id } + 1
 
     if params[:tab].nil?
-      @questions = Question.where(user_id: @user).order('created_at desc').page(params[:page]).per(30)
-    elsif params[:tab] == "Worksheets"
       @images = Image.where(user_id: @user).order('created_at desc').page(params[:page]).per(30)
+    elsif params[:tab] == "Questions"
+      @questions = Question.where(user_id: @user).order('created_at desc').page(params[:page]).per(30)
     elsif params[:tab] == "Answers"
       @answers = Comment.where(user_id: @user, commentable_type: "Question").order('created_at desc').page(params[:page]).per(30)
     end

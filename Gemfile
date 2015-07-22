@@ -18,6 +18,7 @@ gem 'impressionist'
 gem 'sunspot_rails'
 gem 'sunspot_solr'
 gem 'kaminari'
+gem 'mysql2'
 
 
 group :development, :test do

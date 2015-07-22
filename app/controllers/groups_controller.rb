@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
   before_action :require_user, only: [:new, :create]
-
+  before_action :group_nav, only: [:category, :show, :search]
   helper_method :seperate_array_two
  
   def index
@@ -15,13 +15,13 @@ class GroupsController < ApplicationController
     @users = User.where(group_id: @group).order('votes_count DESC').limit(10)
 
     if params[:tab].nil?
-      @question = Question.new(categories: @category.ancestor_objects)
-      @questions = Question.where(group_id: @group).joins(:categories).where("categories.id == '#{@category.id}'")
-      @questions = sub_tab(@questions)
-    elsif params[:tab] == "Worksheets"
       @image = Image.new(categories: @category.ancestor_objects)
       @images = Image.where(group_id: @group).joins(:categories).where("categories.id == '#{@category.id}'")
       @images = sub_tab(@images)
+    elsif params[:tab] == "Questions"
+      @question = Question.new(categories: @category.ancestor_objects)
+      @questions = Question.where(group_id: @group).joins(:categories).where("categories.id == '#{@category.id}'")
+      @questions = sub_tab(@questions)
     elsif params[:tab] == "Answers" 
       @unanswered = Question.where(group_id: params[:group_id], answered: nil).joins(:categories).where("categories.id == '#{@category.id}'")
       @unanswered = sub_tab(@unanswered)
@@ -33,13 +33,13 @@ class GroupsController < ApplicationController
     @users = User.where(group_id: @group).order('votes_count DESC').limit(10)
 
     if params[:tab].nil?
-      @question = Question.new
-      @questions = Question.where(group_id: @group)
-      @questions = sub_tab(@questions)
-    elsif params[:tab] == "Worksheets"
       @image = Image.new
       @images = Image.where(group_id: @group)
       @images = sub_tab(@images)
+    elsif params[:tab] == "Questions"
+      @question = Question.new
+      @questions = Question.where(group_id: @group)
+      @questions = sub_tab(@questions)
     elsif params[:tab] == "Answers" 
       @unanswered = Question.where(group_id: @group,answered: nil)
       @unanswered = sub_tab(@unanswered)

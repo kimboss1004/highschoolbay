@@ -26,7 +26,7 @@ class ImagesController < ApplicationController
       }
       flash[:error] = nil
       flash[:notice] = "Your image has been submitted."
-      redirect_to dynamic_post_path(params, "Worksheets")
+      redirect_to dynamic_post_path(params, nil)
     else
       @image.valid?
       if !params[:photos]
@@ -48,8 +48,11 @@ class ImagesController < ApplicationController
       @vote.update(vote: params[:vote])
     end
     
+    request.format = :mobilejs if mobile_device?
+
     respond_to do |format|
       format.js
+      format.mobilejs
     end
   end
 

@@ -5,9 +5,9 @@ module ApplicationHelper
   end
 
   def brief_notification(string)
-    if string.length > 65
-      string = string[0..64]
-      string = string + "..."
+    if string.length > 70
+      string = string[0..69]
+      string = string + "....."
     end
     return string
   end

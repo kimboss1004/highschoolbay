@@ -2,9 +2,9 @@
   <div class="col-md-4"></div>
   <div class="col-md-4">
     <ul class="nav nav-pills">
-      <li role="presentation" class="<%= 'active' if params[:tab].nil? %>"><%= link_to "Questions", path %>
+      <li role="presentation" class="<%= 'active' if params[:tab].nil? %>"><%= link_to "Worksheets", path %>
       </li>
-      <li role="presentation" class="<%= 'active' if params[:tab] == 'Worksheets'%>"><%= link_to "Worksheets", path + '?tab=Worksheets' %>
+      <li role="presentation" class="<%= 'active' if params[:tab] == 'Questions' %>"><%= link_to "Questions", path + '?tab=Questions' %>
       </li>
     </ul>   
   </div>

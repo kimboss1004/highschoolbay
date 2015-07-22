@@ -1,6 +1,7 @@
 class GategoriesController < ApplicationController
   before_action :require_user, only: [:new, :create]
   before_action :require_member, only: [:new, :create]
+  before_action :group_nav, only: [:new, :show]
 
   def new
     @parent = (params[:category_id] ? Category.find(params[:category_id].to_i) : Gategory.find(params[:gategory_id].to_i))
@@ -29,13 +30,13 @@ class GategoriesController < ApplicationController
     @users = User.where(group_id: @group).order('votes_count DESC').limit(10)
 
     if params[:tab].nil?
-      @question = Question.new(categories: @category.ancestor_objects, gategories: @gategory.ancestor_gategories)
-      @questions = Question.joins(:gategories).where("gategories.id == '#{@gategory.id}'")
-      @questions = sub_tab(@questions)
-    elsif params[:tab] == "Worksheets"
       @image = Image.new(categories: @category.ancestor_objects, gategories: @gategory.ancestor_gategories)
       @images = Image.joins(:gategories).where("gategories.id == '#{@gategory.id}'")
       @images = sub_tab(@images)
+    elsif params[:tab] == "Questions"
+      @question = Question.new(categories: @category.ancestor_objects, gategories: @gategory.ancestor_gategories)
+      @questions = Question.joins(:gategories).where("gategories.id == '#{@gategory.id}'")
+      @questions = sub_tab(@questions)
     elsif params[:tab] == "Answers" 
       @unanswered = Question.where(answered: nil).joins(:gategories).where("gategories.id == '#{@gategory.id}'")
       @unanswered = sub_tab(@unanswered)

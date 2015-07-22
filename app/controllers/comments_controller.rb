@@ -24,9 +24,9 @@ class CommentsController < ApplicationController
       @comment.group_id = current_user.group_id
       @comment.user = current_user
       if @comment.save
-        flash[:notice] = "Your answer has been submitted"
+        flash[:notice] = "Your comment has been submitted"
       else
-        flash[:error] = "Answer cannot be empty."
+        flash[:error] = "Comment cannot be empty."
       end
     end
 
@@ -45,8 +45,11 @@ class CommentsController < ApplicationController
       @vote.update(vote: params[:vote])
     end
     
+    request.format = :mobilejs if mobile_device?
+
     respond_to do |format|
       format.js
+      format.mobilejs
     end
   end
 

@@ -2,8 +2,8 @@
 <div class="small-wks-post">
 
   <div class="buttons">
-      <%= render 'categories/category_badge', object: image, tab: "Worksheets" %>
-      <%= render 'gategories/gategory_badge', object: image, tab: "Worksheets" %>    
+      <%= render 'categories/category_badge', object: image, tab: nil  %>
+      <%= render 'gategories/gategory_badge', object: image, tab: nil %>    
   </div>
    <%= render 'votes/votes', path: vote_image_path(image), object: image %>  
   <p><%= link_to image.title, image_path(image) %></p>
