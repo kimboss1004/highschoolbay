@@ -1,0 +1,27 @@
+<a id='<%= f.object.class.to_s.downcase %>_category_ids_<%= category_descendent.value %>' class="btn check-enabled checkbox-styling" data-toggle="collapse" href="#category<%= category_descendent.value %>" aria-expanded="false" aria-controls="category<%= category_descendent.value %>">
+    <%= f.collection_check_boxes :category_ids, [category_descendent.object], :id, :name do |d| %>
+      <%= d.label(class: "checkbox-inline center-box") {d.check_box(class: "checkbox checkbox-square") + d.text} %>
+    <% end %> 
+</a>
+
+<% if category_descendent.object.sub_categories.any? %>
+
+
+
+  <div class="collapse" id="category<%= category_descendent.value %>">
+
+    <div class="well checkbox-sub-container">
+
+      <%= f.collection_check_boxes :category_ids, category_descendent.object.sub_categories, :id, :name do |descendent| %>
+          
+        <%= render 'categories/dig_category_checkbox', category_descendent: descendent, f: f %>
+
+
+      <% end %>
+    </div>
+  </div>
+
+
+<% end %>
+
+

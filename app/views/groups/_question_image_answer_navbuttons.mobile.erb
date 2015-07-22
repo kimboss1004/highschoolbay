@@ -1,0 +1,44 @@
+  <nav class="qwa-nav">
+    <div class="dropdown qwa">
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          <% if params[:tab].nil? %>
+            Worksheets
+          <% elsif params[:tab] == "Questions" %>
+            Questions
+          <% else %>
+            Answers
+          <% end %>
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+          <%= link_to 'Worksheets', path %>
+          <%= link_to 'Questions', path + '?tab=Questions' %>
+          <%= link_to 'Answer', path + '?tab=Answers' %>
+      </ul>
+    </div>
+
+
+    <div class="dropdown sub-tabs">
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          <% if params[:sub_tab].nil? %>
+            New
+          <% elsif params[:sub_tab] == "Popular" %>
+            Popular
+          <% else %>
+            Favorite
+          <% end %>
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+          <li><%= link_to 'New', path + (params[:tab] ? "?tab=#{params[:tab]}" : "") %></li>
+          <li><%= link_to 'Popular', path + (params[:tab] ? "?tab=#{params[:tab]}&sub_tab=Popular" : "?sub_tab=Popular") %></li>
+          <li><%= link_to 'Favorite', path + (params[:tab] ? "?tab=#{params[:tab]}&sub_tab=Favorite" : "?sub_tab=Favorite") %></li>
+      </ul>
+    </div>
+
+    <% if @image %>
+      <%= render 'images/modal' %>
+    <% elsif @question %>
+      <%= render 'questions/modal' %>
+    <% end %>
+  </nav>

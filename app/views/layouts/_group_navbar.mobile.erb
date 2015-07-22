@@ -1,0 +1,20 @@
+<div class="big-container">
+   <nav class="top-navbar-group">
+         <a href="#my-menu" class="bar"><i class="fa fa-bars"></i></a>
+         <div class="title"><%= link_to @group.school, group_path(@group, tab: params[:tab]) %></div>
+         <div class="search" id="gflip"><i class="fa fa-search"></i></div>   
+   </nav>
+
+   <div id="gpanel">
+       <%= form_tag search_group_path(@group), method: :get, class: "gform-wrapper" do %>
+             <%= text_field_tag :search_group, params[:search_group], placeholder: "Search #{@group.school}...", autofocus: autofocus?(request.fullpath) %>    
+             <input type="submit" value="go" id="submit">
+       <% end %> 
+   </div>
+</div>
+
+
+
+
+
+

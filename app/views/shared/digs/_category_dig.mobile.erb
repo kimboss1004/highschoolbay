@@ -1,0 +1,13 @@
+<li>
+  <%= link_to category_path(object) do %>
+     <p><%= object.name %></p>
+  <% end %>
+
+  <% if object.sub_categories.any? %>
+    <ul>
+      <% object.sub_categories.each do |child| %>
+        <%= render 'shared/digs/category_dig', object: child %>
+      <% end %>  
+    </ul>  
+  <% end %>
+</li>

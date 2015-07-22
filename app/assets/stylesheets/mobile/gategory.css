@@ -1,0 +1,73 @@
+//gategory background
+.custom-jumbotron {
+  width: 100%;
+  height: auto;
+  background-image: asset-url('custom.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+// gategory create show buttoni ------------------------
+
+.gategory_create_show {
+  margin-left: 20px;
+  margin-top: 10px;
+  position: relative;
+  right: 15px;
+  bottom: 5px;
+  display: inline;
+  .green {
+    background-color: #00CC99;
+    font-size: 13px;
+    padding-bottom: 3px;
+    padding-top: 3px;
+  }
+}
+
+// gategory new page -----------------------------------------
+
+.custom-create-bg {
+  background-image: asset-url('custom.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+}
+
+
+.create-gategory-container {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  width: 100%;
+
+  h2 {
+    text-align: center;
+    font-size: 30px;
+    color: black;
+    font-weight: 200;
+    padding-bottom: 26px;
+  }
+  input {
+    height: 50px;
+    margin-top: -5px;
+    border-radius: 2px;
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #e5e5e5;
+    color: #101010;
+    font-size: 16px;
+    font-weight: 300;
+  }
+  input[type=submit] {
+  border: none;
+    background-color: #0099FF;
+    color: white;
+    font-weight: 400;
+    font-size: 18px;
+  }  
+  input[type=submit]:hover {
+   background-color: #008AE6;
+  }
+
+}

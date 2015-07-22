@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hsbay</title>
+    <%= stylesheet_link_tag 'mobile/mobile' %>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <% if @group_nav.nil? %>
+      <%= render 'layouts/navbar_mobile' %>
+    <% else %>
+      <%= render 'layouts/group_navbar' %>
+    <% end %>
+    <%= render 'layouts/my_menu' %>
+    <div>
+      <%= render 'layouts/messages_mobile' %>
+      <%= yield %>
+    </div>
+    
+  </body>
+</html>

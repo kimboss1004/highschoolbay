@@ -1,0 +1,26 @@
+<div class="answers">
+  <div class="vote-comment">
+    <%= link_to (path + '?vote=true'), method: 'post', remote: true do %>
+      <i class="fa fa-chevron-up"></i>
+    <% end %> 
+    <div id="<%= comment.class %>_<%= comment.id %>_vote" class="vote_count">
+      <%= comment.votes_count %>
+    </div>
+    <%= link_to (path + '?vote=false'), method: 'post', remote: true do %>
+      <i class="fa fa-chevron-down"></i>
+    <% end %>  
+  </div>
+  <div class="answer-content">
+      <p><%= comment.body %></p>
+    <div  class='answer-info'>
+      <small>
+        <span>
+          <%= link_to comment.user.username, user_path(comment.user) %>
+          <i class="fa fa-circle small"></i>
+          <%= display_date(comment.created_at) %>
+        </span>  
+      </small>
+    </div>
+  </div>
+</div>
+

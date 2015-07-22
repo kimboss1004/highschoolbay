@@ -1,0 +1,14 @@
+<div class="big-container">
+   <nav class="top-navbar">
+         <a href="#my-menu" class="bar"><i class="fa fa-bars"></i></a>
+         <div class="title"><%= link_to "HighschoolBay", categories_path(tab: params[:tab]) %></div>
+         <div class="search" id="flip"><i class="fa fa-search"></i></div>   
+   </nav>
+
+   <div id="panel">
+       <%= form_tag searches_path, method: :get, class: "form-wrapper" do %>
+             <%= text_field_tag :search, params[:search], placeholder: 'Search...', autofocus: autofocus?(request.fullpath) %>    
+             <input type="submit" value="go" id="submit">
+       <% end %> 
+   </div>
+</div>

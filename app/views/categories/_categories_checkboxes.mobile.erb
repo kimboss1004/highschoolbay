@@ -1,0 +1,29 @@
+<div class="form-group qw-form-input">
+  <h4 class="label">Category</h4> 
+  <div class="buttons-centered">
+    <% Category.where(master_id: nil).each do |department| %>
+
+
+
+    <a id='<%= f.object.class.to_s.downcase %>_category_ids_<%= department.id %>' class="btn btn-info checkbox-styling selected-orange category-head-checkbox collapsed" data-toggle="collapse" href="#category<%= department.id %>" aria-expanded="false" aria-controls="category<%= department.id %>">
+        <%= f.collection_check_boxes :category_ids, [department], :id, :name do |d| %>
+          <%= d.label(class: "checkbox-inline center-box") {d.check_box(class: "checkbox checkbox-square") + d.text } %>
+        <% end %> 
+   </a>
+
+
+      <div class="collapse" id="category<%= department.id %>">
+
+        <div class="well custom-border-input no-padding">
+
+          <%= f.collection_check_boxes :category_ids, department.sub_categories, :id, :name do |descendent| %>
+
+            <%= render 'categories/dig_category_checkbox', category_descendent: descendent, f: f %>
+          
+          <% end %>
+        </div>
+      </div>
+
+    <% end %>
+  </div>
+</div>

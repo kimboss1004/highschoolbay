@@ -1,0 +1,13 @@
+<div class="vote">
+  <%= link_to (path + '?vote=true'), method: 'post', remote: true do %>
+    <i class="fa fa-chevron-up"></i>
+  <% end %> 
+  <div id="<%= object.class %>_<%= object.id %>_vote" class="vote_count">
+    <%= object.votes_count %>
+  </div>
+  <%= link_to (path + '?vote=false'), method: 'post', remote: true do %>
+    <i class="fa fa-chevron-down"></i>
+  <% end %>  
+</div>
+
+

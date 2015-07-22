@@ -1,0 +1,82 @@
+
+<!-- IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIsort navIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII -->
+  <nav class="qwa-nav">
+    <div class="dropdown qwa">
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          <% if params[:tab].nil? %>
+            All
+          <% elsif params[:tab] == "Worksheets" %>
+            Worksheets
+          <% else %>
+            Questions
+          <% end %>
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+          <%= link_to 'All', searches_path(search: params[:search]) %>
+          <%= link_to 'Worksheets', searches_path(search: params[:search], tab: "Worksheets") %>
+          <%= link_to 'Questions', searches_path(search: params[:search], tab: "Questions") %>
+      </ul>
+    </div>
+    <span class="search-results-title">
+      <%= @results.size %> Results
+    </span>
+
+    <button type="button" class="btn search-modal-button" data-toggle="modal" data-target=".bs-example-modal-sm">Search Tip</button>
+
+    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <p class="search-tip">When searching for Worksheet, enter the first 10-15 words of desired worksheet for best results.</p>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+<!-- IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIoptionsIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII -->
+<% if params[:tab].nil? %>
+  <% @results.each do |object| %>
+    <% if object.class.to_s == 'Image' %>
+
+      <div class="img-index-container">
+        <div class="buttons">
+          <%= render 'categories/category_badge', object: object, tab: nil  %>
+          <%= render 'gategories/gategory_badge', object: object, tab: nil %>       
+        </div>
+        <%= render 'votes/votes', path: vote_image_path(object), object: object %> 
+        <p><%= link_to object.title, image_path(object) %></p>
+        <% unless object.pictures.empty? %>
+            <div class="image-container">
+              <%= link_to image_path(object) do %>
+                <%= image_tag object.pictures.first.photo, class: "image" %>
+              <% end %>
+            </div>
+        <% end %>
+        <div  class='image-info'>
+          <%= render 'shared/post_info', object: object %> 
+        </div>
+      </div>
+
+    <% else %>
+      <%= render 'questions/question', question: object %>  
+    <% end %>
+  <% end %>
+  <%= paginate @results %>
+<!-- IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII -->
+<% elsif params[:tab] == "Questions" %>
+  <% @results.each do |question| %>
+      <%= render 'questions/question', question: question %>   
+  <% end %>
+  <%= paginate @results %>
+<!-- IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII -->
+<% elsif params[:tab] == "Worksheets" %>
+  <% @results.each do |image| %>
+    <%= render 'images/image_index', image: image %>   
+  <% end %>
+  <%= paginate @results %>  
+<% end %>
+
+
+
+
+

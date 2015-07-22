@@ -1,0 +1,37 @@
+ <div class="qw-form-container">
+  <%= form_for image, :html => {multipart: true} do |f| %>
+    <div class="form-group qw-form-input">
+      <%= f.label :title, "Title", class: 'label' %>
+      <%= f.text_field :title, class: "form-control custom-border-input", placeholder: "Ask your question..." %>
+    </div>
+
+    <div class="form-group qw-form-input">
+      <%= f.label :description, class: 'label' %>
+      <%= f.text_area :description, rows: 2, placeholder: "Add your Description...", class: "form-control custom-border-input" %>
+    </div>
+
+    <div class="form-group qw-form-input">
+      <%= f.label :tag, "Tags (for search engine)", class: 'label' %>
+      <%= f.text_area :tag, rows: 1, placeholder: "First 10-20 words on worksheet...", class: "form-control custom-border-input" %>
+    </div>
+
+    <div class="form-group qw-form-input">
+      <%= f.label :Images, :class => 'label' %>
+      <div class="upload-row">
+        <%= file_field_tag "photos[]",accept: "image/*", type: 'file', multiple: true, class: "upload-button" %>
+      </div>
+    </div>
+
+
+    <%= hidden_field_tag 'group', path_value(@group, params[:group]) %>
+    <%= hidden_field_tag 'category', path_value(@category, params[:category]) %>
+    <%= hidden_field_tag 'gategory', path_value(@gategory, params[:gategory]) %>
+
+    <%= render 'categories/categories_checkboxes', f: f %>
+    <%= render 'gategories/gategories_checkboxes', f: f %>
+
+    <div class="bottom-nav">
+      <%= f.submit "Share", class: 'btn btn-primary custom-blue' %>
+    </div>
+  <% end %>
+</div>

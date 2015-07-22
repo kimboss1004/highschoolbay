@@ -1,0 +1,49 @@
+
+    <div class="show-object-container">
+      <%= render 'votes/vote_big', object: @image, path: vote_image_path(@image) %>
+      <%= render 'shared/descriptive_content_show', object: @image, tab: nil %>
+    </div>
+
+    <div class="advertisement">
+      <img src="/ad.png" class="ad">
+    </div>
+
+    <% unless @image.pictures.empty? %> 
+      <% @image.pictures.each do |picture| %>
+        <div class=""><%= image_tag picture.photo, class: "one-image" %></div>
+      <% end %>
+    <% end %>  
+
+    <div class="advertisement">
+      <img src="/ad.png" class="ad">
+    </div>
+
+    <% if @comments.any? %>
+      <div class="answers-nav">
+        <p>Comments</p>
+      </div>
+
+    <% @comments.each do |comment| %>
+      <%= render 'comments/comment', comment: comment, path: vote_image_comment_path(@image, comment)  %>
+      <% end %>
+    <% end %>
+
+
+
+    <div class="answer-form-container">
+      <% if @comments.size > 6 %>
+        <p><%= @image.title %></p>
+      <% end %>
+      <%= form_for [@image,@comment] do |f| %>
+        <div class="form-group answer-form-input">
+          <%= f.text_area :body, rows: 5, placeholder: "Add your comment...", class: "form-control custom-border-input" %>  
+        </div>
+        <div class="bottom-nav">
+          <%= f.submit "Submit", class: 'btn btn-primary custom-blue' %>
+        </div>
+      <% end %>    
+    </div>
+
+
+
+

@@ -1,0 +1,24 @@
+<div class="body-center">
+  <div class="register-container">
+    <%= render 'shared/errors', object: @group %>
+    <h2 class="sign-up">Create School</h2>
+    <%= form_for @group do |f| %>
+
+      <div class="form-group">
+        <%= f.text_field :school, class: "form-control", placeholder: "School", autofocus: true %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :state %>
+        <%= f.select(:state, options_for_select(us_states), {include_blank: true, class: "form-control"})%>
+      </div>
+
+      <div class="form-group">
+        <%= f.text_field :city, class: "form-control", placeholder: "City" %>
+      </div>
+   
+
+      <%= f.submit "Create School", class: 'register-button' %>
+    <% end %>
+  </div>
+</div>

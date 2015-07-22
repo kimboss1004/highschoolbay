@@ -1,0 +1,11 @@
+<div class="pull-badges">
+  <%= render 'categories/category_badge', object: object, tab: tab %>
+  <%= render 'gategories/gategory_badge', object: object, tab: tab %>        
+</div>  
+<div class="descriptive-content-show">
+  <p><%= object.title %></p>
+ <span class="description"><p><%= object.description %></p></span>
+  <div  class='object-info'>
+    <%= render 'shared/show_post_info', object: object %>
+ </div>
+</div>

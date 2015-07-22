@@ -1,0 +1,211 @@
+
+//--------- badge -----------------------
+  .btn-category {
+    margin-top: 5px;
+    margin-bottom: 2px;
+    margin-right: 0px;
+    margin-left: 2px;
+    background-color: #458FFF;
+    color: white;
+    font-weight: 600;
+    font-size: 11px;    
+  }
+
+  .btn-gategory {
+    margin-top: 5px;
+    margin-bottom: 2px;
+    margin-right: 0px;
+    margin-left: 2px;
+    background-color: #339933;
+    color: white;
+    font-weight: 600;
+    font-size: 11px;    
+  }
+
+  .buttons {
+    width: 93%;
+    padding: 0px;
+    margin: 0px;
+    display: inline-block;
+  }
+
+  //  mobile homepage picture --------------------------------------------
+.homepage-jumbotron {
+  width: 100%;
+  height: 200px;
+  background-image: url('/assets/apple_mobile.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.slogan {
+  padding-top: 20px;
+  padding-left: 10px;
+  color: white;
+  font-size: 40px;
+  font-weight: 800;
+  h3 {
+    padding-left: 20px;
+    margin-top: 0px;
+    font-size: 20px;
+    font-weight: 800;
+  }
+}
+
+
+  // checkboxes styling ----------------------------------------------
+.no-padding {
+  padding: 5px 0px;
+}
+
+.checkbox-sub-container
+ {
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  padding-bottom: 3px;
+  border: none;
+  border-bottom: solid #66E066 1pt;
+}
+.center-box {
+  position: relative;
+  right: 10px;
+  color: white;
+  font-size: 14px;
+}
+
+.checkbox-square {
+  display: none;
+  margin: 0px;
+  padding: 0px;
+  width: 0px;
+  height: 0px;
+  position: static;
+}
+
+.checkbox-styling {
+  padding: 6px 3px;
+  background-color: #458FFF;
+  border: 1px solid #458FFF;
+}
+.g-checkbox-styling {
+  padding: 6px 3px;
+  background-color: #339933;
+  border: 1px solid #339933;
+}
+
+
+.selected-orange {
+    background-color: #458FFF;
+    border: 1px solid #458FFF;
+}
+
+
+// show category page -------------------------------------------------------
+
+.hierarchy-links {
+  margin-left: 20px;
+  color: white;
+  font-size: 12px;
+  font-weight: 200;
+  width: 75%;
+  
+  a:link, a:hover, a:visited, a:active {
+    font-size: 13px;
+    display: inline-block;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    color: white;
+  }
+}
+
+h2.category-name {
+  color: white;
+  font-size: 30px;
+  font-weight: 300;
+  margin: 0px;
+  margin-left: 8%;
+  margin-bottom: 20px;
+  span {
+    font-size: 23px;
+  }
+}
+
+ul.sub-categories {
+  margin-top: 0px;
+  text-align: center;
+  width: 100%;
+  padding: 0px;
+  a:link, a:hover, a:visited, a:active {
+    font-size: 14px;
+    display: inline-block;
+    width: 32%;
+    height: 18px;
+    line-height: 18px;
+    color: white;
+    font-weight: 400;
+  }
+}
+
+
+.black-jumbotron {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(26, 26, 26, 0.7);
+  position: relative;
+}
+
+.math-jumbotron {
+  width: 100%;
+  height: auto;
+  background-image: url('/assets/math.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.english-jumbotron {
+  width: 100%;
+  height: auto;
+  background-image: url('/assets/english.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.science-jumbotron {
+  width: 100%;
+  height: auto;
+  background-image: url('/assets/science.JPG');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.tech-jumbotron {
+  width: 100%;
+  height: auto;
+  background-image: url('/assets/technology.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.history-jumbotron {
+  width: 100%;
+  height: auto;
+  background-image: url('/assets/history.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.health-jumbotron {
+  width: 100%;
+  height: auto;
+  background-image: url('/assets/health.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+.btn-purple {
+  background-color: #458FFF;
+  color: white;
+}

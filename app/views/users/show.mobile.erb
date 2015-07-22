@@ -1,0 +1,79 @@
+
+<div class="user-jumbotron">
+  <h1>
+    <%= @user.username %>
+  </h1>
+
+    <% if @user.group.nil? && creator?(@user.id) %>
+          <%= link_to groups_path, class: "gategory_create_show join" do %>
+            <button type="button" class="btn btn-success green">Join School</button>
+          <% end %>
+    <% else %>
+      <%= link_to @user.group.school, group_path(@user.group), class: "user-school" %>
+      <div class="rank">
+        <span class="number"><%= @rank  %></span>
+        <span class="sub">Rank</span>  
+      </div>
+      
+    <% end %>
+
+  <div class="shaded">
+
+    <a href="#"><%= @user.votes_count %></a>
+    <%= link_to @user.images.size, user_path(@user), class: (params[:tab].nil? ? 'active' : '') %>
+    <%= link_to @user.questions.size, user_path(@user, tab: "Questions"), class: (params[:tab] == "Questions" ? 'active' : '') %>
+    <%= link_to @user.comments.size, user_path(@user, tab: "Answers"), class: (params[:tab] == "Answers" ? 'active' : '') %>
+  </div>
+  <div class="link-titles">
+    <h2>Points</h2>
+    <h2>Worksheets</h2>
+    <h2>Questions</h2>
+    <h2>Answers</h2>
+  </div>
+
+</div>
+
+
+
+
+  <% if params[:tab] == nil %>
+      <% @images.each do |image| %>
+        <%= render 'images/image_index', image: image %>
+      <% end %>
+    <%= paginate @images %>
+
+  <% elsif params[:tab] == "Questions" %>
+    <% @questions.each do |question| %>
+        <%= render 'questions/question', question: question %>   
+    <% end %>
+    <%= paginate @questions %>
+
+  <% elsif params[:tab] == "Answers" %>
+    <% @answers.each do |answer| %>
+      <div class="answers">
+        <div class="answer-content user-show-comment">
+            <p><%= answer.body %></p>
+          <div  class='answer-info'>
+            <small>
+              <span>
+                <%= answer.user.username %>
+                <i class="fa fa-circle small"></i>
+                <%= display_date(answer.created_at) %>
+              </span>  
+            </small>
+          </div>
+        </div>
+      </div>  
+    <% end %>
+    <%= paginate @answers %>
+
+  <% end %>
+
+</div>
+
+
+
+
+
+
+

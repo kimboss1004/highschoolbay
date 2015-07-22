@@ -1,0 +1,25 @@
+<div class="question-container">
+  <%= render 'votes/votes', path: vote_question_path(question), object: question %>
+
+  <div class="question-content">
+      <span class="pull-badges-right">
+        <%= render 'categories/category_badge', object: question, tab: 'Questions' %>
+        <%= render 'gategories/gategory_badge', object: question, tab: 'Questions' %>      
+      </span>
+      <p><%= link_to question.title, question_path(question) %></p>
+    <div  class='question-info'>
+      <%= render 'shared/post_info', object: question %> 
+   </div>
+      
+
+  </div>
+ 
+</div>
+
+
+
+
+
+
+
+

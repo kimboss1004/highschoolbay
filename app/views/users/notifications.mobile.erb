@@ -1,0 +1,99 @@
+
+    <h2 class="notification">
+      <%= upcase_first(current_user.username) %>'s Notifications 
+      <span><%= (@notifications.where(checked: nil).size != 0 ? "(#{@notifications.where(checked: nil).size})" : "") %></span>
+    </h2>
+    <% @notifications.each do |notification| %>
+      <div class="<%= notification.checked ? 'checked' : 'unchecked' %> notification">
+        <div class="contents">
+          <!-- ======================================================================================== -->
+          <% if notification.postable_type == 'Question' %>
+            <% if notification.notificable_type == 'Vote' %>
+              <div class="info-content">
+                <p class="username"><%= upcase_first(notification.sender.username) %></p> 
+                <p class='vote-type'><%= notification.notificable.vote ? '<i class="fa fa-thumbs-o-up"></i>'.html_safe : '<i class="fa fa-thumbs-o-down"></i>'.html_safe %></p> your 
+                <p class='question-type'>Question</p> <i class="q fa fa-comment-o"></i>         
+              </div>
+
+              <p class='topic'><%= brief_notification(notification.postable.title) %></p>
+            <% else %>
+              <% if notification.postable.user == current_user %>
+                <div class="info-content">
+                  <p class="username"><%= upcase_first(notification.sender.username) %></p> 
+                  <p class='comment-type'>answered</p> your 
+                  <p class='question-type'>Question</p> <i class="q fa fa-comment-o"></i>            
+                </div>
+                <p class='topic'><%= brief_notification(notification.postable.title) %></p>
+              <% else %>
+                <div class="info-content">
+                  <p class="username"><%= upcase_first(notification.sender.username) %></p> also 
+                  <p class='comment-type'>answered</p> the 
+                  <p class='question-type'>Question</p> <i class="q fa fa-comment-o"></i>              
+                </div>
+                <p class='topic'><%= brief_notification(notification.postable.title) %></p>
+              <% end %>
+            <% end %>
+            <%= link_to question_path(notification.postable) do %>
+              <span></span>
+            <% end %>
+
+        <!-- ===================================================================================== -->
+          <% elsif notification.postable_type == 'Image' %>
+            <% if notification.notificable_type == 'Vote' %>
+              <div class="info-content">
+                <p class="username"><%= upcase_first(notification.sender.username) %></p> 
+                <p class='vote-type'><%= notification.notificable.vote ? '<i class="fa fa-thumbs-o-up"></i>'.html_safe : '<i class="fa fa-thumbs-o-down"></i>'.html_safe %></p> your 
+                <p class='worksheet-type'>Worksheet</p> <i class="w fa fa-file-text-o"></i>            
+              </div>
+              <p class='topic'><%= brief_notification(notification.postable.title) %></p>
+            <% else %>
+              <% if notification.postable.user == current_user %>
+                <div class="info-content">
+                  <p class="username"><%= upcase_first(notification.sender.username) %></p> 
+                  <p class='comment-type'>commented</p> on your 
+                  <p class='worksheet-type'>Worksheet</p> <i class="w fa fa-file-text-o"></i>              
+                </div>
+                <p class='topic'><%= brief_notification(notification.postable.title) %></p>
+              <% else %>
+                <div class="info-content">
+                  <p class="username"><%= upcase_first(notification.sender.username) %></p> 
+                  also <p class='comment-type'>commented</p> on the 
+                  <p class='worksheet-type'>Worksheet</p> <i class="w fa fa-file-text-o"></i>            
+                </div>
+                <p class='topic'><%= brief_notification(notification.postable.title) %></p>
+              <% end %>
+            <% end %>
+            <%= link_to image_path(notification.postable) do %>
+              <span></span>
+            <% end %>
+        <!-- ==================================================================================== -->
+          <% else %>
+            <div class="info-content">
+              <p class="username"><%= upcase_first(notification.sender.username) %></p> 
+              <p class='vote-type'><%= notification.notificable.vote ? '<i class="fa fa-thumbs-o-up"></i>'.html_safe : '<i class="fa fa-thumbs-o-down"></i>'.html_safe %></p> your 
+              <p class='comment-orange'>comment</p> <i class="fa fa-comment-o"></i>            
+            </div>
+            <p class='topic'><%= brief_notification(notification.postable.body) %></p>
+
+            <%= link_to (notification.postable.commentable_type == 'Question' ? question_path(notification.postable.commentable) : image_path(notification.postable.commentable)) do %>
+              <span></span>
+            <% end %>
+
+          <% end %>             
+        </div>
+
+        <p class="date">
+          <%= notification.created_at.strftime("%m/%d/%Y") %>
+        </p>
+        <p class="time"> 
+          <%= notification.created_at.strftime("%l:%M %P") %>
+        </p>      
+      
+      </div>
+    <% end %>
+    <br/>
+    <%= paginate @notifications %>
+
+   
+
+

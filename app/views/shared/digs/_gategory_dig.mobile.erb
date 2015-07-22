@@ -1,0 +1,13 @@
+<li>
+  <%= link_to group_gategory_path(current_user.group, object) do %>
+     <p><%= object.name %></p>
+  <% end %>
+
+  <% if object.sub_gategories.any? %>
+    <ul>
+      <% object.sub_gategories.each do |gategory_child| %>
+        <%= render 'shared/digs/gategory_dig', object: gategory_child %>
+      <% end %>  
+    </ul>  
+  <% end %>
+</li>

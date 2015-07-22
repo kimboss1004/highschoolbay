@@ -1,0 +1,26 @@
+.search-results-title {
+  display: inline-block;
+  font-size: 15px;
+  position: absolute;
+  right: 10px;
+  font-weight: 300;
+}
+.img-index-container {
+  margin-bottom: 6px;
+  margin-top: 8px;
+}
+
+button.search-modal-button {
+  margin-left: 40%;
+  height: 24px;
+  line-height: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  background: black;
+  border: none;
+  color: white;
+}
+
+p.search-tip {
+  padding: 10px;
+}

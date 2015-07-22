@@ -1,0 +1,38 @@
+<div class="school-jumbotron">
+  <div class="school-index-search">
+    <%= form_tag group_search_school_index_path, method: :get do %>
+      <div class="box">
+        <div class="container-1">
+          <%= text_field_tag :search_index_school, params[:search_index_school], placeholder: "Search school..." %>
+
+          <%= text_field_tag :search_index_city, params[:search_index_city], placeholder: "Search city..." %>    
+
+          <%= select_tag(:search_index_state, options_for_select(us_states), {include_blank: true, prompt: "State"}) %>
+          <span class="icon">
+            <button type='submit' class='btn btn-success search-icon'>
+              <%= icon("fa fa-search") %>
+            </button>
+          </span>
+        </div>
+      </div>
+    <% end %> 
+  </div>
+  <div class="school-create-container">
+    <h4>Can't Find you school?</h4>
+    <li class="custom-button"><%= link_to "Add school", new_group_path %></li>
+  </div>
+</div>
+
+
+<% @results.each do |school| %>
+    <div class="state-well">
+      <div class="inline-state"><%= school.state %></div> (<%= upcase_first(school.city) %>)
+        <div class="school-city-zone">
+          <%= link_to group_path(school) do %>
+            <%= upcase_first(school.school) %>
+          <% end %>              
+        </div>  
+
+    </div>
+<% end %>
+<%= paginate @results %> 

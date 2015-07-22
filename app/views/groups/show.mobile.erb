@@ -1,0 +1,40 @@
+<div class="group-name">
+  <p><%= upcase_first(@group.city) %>, <%= @group.state %></p>
+  <p>
+    <%= @group.users.size %> 
+    <i class="fa fa-users"></i>
+  </p>
+
+  <% if logged_in? %>
+    <% if !current_user.group %>
+      <%= link_to "Join", member_user_path(current_user.id, group_id: @group.id), method: 'post', class: 'btn btn-success join-green' %>
+    <% elsif current_user.group == @group %>
+      <%= link_to "Leave", member_user_path(current_user.id, group_id: nil), method: 'post', class: 'btn btn-danger' %>
+    <% end %>
+    <br/>
+    <br/>
+  <% end %>
+
+  <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      Categories
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+      <% Category.where(master_id: nil).each do |category| %>
+        <li><%= link_to category.name, group_category_path(@group, category, tab: params[:tab]) %></li>
+      <% end %>
+    </ul>
+  </div>
+
+</div>
+<%= render 'groups/question_image_answer_navbuttons', path: group_path(@group) %>     
+<%= render 'shared/questions_answers_images' %>    
+
+
+
+
+
+
+
+

@@ -1,0 +1,68 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ */
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+ @import "slidebar";
+ @import "font-awesome-sprockets";
+ @import "font-awesome";
+ @import "navbar";
+ @import "category";
+ @import "question";
+ @import "image";
+ @import "search";
+ @import "user";
+ @import "group";
+ @import "gategory";
+ @import "answers";
+
+html, body {
+  padding: 0px;
+  margin: 0px;
+  height: 100%;
+  width: 100%;
+}
+body {
+  background-color: #f7f7f9;
+  font-family: Arial, Helvetica, Verdana;
+}
+
+
+.pagination {
+width: 100%;
+position: relative;
+height: 50px;
+  a:link.next, a:hover.next, a:visited.next {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+  }
+  a:link.prev, a:hover.prev, a:visited.prev {
+    position: absolute;
+    left: 5px;
+    top: 5px;
+  }
+}
+
+ .flash {
+  position: fixed;
+  width: 95%;
+  border-radius: 3px;
+  top: 10%;
+  left: 2%;
+  z-index: 50;
+ }
+
+
+
+

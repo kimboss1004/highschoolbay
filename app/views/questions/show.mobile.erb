@@ -1,0 +1,44 @@
+<div class="show-object-container">
+  <%= render 'votes/vote_big', object: @question, path: vote_question_path(@question) %>
+  <%= render 'shared/descriptive_content_show', object: @question, tab: 'Questions' %>
+</div>
+
+<div class="advertisement">
+  <img src="/ad.png" class="ad">
+</div>
+
+<% if @comments.any? %>
+  <div class="answers-nav">
+    <p>Answers</p>
+  </div>
+  <div class="best-answer">
+    <%= render 'comments/best_comment', comment: @best_answer, path: vote_question_comment_path(@question, @best_answer) %>
+  </div>
+
+<% @comments.each do |comment| %>
+  <% unless @best_answer == comment %>
+    <%= render 'comments/comment', comment: comment, path: vote_question_comment_path(@question, comment)  %>
+  <% end %>
+<% end %>
+
+<% end %>
+
+
+
+<div class="answer-form-container">
+  <% if @comments.size > 6 %>
+    <p><%= @question.title %></p>
+  <% end %>
+  <%= form_for [@question,@comment] do |f| %>
+    <div class="form-group answer-form-input">
+      <%= f.text_area :body, rows: 5, placeholder: "Add your answer...", class: "form-control custom-border-input" %>  
+    </div>
+    <div class="bottom-nav">
+      <%= f.submit "Answer", class: 'btn btn-primary custom-blue' %>
+    </div>
+  <% end %>    
+</div>
+
+
+
+

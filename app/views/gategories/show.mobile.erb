@@ -1,0 +1,67 @@
+
+<div class="custom-jumbotron">
+  <div class="black-jumbotron">
+    <div class="hierarchy-links">
+        <%= link_to @group.school, group_path(@group) %>
+        <% @gategory.master_categories.each do |category| %>
+          >
+          <%= link_to category.name, group_category_path(@group, category) %> 
+        <% end %>
+        <% @gategory.ancestor_gategories.each do |ancestor| %>
+          >
+          <%= link_to upcase_first(ancestor.name) , group_gategory_path(@group, ancestor, tab: params[:tab]) %> 
+        <% end %>
+    </div> 
+    <h2 class="category-name">
+      <%= upcase_first(@gategory.name) %> 
+    </h2>     
+
+
+    <% if logged_in? && current_user.group == @group %>
+      <ul class="add-class-button">
+        <% if current_user.classes.where(classable_type: 'Gategory', classable_id: @gategory).any? %>
+          <%= link_to "Drop Class", my_classes_delete_path(classable_type: 'Gategory', classable_id: @gategory), method: 'delete', class: 'btn' %>
+        <% else %>
+          <%= link_to "Add Class", my_classes_path(classable_type: 'Gategory', classable_id: @gategory), method: 'post', class: 'btn' %>
+        <% end %>        
+      </ul>
+    <% end %>
+
+
+    <% @gategory.sub_gategories.each_slice(3) do |three_gategories| %>
+      <ul class="sub-categories">
+        <% three_gategories.each do |gategory| %>
+          <%= link_to upcase_first(gategory.name), group_gategory_path(@group, gategory, tab: params[:tab]) %>
+        <% end %>
+      </ul>
+    <% end %>
+      <% if logged_in? && member?(@group.id) %>
+        <%= link_to new_group_gategory_path(@group) + "?gategory_id=#{@gategory.id}", class: "gategory_create_show" do %>
+          <button type="button" class="btn btn-success green">Create Category</button>
+        <% end %>
+      <% end %>
+
+  </div>
+</div>
+
+
+<%= render 'groups/question_image_answer_navbuttons', path: group_gategory_path(@group, @gategory) %>
+
+<%= render 'shared/questions_answers_images' %> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+

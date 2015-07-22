@@ -1,0 +1,20 @@
+<% if params[:tab] == nil %>
+  <% @images.each do |image| %>
+    <%= render 'images/image_index', image: image %>
+  <% end %>    
+  <%= paginate @images %>
+
+<% elsif params[:tab] == "Questions" %>
+
+  <% @questions.each do |question| %>
+      <%= render 'questions/question', question: question %> 
+  <% end %>
+  <%= paginate @questions %>
+  
+<% elsif params[:tab] == "Answers" %>
+  <% @unanswered.each do |question| %>
+        <%= render 'questions/question', question: question %>   
+  <% end %>
+  <%= paginate @unanswered %>
+
+<% end %>

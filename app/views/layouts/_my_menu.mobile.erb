@@ -1,0 +1,120 @@
+
+
+<nav id="my-menu">
+   <ul class="mm-border-none">
+      <% if logged_in? %>
+         <li class="gray-sign-in">
+            <%= link_to logout_path do %>
+               <i class="fa fa-power-off"></i> <p>Log out</p>
+            <% end %>
+         </li>
+      <% else %>
+         <li class="gray-sign-in">
+            <%= link_to login_path do %>
+               <i class="fa fa-power-off"></i> <p>Sign in</p>
+            <% end %>
+         </li>
+      <% end %>
+
+      <li class="question-button">
+         <%= link_to "Ask a Question",  new_question_path %>
+      </li>
+
+      <li class="worksheet-button">
+         <%= link_to "Post Worksheet", new_image_path %>
+      </li>
+
+      <li>
+         <%= link_to categories_path do %>
+            <i class="fa fa-home"></i> <p>HsBay</p>
+         <% end %>
+         <ul>
+            <% Category.where(master_id: nil).each do |master_category| %>
+               <%= render 'shared/digs/category_dig', object: master_category %>
+            <% end %>
+         </ul>
+      </li>
+
+      <% if logged_in? %>
+         <li>
+            <%= link_to notifications_user_path(current_user) do %>
+               <i class="fa fa-bell"></i> 
+               <p>
+                  Notifications 
+                  <% unless current_user.unchecked_notifications.nil? %>
+                     <span class="notification-alert"><%= current_user.unchecked_notifications %></span>
+                  <% end %>
+               </p>
+            <% end %>
+         </li>
+
+
+         <% if current_user.group %>
+            <li>
+               <%= link_to group_path(current_user.group) do %>
+                  <i class="fa fa-building"></i> <p><%= current_user.group.school %></p>
+               <% end %>
+               <ul>
+                  <% Category.where(master_id: nil).each do |master_category| %>
+                     <%= render 'shared/digs/school_dig', object: master_category %>
+                  <% end %>
+               </ul>
+            </li>
+
+            <li>
+               <a href="#contact"><i class="fa fa-book"></i> <p>My Classes</p></a>
+               <ul>
+                  <% current_user.classes.each do |my_class| %>
+                     <li>
+                        <%= link_to (my_class.classable_type == 'Category' ? group_category_path(current_user.group, my_class.classable_id) : group_gategory_path(current_user.group, my_class.classable_id)) do %>
+                           <p><%=my_class.classable.name %></p>
+                        <% end %>
+                     </li>
+                  <% end %>
+                  <li class="add-class">
+                     <%= link_to my_classes_info_path do %>
+                       Add class <i class="fa fa-plus add-class"></i>
+                     <% end %>
+                  </li>
+               </ul>
+            </li>
+         <% else %>
+            <li>
+               <%= link_to groups_path(tab: params[:tab]) do %>
+                  <i class="fa fa-building"></i> <p>Join A School</p>
+               <% end %>
+            </li>
+         <% end %>
+
+         <li>
+            <%= link_to user_path(current_user) do %>
+               <i class="fa fa-user"></i> <p><%= upcase_first(current_user.username) %></p>
+            <% end %>
+            <ul>
+               <li>
+                  <%= link_to user_path(current_user) do %>
+                     <i class="fa fa-user"></i> <p>Profile</p>
+                  <% end %>
+               </li>
+               <li>
+                  <%= link_to edit_user_path(current_user) do %>
+                     <i class="fa fa-cogs"></i></i> <p>Account</p>
+                  <% end %>
+               </li>
+            </ul>
+         </li>
+
+      <% else %>
+         <li>
+            <%= link_to groups_path(tab: params[:tab]) do %>
+               <i class="fa fa-building"></i> <p>Join A School</p>
+            <% end %>
+         </li>
+         <li>
+            <%= link_to register_path do %>
+               <p class="no-icon">Register</p>
+            <% end %>
+         </li>
+      <% end %>
+   </ul>
+</nav>
