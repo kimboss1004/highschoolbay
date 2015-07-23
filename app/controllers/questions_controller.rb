@@ -19,7 +19,11 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(question_params)
-    @group = Group.find(params[:group] ? params[:group].to_i : current_user.group_id)
+    if !params[:group].nil? && params[:group] != ""
+      @group = Group.find(params[:group].to_i)
+    else
+      @group = current_user.group
+    end
     @question.group = @group
     @question.user = current_user
     if @question.save

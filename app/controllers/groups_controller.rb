@@ -16,14 +16,14 @@ class GroupsController < ApplicationController
 
     if params[:tab].nil?
       @image = Image.new(categories: @category.ancestor_objects)
-      @images = Image.where(group_id: @group).joins(:categories).where("categories.id == '#{@category.id}'")
+      @images = Image.where(group_id: @group).joins(:categories).where("categories.id = '#{@category.id}'")
       @images = sub_tab(@images)
     elsif params[:tab] == "Questions"
       @question = Question.new(categories: @category.ancestor_objects)
-      @questions = Question.where(group_id: @group).joins(:categories).where("categories.id == '#{@category.id}'")
+      @questions = Question.where(group_id: @group).joins(:categories).where("categories.id = '#{@category.id}'")
       @questions = sub_tab(@questions)
     elsif params[:tab] == "Answers" 
-      @unanswered = Question.where(group_id: params[:group_id], answered: nil).joins(:categories).where("categories.id == '#{@category.id}'")
+      @unanswered = Question.where(group_id: params[:group_id], answered: nil).joins(:categories).where("categories.id = '#{@category.id}'")
       @unanswered = sub_tab(@unanswered)
     end
   end

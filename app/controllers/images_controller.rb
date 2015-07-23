@@ -16,7 +16,11 @@ class ImagesController < ApplicationController
 
   def create
     @image = Image.new(image_params)
-    @group = Group.find(params[:group] ? params[:group].to_i : current_user.group_id)
+    if !params[:group].nil? && params[:group] != ""
+      @group = Group.find(params[:group].to_i)
+    else
+      @group = current_user.group
+    end
     @image.group = @group
     @image.user = current_user
 

@@ -10,8 +10,14 @@ default: &default
   timeout: 5000
 
 development:
-  <<: *default
-  database: db/development.sqlite3
+  host: localhost
+  adapter: mysql2
+  database: hsbay_developement
+  username: root
+  password: 1004
+  encoding: utf8
+  pool: 5
+
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -21,7 +27,7 @@ test:
   database: db/test.sqlite3
 
 production:
-  host: localhost
   adapter: mysql2
-  database: hsbay_database
+  database: hsbay_production
   username: root
+  password: 1004

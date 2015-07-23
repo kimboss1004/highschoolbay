@@ -19,6 +19,7 @@ gem 'sunspot_rails'
 gem 'sunspot_solr'
 gem 'kaminari'
 gem 'mysql2'
+gem 'therubyracer'
 
 
 group :development, :test do
@@ -26,7 +27,6 @@ group :development, :test do
   gem 'pry'
   gem 'byebug'
   gem 'web-console', '~> 2.0'
-
   gem 'spring', '~> 1.3.5'
 end
 

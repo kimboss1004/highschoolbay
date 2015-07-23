@@ -24,11 +24,11 @@ class CategoriesController < ApplicationController
 
     if params[:tab].nil?
       @image = Image.new(categories: @category.ancestor_objects)
-      @images = Image.joins(:categories).where("categories.id == '#{@category.id}'")
+      @images = Image.joins(:categories).where("categories.id = '#{@category.id}'")
       @images = sub_tab(@images)
     elsif params[:tab] == "Questions"
       @question = Question.new(categories: @category.ancestor_objects)
-      @questions = Question.joins(:categories).where("categories.id == '#{@category.id}'")
+      @questions = Question.joins(:categories).where("categories.id = '#{@category.id}'")
       @questions = sub_tab(@questions)
     elsif params[:tab] == "Answers" 
       @unanswered = Question.where(answered: nil).joins(:categories).where("categories.id == '#{@category.id}'")
