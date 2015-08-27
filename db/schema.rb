@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150706221346) do
+ActiveRecord::Schema.define(version: 20150811202542) do
 
   create_table "categorables", force: :cascade do |t|
     t.integer "category_id",      limit: 4
@@ -63,7 +63,6 @@ ActiveRecord::Schema.define(version: 20150706221346) do
     t.datetime "updated_at"
     t.integer  "views",       limit: 4,     default: 0
     t.integer  "votes_count", limit: 4,     default: 0
-    t.text     "tag",         limit: 65535
   end
 
   create_table "impressions", force: :cascade do |t|

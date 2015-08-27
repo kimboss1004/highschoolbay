@@ -4,11 +4,11 @@
     <%= @user.username %>
   </h1>
 
-    <% if @user.group.nil? && creator?(@user.id) %>
+    <% if @user.group.nil? && logged_in? && creator?(@user.id) %>
           <%= link_to groups_path, class: "gategory_create_show join" do %>
             <button type="button" class="btn btn-success green">Join School</button>
           <% end %>
-    <% else %>
+    <% elsif @user.group %>
       <%= link_to @user.group.school, group_path(@user.group), class: "user-school" %>
       <div class="rank">
         <span class="number"><%= @rank  %></span>

@@ -1,7 +1,7 @@
 
     <h2 class="notification">
       <%= upcase_first(current_user.username) %>'s Notifications 
-      <span><%= (@notifications.where(checked: nil).size != 0 ? "(#{@notifications.where(checked: nil).size})" : "") %></span>
+      <span><%= (@notifications.where(checked: nil).size != 0 ? "(#{@notifications.where(checked: nil).size})new" : "") %></span>
     </h2>
     <% @notifications.each do |notification| %>
       <div class="<%= notification.checked ? 'checked' : 'unchecked' %> notification">
@@ -46,6 +46,7 @@
                 <p class='worksheet-type'>Worksheet</p> <i class="w fa fa-file-text-o"></i>            
               </div>
               <p class='topic'><%= brief_notification(notification.postable.title) %></p>
+              <p class='points'>+2pts</p>
             <% else %>
               <% if notification.postable.user == current_user %>
                 <div class="info-content">
@@ -61,6 +62,7 @@
                   <p class='worksheet-type'>Worksheet</p> <i class="w fa fa-file-text-o"></i>            
                 </div>
                 <p class='topic'><%= brief_notification(notification.postable.title) %></p>
+                <p class='points'>+2pts</p>
               <% end %>
             <% end %>
             <%= link_to image_path(notification.postable) do %>
@@ -71,9 +73,13 @@
             <div class="info-content">
               <p class="username"><%= upcase_first(notification.sender.username) %></p> 
               <p class='vote-type'><%= notification.notificable.vote ? '<i class="fa fa-thumbs-o-up"></i>'.html_safe : '<i class="fa fa-thumbs-o-down"></i>'.html_safe %></p> your 
-              <p class='comment-orange'>comment</p> <i class="fa fa-comment-o"></i>            
+              <p class='comment-orange'>
+                <%= notification.postable.commentable_type == "Question" ? "answer" : "comment" %>
+              </p> 
+              <i class="fa fa-comment-o"></i>            
             </div>
             <p class='topic'><%= brief_notification(notification.postable.body) %></p>
+            <p class='points'>+2pts</p>
 
             <%= link_to (notification.postable.commentable_type == 'Question' ? question_path(notification.postable.commentable) : image_path(notification.postable.commentable)) do %>
               <span></span>

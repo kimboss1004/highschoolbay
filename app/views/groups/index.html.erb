@@ -2,6 +2,14 @@
 <div class="body-center">
 
   <div class="left-content-container">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-9965889724685947"
+         data-ad-slot="6278336819"
+         data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
   </div>
 
   <div class="form-content-container">
@@ -38,56 +46,58 @@
       </div>
     </div>
 
-
-  <div class="school-form-left-side">
-    <% seperate_array_two(0,@schools).each do |state| %>
-      <% if state.any? %>
-        <div class="state-well">
-          <h3><%= state.first.state %></h3>
-          <table class="school-table">      
-            <% state.each do |school| %>
-              <tr data-link="<%= group_path(school) %>">
-                <td><%= upcase_first(school.school) %></td>
-                <td class="city"><%= upcase_first(school.city) %></td><td><%= school.users.size %></td>
-              </tr>
-            <% end %>
-          </table>      
-        </div>
+    <div class="school-form-left-side">
+      <% seperate_array_two(0,@schools).each do |state| %>
+        <% if state.any? %>
+          <div class="state-well">
+            <h3><%= state.first.state %></h3>
+            <table class="school-table">      
+              <% state.each do |school| %>
+                <tr data-link="<%= group_path(school) %>">
+                  <td><%= upcase_first(school.school) %></td>
+                  <td class="city"><%= upcase_first(school.city) %></td><td><%= school.users.size %></td>
+                </tr>
+              <% end %>
+            </table>      
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
 
-
-  </div>
-
-
-  <div class="school-form-right-side">
-    <% seperate_array_two(1,@schools).each do |state| %>
-      <% if state.any? %>
-        <div class="state-well">
-          <h3><%= state.first.state %></h3>
-          <table class="school-table"> 
-            <% state.each do |school| %>
-              <tr data-link="<%= group_path(school) %>">
-                <td><%= upcase_first(school.school) %></td>
-                <td><%= upcase_first(school.city) %></td>
-                <td><%= school.users.size %></td>
-              </tr>
-            <% end %>
-          </table>      
-        </div>
+    <div class="school-form-right-side">
+      <% seperate_array_two(1,@schools).each do |state| %>
+        <% if state.any? %>
+          <div class="state-well">
+            <h3><%= state.first.state %></h3>
+            <table class="school-table"> 
+              <% state.each do |school| %>
+                <tr data-link="<%= group_path(school) %>">
+                  <td><%= upcase_first(school.school) %></td>
+                  <td><%= upcase_first(school.city) %></td>
+                  <td><%= school.users.size %></td>
+                </tr>
+              <% end %>
+            </table>      
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
-  </div> 
-
-
-
-
+    </div> 
 
   </div>
 
 
   <div class="right-content-container">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-9965889724685947"
+         data-ad-slot="6278336819"
+         data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
   </div>
+
+</div>
 
 
 

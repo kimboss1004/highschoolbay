@@ -1,23 +1,33 @@
 //image layout
+.image-boss {
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  height: auto;
+  position: relative;
+}
+
 .form-left-side {
   margin: 0px;
   display: float;
   float: left;
-  width: 285px;
+  width: 33%;
   height: auto;
 }
 .form-middle-side {
-  margin-left: 13px;
+  margin-left: 5px;
   display: inline-block;
-  width: 285px;
+  width: 33%;
   height: auto;
 }
 
 .form-right-side {
+  position: absolute;
+  top: 0px;
+  right: 0px;
   margin: 0px;
-  display: float;
-  float: right;
-  width: 285px;
+  padding: 0px;
+  width: 33%;
   height: auto;
 }
 
@@ -27,7 +37,7 @@
 .image-container {
   display: block;
   width: 100%px;
-  max-height: 300px;
+  max-height: 200px;
   overflow: hidden; 
   text-align: center;
   margin-top: 10px;
@@ -111,5 +121,26 @@ img.image {
 }
 
 
+// spent alert ----------------------------------------------------------
 
+.points-spent {
+  z-index: 100; 
+  width: auto;
+  height: 40px;
+  line-height: 35px;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  text-align: center;
+  background-color: #FFE169;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 0px 5px;
+  p {
+    font-size: 15px;
+    span {
+      font-weight: 800;
+    }
+  }
+}
 

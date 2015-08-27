@@ -6,11 +6,13 @@ class GroupsController < ApplicationController
   def index
     #2d array [[], [], []]
     @schools = state_schools_array
+    @title = "Find School"
   end
 
   def category 
     @group = Group.find(params[:group_id])
     @category = Category.find(params[:id])
+    @title = "#{@category.name} | #{upcase_first(@group.school)}"
     @gategories = @category.gategories.where(group_id: params[:group_id])
     @users = User.where(group_id: @group).order('votes_count DESC').limit(10)
 
@@ -30,6 +32,7 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
+    @title = upcase_first(@group.school)
     @users = User.where(group_id: @group).order('votes_count DESC').limit(10)
 
     if params[:tab].nil?
@@ -65,6 +68,7 @@ class GroupsController < ApplicationController
 
   def search
     @group = Group.find(params[:id])
+    @title = "#{params[:search_group]} | #{upcase_first(@group.school)}"
     if params[:search_group] == ""
       flash[:error] = 'Cannot submit empty search.'
       redirect_to :back
@@ -103,6 +107,7 @@ class GroupsController < ApplicationController
   def search_group_category
     @group = Group.find(params[:group_id])
     @category = Category.find(params[:id])
+    @title = "#{params[:search_group_category]} | #{@category.name} | #{upcase_first(@group.school)}"
     if params[:search_group_category] == ""
       flash[:error] = 'Cannot submit empty search.'
       redirect_to :back

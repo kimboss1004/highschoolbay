@@ -51,7 +51,8 @@ div.notification {
   .vote-type {
    font-weight: 200;
    display: inline;
-   background-color: rgba(255, 255, 180, 0.35);
+   margin-left: 5px;
+   margin-right: 5px;
   }
   .topic {
     padding-left: 7px;
@@ -79,6 +80,15 @@ div.notification {
     top: 15px;
     right: 10px;
   }  
+
+  p.points {
+    position: absolute;
+    right: 10%;
+    top: 0px;
+    display: inline-block;
+    width: auto;
+    height: 100%;
+  }
 
 
 

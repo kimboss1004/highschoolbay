@@ -2,17 +2,12 @@
   <%= form_for image, :html => {multipart: true} do |f| %>
     <div class="form-group qw-form-input">
       <%= f.label :title, "Title", class: 'label' %>
-      <%= f.text_field :title, class: "form-control custom-border-input", placeholder: "Ask your question..." %>
+      <%= f.text_field :title, class: "form-control custom-border-input", placeholder: "First 8-15 words on worksheet..." %>
     </div>
 
     <div class="form-group qw-form-input">
       <%= f.label :description, class: 'label' %>
       <%= f.text_area :description, rows: 5, placeholder: "Add your Description...", class: "form-control custom-border-input" %>
-    </div>
-
-    <div class="form-group qw-form-input">
-      <%= f.label :tag, "Tags (for search engine)", class: 'label' %>
-      <%= f.text_area :tag, rows: 1, placeholder: "First 10-20 words on worksheet...", class: "form-control custom-border-input" %>
     </div>
 
     <div class="form-group qw-form-input">

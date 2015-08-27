@@ -26,7 +26,7 @@
 
       <li>
          <%= link_to categories_path do %>
-            <i class="fa fa-home"></i> <p>HsBay</p>
+            <i class="fa fa-home"></i> <p>Home</p>
          <% end %>
          <ul>
             <% Category.where(master_id: nil).each do |master_category| %>
@@ -52,7 +52,7 @@
          <% if current_user.group %>
             <li>
                <%= link_to group_path(current_user.group) do %>
-                  <i class="fa fa-building"></i> <p><%= current_user.group.school %></p>
+                  <i class="fa fa-building"></i> <p><%= upcase_first(current_user.group.school) %></p>
                <% end %>
                <ul>
                   <% Category.where(master_id: nil).each do |master_category| %>

@@ -58,11 +58,11 @@ class ApplicationController < ActionController::Base
     if params[:sub_tab].nil?
       objects = objects.order('created_at desc')
     elsif params[:sub_tab] == "Popular"
-      objects = objects.where(:created_at => 2.weeks.ago..DateTime.now.end_of_day).order('views desc').order('created_at desc')
+      objects = objects.where(:created_at => 4.weeks.ago..DateTime.now.end_of_day).order('views desc').order('created_at desc')
     elsif params[:sub_tab] == "Favorite"
-      objects = objects.where(:created_at => 2.weeks.ago..DateTime.now.end_of_day).order('votes_count desc').order('created_at desc')
+      objects = objects.where(:created_at => 4.weeks.ago..DateTime.now.end_of_day).order('votes_count desc').order('created_at desc')
     end
-    return objects.page(params[:page]).per(15)
+    return (mobile_device? ? objects.page(params[:page]).per(12) : objects.page(params[:page]).per(25))
   end
 
   def min_match_num(str)
@@ -139,6 +139,15 @@ class ApplicationController < ActionController::Base
  def group_nav
   @group_nav = true
  end
+
+ def upcase_first(string)
+  words = string.split
+
+  words.each_with_index do |element, index|
+    words[index] = element.first.upcase + element[1..-1]
+  end
+  words.join(" ")
+end
 
   
 end

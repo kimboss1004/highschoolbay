@@ -1,11 +1,19 @@
 <div class="body-center">
 
   <div class="left-content-container">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-9965889724685947"
+           data-ad-slot="6278336819"
+           data-ad-format="auto"></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
   </div>
 
   <div class="form-content-container">
     <h2 class="notification">
-      <%= upcase_first(current_user.username) %>'s' Notifications
+      <%= upcase_first(current_user.username) %>'s Notifications
     </h2>
     <% @notifications.each do |notification| %>
       <div class="<%= notification.checked ? 'checked' : 'unchecked' %> notification">
@@ -14,7 +22,9 @@
           <% if notification.postable_type == 'Question' %>
             <% if notification.notificable_type == 'Vote' %>
               <p class="username"><%= upcase_first(notification.sender.username) %></p> 
-              <p class='vote-type'><%= notification.notificable.vote ? 'liked' : 'disliked' %></p> your 
+              <p class='vote-type'><%= notification.notificable.vote ? ' <i class="fa fa-thumbs-o-up"></i> 
+'.html_safe : ' <i class="fa fa-thumbs-o-down"></i> 
+'.html_safe %></p> your 
               <p class='question-type'>Question</p> -
               <p class='topic'><%= notification.postable.title %></p>
             <% else %>
@@ -38,9 +48,12 @@
           <% elsif notification.postable_type == 'Image' %>
             <% if notification.notificable_type == 'Vote' %>
               <p class="username"><%= upcase_first(notification.sender.username) %></p> 
-              <p class='vote-type'><%= notification.notificable.vote ? 'liked' : 'disliked' %></p> your 
+              <p class='vote-type'><%= notification.notificable.vote ? ' <i class="fa fa-thumbs-o-up"></i> 
+'.html_safe : ' <i class="fa fa-thumbs-o-down"></i> 
+'.html_safe %></p> your 
               <p class='worksheet-type'>Worksheet</p> -
               <p class='topic'><%= notification.postable.title %></p>
+              <p class= "points">+2pts</p>
             <% else %>
               <% if notification.postable.user == current_user %>
                 <p class="username"><%= upcase_first(notification.sender.username) %></p> 
@@ -60,9 +73,12 @@
         <!-- ==================================================================================== -->
           <% else %>
             <p class="username"><%= upcase_first(notification.sender.username) %></p> 
-            <p class='vote-type'><%= notification.notificable.vote ? 'liked' : 'disliked' %></p> your 
-            <p class='comment-orange'>comment</p> -
+            <p class='vote-type'><%= notification.notificable.vote ? ' <i class="fa fa-thumbs-o-up"></i> 
+'.html_safe : ' <i class="fa fa-thumbs-o-down"></i> 
+'.html_safe %></p> your 
+            <p class='comment-orange'><%= notification.postable.commentable_type == "Question" ? "answer" : "comment" %></p> -
             <p class='topic'><%= notification.postable.body %></p>
+            <p class='points'>+2pts</p>
 
             <%= link_to (notification.postable.commentable_type == 'Question' ? question_path(notification.postable.commentable) : image_path(notification.postable.commentable)) do %>
               <span></span>
@@ -88,6 +104,14 @@
 
 
   <div class="right-content-container">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-9965889724685947"
+           data-ad-slot="6278336819"
+           data-ad-format="auto"></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
   </div>
 
 </div>

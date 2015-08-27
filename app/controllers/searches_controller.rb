@@ -5,6 +5,7 @@ class SearchesController < ApplicationController
       flash[:error] = 'Cannot submit empty search.'
       redirect_to :back
     end
+    @title = params[:search]
 
     if params[:tab].nil?
       search = Sunspot.search(Question, Image) do

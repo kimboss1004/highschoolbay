@@ -16,7 +16,7 @@ class GategoriesController < ApplicationController
     @parent = (params[:gategory].include?(:master_id) ? Category.find(params[:gategory][:master_id].to_i) : Gategory.find(params[:gategory][:gmaster_id].to_i))
 
     if @gategory.save
-      flash[:notice] = "#The category {@gategory.name} has been created."
+      flash[:notice] = "The category #{@gategory.name} has been created."
       redirect_to group_gategory_path(@group, @gategory)
     else
       render :new
@@ -26,6 +26,7 @@ class GategoriesController < ApplicationController
   def show
     @group = Group.find(params[:group_id])
     @gategory = Gategory.find(params[:id])
+    @title = "#{upcase_first(@gategory.name)} | #{upcase_first(@group.school)}"
     @category = @gategory.master_category
     @users = User.where(group_id: @group).order('votes_count DESC').limit(10)
 
@@ -46,6 +47,7 @@ class GategoriesController < ApplicationController
   def search
     @group = Group.find(params[:group_id])
     @gategory = Gategory.find(params[:id])
+    @title = "#{params[:search_gategory]} | #{upcase_first(@group.school)}"
     if params[:search_gategory] == ""
       flash[:error] = 'Cannot submit empty search.'
       redirect_to :back

@@ -6,6 +6,14 @@
 <div class="body-center">
 
   <div class="left-content-container">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-9965889724685947"
+           data-ad-slot="6278336819"
+           data-ad-format="auto"></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
   </div>
 
   <div class="form-content-container">
@@ -18,11 +26,11 @@
     <%= @user.username %>
   </h1>
 
-    <% if @user.group.nil? && creator?(@user.id) %>
+    <% if @user.group.nil? && logged_in? && creator?(@user.id) %>
           <%= link_to groups_path, class: "gategory_create_show join" do %>
             <button type="button" class="btn btn-success green">Join School</button>
           <% end %>
-    <% else %>
+    <% elsif @user.group %>
       <%= link_to @user.group.school, group_path(@user.group), class: "user-school" %>
       <div class="rank">
         <span class="number"><%= @rank  %></span>
@@ -58,7 +66,7 @@
   </nav>
 
   <% if params[:tab] == nil %>
-
+  <div class="image-boss">
     <div class="form-left-side">
       <% seperate_array_tri(0,@images).each do |image| %>
         <%= render 'images/image_index', image: image %>
@@ -77,6 +85,7 @@
       <% end %>
     </div>  
     <%= paginate @images %>
+  </div>
 
   <% elsif params[:tab] == "Questions" %>
     <% @questions.each do |question| %>
@@ -109,6 +118,14 @@
 
 
   <div class="right-content-container">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-9965889724685947"
+           data-ad-slot="6278336819"
+           data-ad-format="auto"></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
   </div>
 
 </div>

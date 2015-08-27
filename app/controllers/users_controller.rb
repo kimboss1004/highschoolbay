@@ -9,26 +9,27 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @rank =  User.where(group_id: @user.group).order('votes_count desc').index{ |user| user.id == @user.id } + 1
-
+    @title = upcase_first(@user.username)
     if params[:tab].nil?
       @images = Image.where(user_id: @user).order('created_at desc').page(params[:page]).per(30)
     elsif params[:tab] == "Questions"
       @questions = Question.where(user_id: @user).order('created_at desc').page(params[:page]).per(30)
     elsif params[:tab] == "Answers"
-      @answers = Comment.where(user_id: @user, commentable_type: "Question").order('created_at desc').page(params[:page]).per(30)
+      @answers = Comment.where(user_id: @user).order('created_at desc').page(params[:page]).per(30)
     end
   end
 
   def new
     @user = User.new
+    @title = "Register"
   end
 
   def create
     @user = User.new(user_params)
 
     if @user.save
-      flash[:notice] = "You have succesfully registered!"
-      redirect_to groups_path
+      flash[:notice] = "You have succesfully registered! Login."
+      redirect_to login_path
     else
       render :new
     end 
@@ -65,7 +66,7 @@ class UsersController < ApplicationController
 
   def notifications
     @notifications = current_user.notifications.order('created_at desc').page(params[:page]).per(30)
-
+    @title = "Notifications"
     render :notifications
 
     @notifications.where(checked: nil).update_all(checked: true, checked_at: Time.now)

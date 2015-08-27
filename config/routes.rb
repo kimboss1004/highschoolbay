@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :categories, except: [:edit,:update] do
+  resources :categories, except: [:edit, :new, :create, :update] do
     member do
       get :search
     end

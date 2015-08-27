@@ -20,6 +20,7 @@ class CategoriesController < ApplicationController
  
   def show
     @category = Category.find(params[:id])
+    @title = @category.name
     @users = User.order('votes_count DESC').limit(10)
 
     if params[:tab].nil?
@@ -31,7 +32,7 @@ class CategoriesController < ApplicationController
       @questions = Question.joins(:categories).where("categories.id = '#{@category.id}'")
       @questions = sub_tab(@questions)
     elsif params[:tab] == "Answers" 
-      @unanswered = Question.where(answered: nil).joins(:categories).where("categories.id == '#{@category.id}'")
+      @unanswered = Question.where(answered: nil).joins(:categories).where("categories.id = '#{@category.id}'")
       @unanswered = sub_tab(@unanswered)
     end
   end

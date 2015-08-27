@@ -11,46 +11,38 @@ class Vote < ActiveRecord::Base
   private
 
   def inc_dec_counters
-    if voteable && vote == true
-      voteable.increment(:votes_count)
-      voteable.save
-    elsif voteable && vote == false
-      voteable.decrement(:votes_count)
-      voteable.save
+    if vote == true
+      voteable.update(votes_count: (voteable.votes_count + 1))
+    elsif vote == false
+      voteable.update(votes_count: (voteable.votes_count - 1))
     end
   end
 
   def inc_dec_counters_update
     if voteable && vote == true
-      voteable.increment(:votes_count, 2)
-      voteable.save
+      voteable.update(votes_count: (voteable.votes_count + 2))
     elsif voteable && vote == false
-      voteable.decrement(:votes_count, 2)
-      voteable.save
+      voteable.update(votes_count: (voteable.votes_count - 2))
     end
   end
 
 
   def user_inc_dec_counters
-    if voteable.class != Question
-      if user && vote == true
-        user.increment(:votes_count, 1)
-        user.save
-      elsif user && vote == false
-        user.decrement(:votes_count, 1)
-        user.save
+    if voteable.class != Question && voteable.votes_count < 50
+      if voteable.user != user && vote == true && voteable.votes_count < 50
+        voteable.user.update(votes_count: (voteable.user.votes_count + 2))
+      elsif vote == false
+        voteable.user.update(votes_count: (voteable.user.votes_count - 2))
       end
     end
   end
 
   def user_inc_dec_counters_update
     if voteable.class != Question
-      if user && vote == true
-        user.increment(:votes_count, 2)
-        user.save
-      elsif user && vote == false
-        user.decrement(:votes_count, 2)
-        user.save
+      if voteable.user != user && vote == true && voteable.votes_count < 50
+        voteable.user.update(votes_count: (voteable.user.votes_count + 2))
+      elsif voteable.user && vote == false
+        voteable.user.update(votes_count: (voteable.user.votes_count - 2))
       end
     end
   end

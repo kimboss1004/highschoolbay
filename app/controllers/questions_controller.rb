@@ -4,6 +4,7 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
+    @title = @question.title
     impressionist(@question, nil, :unique => [:session_hash])
     @comments = Comment.where(commentable_type: 'Question', commentable_id: @question.id).order('created_at DESC')
     @best_answer = @comments.sort_by {|comment| comment.votes_count }.last

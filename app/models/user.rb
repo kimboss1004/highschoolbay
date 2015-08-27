@@ -12,12 +12,19 @@ class User < ActiveRecord::Base
   validates :username, presence: true, uniqueness: true, length: { maximum: 26 }
   validates :password, length: { maximum: 20 }
 
+  after_create :starter_points
+
 
  def unchecked_notifications
   total = self.notifications.where(checked: nil).size
   unless total == 0
     return total
   end
+ end
+
+ def starter_points
+   self.increment(:votes_count, 75)
+   self.save
  end
 
 

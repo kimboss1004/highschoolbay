@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Hsbay</title>
+    <%= favicon_link_tag %>
+    <title>
+      <%= @title ? "#{@title} | Highschoolbay" : "Highschoolbay" %>
+    </title>
     <%= stylesheet_link_tag 'mobile/mobile' %>
     <%= javascript_include_tag 'application' %>
+    
     <%= csrf_meta_tags %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>

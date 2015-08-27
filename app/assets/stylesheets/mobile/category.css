@@ -33,7 +33,7 @@
 .homepage-jumbotron {
   width: 100%;
   height: 200px;
-  background-image: url('/assets/apple_mobile.jpg');
+  background-image: url(asset-path('apple_mobile.jpg'));
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -126,20 +126,22 @@ h2.category-name {
   font-weight: 300;
   margin: 0px;
   margin-left: 8%;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   span {
     font-size: 23px;
   }
 }
 
 ul.sub-categories {
-  margin-top: 0px;
-  text-align: center;
+  margin-top: 5px;
+  text-align: left;
   width: 100%;
   padding: 0px;
+  padding-left: 5px;
   a:link, a:hover, a:visited, a:active {
     font-size: 14px;
     display: inline-block;
+    text-align: center;
     width: 32%;
     height: 18px;
     line-height: 18px;
@@ -159,7 +161,7 @@ ul.sub-categories {
 .math-jumbotron {
   width: 100%;
   height: auto;
-  background-image: url('/assets/math.jpg');
+  background-image: url(asset-path('math.jpg'));
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -167,7 +169,7 @@ ul.sub-categories {
 .english-jumbotron {
   width: 100%;
   height: auto;
-  background-image: url('/assets/english.jpg');
+  background-image: url(asset-path('english.jpg'));
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -175,23 +177,16 @@ ul.sub-categories {
 .science-jumbotron {
   width: 100%;
   height: auto;
-  background-image: url('/assets/science.JPG');
+  background-image: url(asset-path('science.jpg'));
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-.tech-jumbotron {
-  width: 100%;
-  height: auto;
-  background-image: url('/assets/technology.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-}
 
-.history-jumbotron {
+.studies-jumbotron {
   width: 100%;
   height: auto;
-  background-image: url('/assets/history.jpg');
+  background-image: url(asset-path('history.jpg'));
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -199,10 +194,19 @@ ul.sub-categories {
 .health-jumbotron {
   width: 100%;
   height: auto;
-  background-image: url('/assets/health.jpg');
+  background-image: url(asset-path('health.jpg'));
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.languages-jumbotron {
+  width: 100%;
+  height: auto;
+  background-image: url(asset-path('languages.jpg'));
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 
 
 .btn-purple {

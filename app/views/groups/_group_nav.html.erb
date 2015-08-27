@@ -4,12 +4,11 @@
   </div>
 
   <ul class="group-category-nav">
+      <%= link_to "English", group_category_path(@group, 35, tab: params[:tab]) %>
       <%= link_to "Math", group_category_path(@group, 1, tab: params[:tab]) %>
-      <%= link_to "English", group_category_path(@group, 4, tab: params[:tab]) %>
-      <%= link_to "Science", group_category_path(@group, 5, tab: params[:tab]) %>
-      <%= link_to "History", group_category_path(@group, 21, tab: params[:tab]) %>
-      <%= link_to "Social Sciences", group_category_path(@group, 36, tab: params[:tab]) %>
-      <%= link_to "History", group_category_path(@group, 21, tab: params[:tab]) %>
-      <%= link_to "Health", group_category_path(@group, 38, tab: params[:tab]) %>
+      <%= link_to "Science", group_category_path(@group, 9, tab: params[:tab]) %>
+      <%= link_to "Social Studies", group_category_path(@group, 15, tab: params[:tab]) %>
+      <%= link_to "Languages", group_category_path(@group, 21, tab: params[:tab]) %>
+      <%= link_to "Health", group_category_path(@group, 41, tab: params[:tab]) %>
   </ul>   
 </div>    

@@ -1,8 +1,21 @@
 <% flash.each do |name, msg| %>
-  <% if msg.is_a?(String) %>
-    <div class="flash alert alert-<%= name == "notice" ? "success" : "danger" %>">
-      <a class="close" data-dismiss="alert">&#215;</a>
-      <%= content_tag :div, msg, :id => "flash_#{name}" %>
-    </div>
+  <% if msg.is_a?(String)%>
+
+ 	<% if name == 'notice' %>
+	    <div class="flash alert alert-success">
+	      <a class="close" data-dismiss="alert">&#215;</a>
+	      <%= content_tag :div, msg, :id => "flash_#{name}" %>
+	    </div>
+ 	<% elsif name == 'error'%>
+	    <div class="flash alert alert-danger">
+	      <a class="close" data-dismiss="alert">&#215;</a>
+	      <%= content_tag :div, msg, :id => "flash_#{name}" %>
+	    </div>
+ 	<% elsif name == 'value' %>
+		<div class='points-spent'>
+			<p><span><%= flash[:value] %></span>.
+		</div>
+ 	<% end %>
+
   <% end %>
 <% end %>

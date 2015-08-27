@@ -1,13 +1,16 @@
 class ImagesController < ApplicationController
-  before_action :require_user, only: [:new, :create]
+  before_action :require_user, only: [:new, :create, :show]
+  before_action :too_poor?, only: [:show]
   before_action :require_user_vote, only: [:vote]
 
 
   def show
-    @image = Image.find(params[:id])
     impressionist(@image, nil, :unique => [:session_hash])
     @comments = Comment.where(commentable_type: 'Image', commentable_id: @image.id).order('created_at DESC')
     @comment = Comment.new
+    @title = "#{@image.title} | Worksheet"
+    render :show
+    flash[:value] = nil
   end
 
   def new
@@ -28,8 +31,8 @@ class ImagesController < ApplicationController
       params[:photos].each { |photo|
         @image.pictures.create(photo: photo)
       }
-      flash[:error] = nil
       flash[:notice] = "Your image has been submitted."
+      flash['value'] = "+25pts. Current total: #{current_user.votes_count}pts"
       redirect_to dynamic_post_path(params, nil)
     else
       @image.valid?
@@ -65,6 +68,22 @@ class ImagesController < ApplicationController
 
   def image_params
     params.require(:image).permit!
+  end
+
+  def too_poor?
+    @image = Image.find(params[:id])
+      unless session["Image#{params[:id]}"] || @image.user == current_user
+        if current_user.votes_count < 5
+          flash[:error] = "Need at least 5pts. Current total: #{current_user.votes_count}pts. [Post a worksheet(+25pts) or get likes on answers/comments/worksheets(+2pts)]"
+          redirect_to :back
+        else
+          current_user.update(votes_count: (current_user.votes_count - 5))
+          session["Image#{params[:id]}"] = true
+          flash[:value] = "-5pts. Current total: #{current_user.votes_count}pts"
+        end
+
+
+      end
   end
 
 

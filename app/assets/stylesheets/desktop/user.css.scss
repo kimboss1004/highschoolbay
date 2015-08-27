@@ -27,7 +27,7 @@
       width: 200px;
       height: 85px;
       line-height: 65px;
-      font-size: 22px;
+      font-size: 22px; 
       font-weight: 300;
       color: rgba(253, 253, 253, 0.7);
       text-decoration: none;
@@ -196,6 +196,13 @@ a:link.register-button, a:visited.register-button {
 }
 a:hover.register-button {
   background-color: #008AE6;
+}
+
+.fullpage {
+  width: 60%;
+  height: 100%;
+  display: float;
+  float: left;
 }
 
 // leaderboard ----------------------------------------

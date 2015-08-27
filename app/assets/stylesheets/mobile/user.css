@@ -229,7 +229,7 @@ div.notification {
 
   // content letter styling -------------
   div.info-content {
-    width: 87%;
+    width: 85%;
     line-height: 25px;
     padding-bottom: 5px;
     padding-top: 5px;
@@ -307,6 +307,16 @@ div.notification {
     right: 10px;
   }  
 
+  p.points {
+    display: float;
+    float: right;
+    color: green;
+    font-size: 12px;
+    margin: -15px 0px;
+    line-height: 15px;
+    padding: 0px;
+  }
+
 
 
 
@@ -337,9 +347,9 @@ h2.notification {
   font-size: 20px;
   font-weight: 200;
   width: 100%;
-  height: 70px;
+  height: 40px;
   padding-left: 20px;
-  line-height: 70px;
+  line-height: 40px;
   background-color: white;
   border: solid 1px #DADDDA;
   span {

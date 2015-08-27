@@ -17,8 +17,6 @@
 //= require_tree .
 //= require_self
 
-$(document).ready(function() {
-
   $(function() {
     $('#my-menu').mmenu({
       extensions  : [ 'effect-slide-menu', "border-full", "pageshadow" ],
@@ -30,6 +28,7 @@ $(document).ready(function() {
     });
   });
 
+$(document).ready(function() {
 
   var API = $("#my-menu").data( "mmenu" );
   $("#my-button").click(function() {
@@ -58,6 +57,9 @@ $(document).ready(function() {
 // ------------------- make selected categories orange ---------------------------------------------
     $('input[type=checkbox]:checked').each(function() {
         $('a#' + this.id).css("background-color", "orange");
+        if ($('a#' + this.id).hasClass('gategory-head-checkbox')) {
+          $('a#' + this.id + '.gategory-head-checkbox').css("background-color", "#5CB85C");
+        }
     });
 
 

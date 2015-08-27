@@ -1,0 +1,25 @@
+<a id='<%= f.object.class.to_s.downcase %>_gategory_ids_<%= gategory_descendent.value %>' class="btn btn-success gcheck-enabled g-checkbox-styling" data-toggle="collapse" href="#gategory<%= gategory_descendent.value %>" aria-expanded="false" aria-controls="gategory<%= gategory_descendent.value %>">
+    <%= f.collection_check_boxes :gategory_ids, [gategory_descendent.object], :id, :name do |d| %>
+      <%= d.label(class: "checkbox-inline center-box") {d.check_box(class: "checkbox checkbox-square") + d.text} %>
+    <% end %> 
+</a>
+
+<% if gategory_descendent.object.sub_gategories.any? %>
+
+
+
+  <div class="collapse" id="gategory<%= gategory_descendent.value %>">
+
+    <div class="well checkbox-sub-container">
+
+      <%= f.collection_check_boxes :gategory_ids, gategory_descendent.object.sub_gategories, :id, :name do |descendent| %>
+          
+        <%= render 'gategories/dig_gategory_checkboxes', gategory_descendent: descendent, f: f %>
+
+
+      <% end %>
+    </div>
+  </div>
+
+
+<% end %>

@@ -5,6 +5,7 @@ class SessionsController < ApplicationController
     if params[:log_return]
       session[:log_return] = params[:log_return]
     end
+    @title = "Login"
     
   end
 
