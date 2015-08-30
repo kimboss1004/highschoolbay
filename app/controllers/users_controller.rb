@@ -28,8 +28,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      flash[:notice] = "You have succesfully registered! Login."
-      redirect_to login_path
+      session[:user_id] = @user.id
+      redirect_to guide_path
     else
       render :new
     end 
@@ -70,6 +70,10 @@ class UsersController < ApplicationController
     render :notifications
 
     @notifications.where(checked: nil).update_all(checked: true, checked_at: Time.now)
+  end
+
+  def guide
+    
   end
 
 

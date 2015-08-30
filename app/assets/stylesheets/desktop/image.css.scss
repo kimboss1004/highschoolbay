@@ -54,6 +54,9 @@ img.image {
 .small-wks-post {
   width: 100%;
   border: solid #CCCCCC 1pt;
+  -webkit-box-shadow: -1px 7px 12px 0px rgba(92,90,92,0.68);
+  -moz-box-shadow: -1px 7px 12px 0px rgba(92,90,92,0.68);
+  box-shadow: -1px 7px 12px 0px rgba(92,90,92,0.68);
   background-color: #FFFFFF;
   margin: 15px 0px;
   p {

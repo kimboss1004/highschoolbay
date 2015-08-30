@@ -108,7 +108,10 @@ $(document).ready(function() {
         $(this).css("background-color", "green");
       } 
   });
-
+  
+  $("div.clickhide").click(function(){
+      $(this).hide();
+  });
 
 });
 

@@ -74,7 +74,7 @@ class ImagesController < ApplicationController
     @image = Image.find(params[:id])
       unless session["Image#{params[:id]}"] || @image.user == current_user
         if current_user.votes_count < 5
-          flash[:error] = "Need at least 5pts. Current total: #{current_user.votes_count}pts. [Post a worksheet(+25pts) or get likes on answers/comments/worksheets(+2pts)]"
+          flash[:error] = "Need at least 5pts. Current total: #{current_user.votes_count}pts. Search highschoolbay.com/guide for more info."
           redirect_to :back
         else
           current_user.update(votes_count: (current_user.votes_count - 5))

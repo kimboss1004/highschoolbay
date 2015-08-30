@@ -376,6 +376,83 @@ h2.notification {
 }
 
 
+// guide -----------------------------------------------------
+
+.guide {
+  width: 90%;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  padding: 0px;
+  border: solid 1px #BDBDBD;
+  margin-top: 10px;
+  -webkit-box-shadow: -1px 7px 12px 0px rgba(92,90,92,0.68);
+  -moz-box-shadow: -1px 7px 12px 0px rgba(92,90,92,0.68);
+  box-shadow: -1px 7px 12px 0px rgba(92,90,92,0.68);
+}
+
+#welcome {
+  background-color: #4184f3;
+  color: white;
+  height: 70px;
+  line-height: 70px;
+  font-size: 20px;
+  font-weight: 400;
+  padding-left: 20px;
+  margin: 0px;
+}
+
+h3#point-system {
+  font-weight: 400;
+  font-size: 23px;
+  padding-left: 20px;
+}
+
+p#point-system {
+  padding-left: 20px;
+  font-size: 17px;
+  font-weight: 200;
+}
+
+table#point-system {
+  width: 80%;
+  font-size: 16px;
+  font-weight: 200;
+  margin-left: 40px;
+  tr {
+    border-bottom: 1px solid #C5C5C5;
+    height: 45px;
+    .positive-points{
+      text-align: right;
+      color: #00B800;
+      padding-right: 20px;
+    }
+    .negative-points{
+      text-align: right;
+      color: #E60000;
+      padding-right: 20px;
+    }
+  }
+}
+
+h3#join-school {
+  font-weight: 400;
+  font-size: 23px;
+  padding-left: 20px;
+}
+
+p#join-school {
+  font-size: 17px;
+  font-weight: 200;
+  padding-left: 20px;
+  .join-link {
+    font-weight: 400;
+    color: #0066FF;
+  }
+}
+
+
 
 
 

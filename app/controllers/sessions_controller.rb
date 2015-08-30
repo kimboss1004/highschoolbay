@@ -19,6 +19,7 @@ class SessionsController < ApplicationController
     else
       flash[:error] = " Incorrect username or password."
       render :new
+      flash[:error] = nil
     end
   end
 

@@ -37,6 +37,8 @@ Rails.application.routes.draw do
     end 
   end
 
+  get '/guide', to: 'users#guide'
+
   get '/login', to: 'sessions#new'
   get '/logout', to: 'sessions#destroy'
   resources :sessions, only: :create

@@ -1,0 +1,44 @@
+<div class="guide">
+    <h2 id="welcome">
+      Welcome
+      <% if logged_in? %>
+        <%= current_user.username %>
+      <% end %> 
+    </h2>
+
+    <h3 id="point-system">Point System</h3>
+    <p id="point-system">HighschoolBay uses a point system to ensure all our users not only benefit, but also contribute to our community.</p>
+
+    <table id="point-system">
+      <tr>
+        <td>Viewing a worksheet</td>
+        <td class="negative-points">-5pts</td> 
+      </tr>
+      <tr>
+        <td>Posting a Worksheet</td>
+        <td class="positive-points">+25pts</td> 
+      </tr>
+      <tr>
+        <td>Asking Question</td>
+        <td class="positive-points">+0pts</td> 
+      </tr>
+      <tr>
+        <td>Answering Question</td>
+        <td class="positive-points">+3pts</td> 
+      </tr>
+      <tr>
+        <td><i class="fa fa-thumbs-o-up"></i> Like</td>
+        <td class="positive-points">+2pts</td> 
+      </tr>
+      <tr>
+        <td><i class="fa fa-thumbs-o-down"></i> Dislike</td>
+        <td class="negative-points">-2pts</td> 
+      </tr>
+    </table>
+
+    <br/>
+    <h3 id="join-school">Join your School</h3>
+    <p id="join-school">Want to see posts only from students of your high school? <%= link_to "Join", groups_path(), class: "join-link" %> your school group where you can also create specefic classes of your school not already included. </p>
+  </div>
+
+</div>
