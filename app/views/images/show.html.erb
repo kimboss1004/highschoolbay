@@ -1,17 +1,6 @@
 
 <div class="body-center">
 
-  <div class="left-content-container">
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-9965889724685947"
-           data-ad-slot="6278336819"
-           data-ad-format="auto"></ins>
-      <script>
-      (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-  </div>
-
   <div class="form-content-container">
     <div class="show-object-container">
       <%= render 'votes/vote_big', object: @image, path: vote_image_path(@image) %>
@@ -76,14 +65,34 @@
 
 
   <div class="right-content-container">
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-9965889724685947"
-           data-ad-slot="6278336819"
-           data-ad-format="auto"></ins>
-      <script>
-      (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
+
+    <div class="category-board">
+      <h2>Popular Categories</h2>
+      <div class="sub-titles">
+        <p class="school">Category</p>
+        <p class="points">Posts</p>
+      </div>
+      <% Category.where(master: nil).each_with_index do |category, index| %>
+        <div class="user">
+          <p class="rank"><%= index + 1 %></p>
+          <p class="username"><%= link_to upcase_first(category.name), category_path(category) %></p>
+          <p class="points"><%= category.questions.size %></p>
+        </div>
+      <% end %>
+      <div class="sub-titles">
+        <p class="points"><%= link_to "See All", '#' %></p>
+      </div>
+    </div>
+    <br/>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-9965889724685947"
+         data-ad-slot="6278336819"
+         data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>   
+    <br>
   </div>
  
 

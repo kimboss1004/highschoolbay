@@ -3,11 +3,11 @@
   div.hsnav {
     margin: 0px;
     padding-bottom: 63px;
-    padding-top: 25px;
     padding-right: 0px;
-    height: 50px;
+    height: 55px;
+    border-bottom: 1px solid #B2B2B2;
     width: 100%;
-    background-color: #339933;
+    background-color: white;
     z-index: 10;
     position: fixed;
   }
@@ -17,13 +17,12 @@
 @media (max-width: 1350px) { 
   div.hsnav {
     margin: 0px;
-    margin-bottom: 3px;
     padding-bottom: 63px;
-    padding-top: 25px;
     padding-right: 0px;
-    height: 50px;
+    height: 55px;
+    border-bottom: 1px solid #B2B2B2;
     width: 100%;
-    background-color: #339933;
+    background-color: white;
     z-index: 10;
   }
 }
@@ -32,10 +31,13 @@
   width: 200px;
   display: inline-block;
   position: relative;
-  bottom: 20px;
-  left: 10px;
+  top: 8px;
+  left: 12%;
+  @media (max-width: 1350px) {
+    left: 2%;
+  }
   a:link, a:hover, a:visited, a:active {
-    color: white;
+    color: #69C386;
     font-size: 30px;
     text-decoration: none;
     font-weight: 600;
@@ -49,25 +51,28 @@
 
 ul.nav-right {
   position: absolute;
-  top: 15px;
-  right: 25px;
+  top: 18px;
+  right: 12%;
+  @media (max-width: 1350px) {
+    right: 2%;
+  }
 }
 
 ul .nav-item {
   display: inline-block;
   margin: 0px 10px;
   a:link, a:hover, a:visited, a:active {
-    font-size: 16px;
-    font-weight: 700;
+    font-size: 17px;
+    font-weight: 600;
     padding: 10px 5px;
     background-color: none;
     text-decoration: none;
   }
   a:hover, a:active {
-    background-color: #56AC71;
+
   }
   a:link, a:visited {
-    color: white;
+    color: #00B85C;
   }
   span.notification-badge {
     height: 15px;
@@ -108,7 +113,7 @@ ul .nav-item {
     border: solid 1px #007C29;
     -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, .1);
     color: white;
-  }
+  } 
 }
 
 .dropdown-menu li.account-links {
@@ -130,13 +135,14 @@ ul .nav-item {
 //category nav
 ul.nav-main-categories {
   position: absolute;
+  text-align: center;
   top: 50px;
   width: 100%;
   height: 35px;
   padding: 0px;
   padding-left: 20px;
   box-shadow: 6px 6px 10px #181818;
-  background-color: rgba(62, 126, 83, 0.60);
+
   a:link, a:hover, a:visited, a:active {
     display: inline-block;
     margin-left: 5px;
@@ -145,9 +151,9 @@ ul.nav-main-categories {
     line-height: 35px;
     background-color: none;
     text-decoration: none;
-    color: white;
-    font-size: 20px;
-    font-weight: 600;
+    color: black;
+    font-size: 15px;
+    font-weight: 500;
   }
   a:hover, a:active {
     color: #ECEDEC;
@@ -158,50 +164,54 @@ ul.nav-main-categories {
 
 .space {
   width: 100%;
-  height: 80px;
+  height: 63px;
   background-color: white;
 }
 
 
 //search
 .nav-a .box{
-  width: 50%;
-  height: 38px;
+  width: 30%;
+  height: 55px;
   position: relative;
-  bottom: 60px;
-  left: 200px;
+  bottom: 38px;
+  left: 30%;
+  @media (max-width: 1350px) {
+    left: 20%;
+    width: 28%;
+  }
+  border: none;
+  border-left: 1px solid #B2B2B2;
+  margin: 0px;
 }
 
 .nav-a .container-1{
   white-space: nowrap;
-  margin-left: 30px;
+  margin-left: 0px;
 }
 
 .nav-a .container-1 input#search{
   width: 90%;
-  height: 38px;
+  height: 55px;
   display: inline-block;
-  background: #F3FFF3;
-  border: none;
+  background: white;
   font-size: 15pt;
   color: #63717f;
   padding-left: 50px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+  border: none
 }
 
 .nav-a .container-1 input#search::-webkit-input-placeholder {
-   color: #65737e;
+   color: #B2B2B2;
 }
 .nav-a .container-1 input#search:-moz-placeholder { /* Firefox 18- */
-   color: #65737e;  
+   color: #B2B2B2;  
 }
 .nav-a .container-1 input#search::-moz-placeholder {  /* Firefox 19+ */
-   color: #65737e;  
+   color: #B2B2B2;  
 }
 .nav-a .container-1 input#search:-ms-input-placeholder {  
-   color: #65737e;  
+   color: #B2B2B2;  
 }
 
 .nav-a .container-1 input#search:hover, .container-1 input#search:focus, .container-1 input#search:active{
@@ -210,11 +220,10 @@ ul.nav-main-categories {
   }
 
 .search-icon {
-border-radius: 7px;
-border: #40A140 1px;
-background-color: #FF9494;
-color: white;
-font-size: 15px;
+color: #B2B2B2;
+background-color: white;
+border: none;
+font-size: 18px;
 text-align: center;
   width: 34px;
   height: 34px;

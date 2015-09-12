@@ -26,6 +26,23 @@
 
 <ul class="nav-right">
     <% if logged_in? %>
+        <li class="dropdown nav-item">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= upcase_first(current_user.username) %></i><span class="caret"></span></a>
+          <ul class="dropdown-menu account" role="menu">
+            <li class="account-links"><%= link_to "Profile", user_path(current_user) %></li>
+            <li class="account-links"><%= link_to "Settings", edit_user_path(current_user) %></li>
+            <li class="divider"></li>
+            <li class="account-links"><%= link_to "Logout", logout_path %></a></li>
+          </ul>
+        </li>
+        <li class='nav-item'>
+          <%= link_to notifications_user_path(current_user) do %>
+            <i class="fa fa-globe fa-lg"></i> Notifications
+            <% if current_user.unchecked_notifications %>
+              <span class="notification-alert"><%= current_user.unchecked_notifications %></span>
+            <% end %>
+          <% end %>
+        </li>
         <li class='school'>
           <% if current_user.group %>
             <%= link_to current_user.group.school, group_path(current_user.group) %>
@@ -51,23 +68,6 @@
             <% end %>
           <% end %>
         </li> 
-        <li class="dropdown nav-item pull-right">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-bars fa-lg"></i><span class="caret"></span></a>
-          <ul class="dropdown-menu account" role="menu">
-            <li class="account-links"><%= link_to "Profile", user_path(current_user) %></li>
-            <li class="account-links"><%= link_to "Settings", edit_user_path(current_user) %></li>
-            <li class="divider"></li>
-            <li class="account-links"><%= link_to "Logout", logout_path %></a></li>
-          </ul>
-        </li>
-        <li class='nav-item'>
-          <%= link_to notifications_user_path(current_user) do %>
-            <i class="fa fa-globe fa-lg"></i>
-            <% if current_user.unchecked_notifications %>
-              <span class="notification-alert"><%= current_user.unchecked_notifications %></span>
-            <% end %>
-          <% end %>
-        </li>
 
     <% else %>
         <li class='school'>
@@ -81,14 +81,7 @@
     <% end %>
 </ul>
 
-  <ul class='nav-main-categories'>
-    <%= link_to "English", category_path(35) %>
-    <%= link_to "Math", category_path(1) %>
-    <%= link_to "Science", category_path(9) %>
-    <%= link_to "Social Studies", category_path(15) %>
-    <%= link_to "Languages", category_path(21) %>
-    <%= link_to "Health", category_path(41) %>
-  </ul>
+
 </div>
 
 

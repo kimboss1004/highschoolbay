@@ -10,13 +10,8 @@ default: &default
   timeout: 5000
 
 development:
-  host: localhost
-  adapter: mysql2
-  database: hsbay_developement
-  username: root
-  password: 1004
-  encoding: utf8
-  pool: 5
+  <<: *default
+  database: db/test.sqlite3
 
 
 # Warning: The database defined as "test" will be erased and
@@ -27,7 +22,5 @@ test:
   database: db/test.sqlite3
 
 production:
-  adapter: mysql2
-  database: hsbay_production
-  username: root
-  password: 1004
+  <<: *default
+  database: db/test.sqlite3

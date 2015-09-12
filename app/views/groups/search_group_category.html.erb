@@ -1,36 +1,6 @@
 
 <div class="body-center">
 
-  <div class="left-content-container">
-    <p>Custom Categories
-      <button type="button" class="custom-info" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Custom categories are categories created by members of school, always labeled (custom categories)">
-        <i class="fa fa-question-circle"></i>
-      </button>
-    </p>
-
-    <h4><%= @category.name %></h4>
-    <ul class="gategory-links">
-      <% @category.gategories.each do |gategory| %>
-        <%= link_to upcase_first(gategory.name), group_gategory_path(@group, gategory) %>
-      <% end %>      
-      <br/>
-      <% if logged_in? && member?(@group.id) %>
-        <%= link_to new_group_gategory_path(@group) + "?category_id=#{@category.id}" do %>
-          <button type="button" class="btn btn-success green">Create Category</button>
-        <% end %>
-      <% end %>
-    </ul>
-    <br/>
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-9965889724685947"
-         data-ad-slot="6278336819"
-         data-ad-format="auto"></ins>
-    <script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-  </div>
-
 
 <div class="form-content-container">
 
@@ -75,6 +45,33 @@
       <h2>Advanced search</h2>
       <p>When searching <strong>Worksheets</strong>, enter the <strong>first 10-15 words</strong> of desired worksheet for best results.</p>
     </div>
+    
+      <div class="leaderboard">
+        <h2>Custom Categories
+      <button type="button" class="custom-info" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Custom categories are categories created by members of school, always labeled (custom categories)">
+        <i class="fa fa-question-circle"></i>
+      </button></h2>
+        <div class="sub-titles">
+          <p class="school"><%= upcase_first(@category.name) %></p>
+          <p class="points">Posts</p>
+        </div>
+        <% @category.gategories.each_with_index do |gategory, index| %>
+          <div class="user">
+            <p class="rank"><%= index + 1 %></p>
+            <p class="username"><%= link_to upcase_first(gategory.name), group_gategory_path(@group, gategory) %>
+            <p class="points"><%= gategory.questions.size + gategory.images.size %></p>
+          </div>
+        <% end %>
+        <% if logged_in? && member?(@group.id) %>
+          <%= link_to new_group_gategory_path(@group) + "?category_id=#{@category.id}" do %>
+            <button type="button" class="btn btn-success green" style="margin: 5px 25%;">Create Category</button>
+          <% end %>
+        <% end %>
+      </div>
+
+
+
+
     <br/>
     <ins class="adsbygoogle"
          style="display:block"
